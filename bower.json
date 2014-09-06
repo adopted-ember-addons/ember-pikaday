@@ -12,5 +12,9 @@
     "ember-qunit": "0.1.8",
     "ember-qunit-notifications": "0.0.4",
     "qunit": "~1.15.0"
+  },
+  "devDependencies": {
+    "pikaday": "~1.2.0",
+    "momentjs": "~2.8.3"
   }
 }
