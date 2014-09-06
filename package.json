@@ -1,6 +1,6 @@
 {
   "name": "ember-pikaday",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "directories": {
     "doc": "doc",
     "test": "test"
@@ -8,7 +8,8 @@
   "scripts": {
     "start": "ember server",
     "build": "ember build",
-    "test": "ember test"
+    "test": "ember test",
+    "postinstall": "bower install"
   },
   "repository": "https://github.com/edgycircle/ember-pikaday",
   "engines": {

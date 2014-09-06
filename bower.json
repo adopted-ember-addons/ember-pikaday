@@ -1,5 +1,5 @@
 {
-  "name": "dummy",
+  "name": "ember-pikaday",
   "dependencies": {
     "handlebars": "~1.3.0",
     "jquery": "^1.11.1",
@@ -11,10 +11,10 @@
     "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.2",
     "ember-qunit": "0.1.8",
     "ember-qunit-notifications": "0.0.4",
-    "qunit": "~1.15.0"
-  },
-  "devDependencies": {
+    "qunit": "~1.15.0",
     "pikaday": "~1.2.0",
     "momentjs": "~2.8.3"
+  },
+  "devDependencies": {
   }
 }
