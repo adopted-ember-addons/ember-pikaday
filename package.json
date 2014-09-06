@@ -1,6 +1,6 @@
 {
   "name": "ember-pikaday",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "directories": {
     "doc": "doc",
     "test": "test"
@@ -10,17 +10,19 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "https://github.com/stefanpenner/ember-cli",
+  "repository": "https://github.com/edgycircle/ember-pikaday",
   "engines": {
     "node": ">= 0.10.0"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "pikaday",
+    "datepicker"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
-  "author": "",
+  "author": "David Strauß",
   "license": "MIT",
   "devDependencies": {
     "body-parser": "^1.2.0",
