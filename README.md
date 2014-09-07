@@ -1,25 +1,31 @@
-# Ember-pikaday
+ember-pikaday is an addon that can be installed with Ember CLI. It gives you a datepicker input component that can be used in your Ember.js application. Pikaday and Moment.js are used in the background so they are added as Bower dependencies to your application.
 
-This README outlines the details of collaborating on this Ember addon.
+**The component provided by ember-pikaday is fully acceptance tested.**
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+```bash
+cd your-project-directory
+npm install --save-dev ember-pikaday
+ember g ember-pikaday
+```
 
-## Running
+## Usage
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+While the input shows a formatted date to the user the bound attribute is always a JavaScript date object. If the application sets the attribute without a user interaction the datepicker updates accordingly.
 
-## Running Tests
+```handlebars
+<label>
+  Start date:
+  {{pikaday-input value=startsAt}}
+</label>
+```
 
-* `ember test`
-* `ember test --server`
+You can also change the default format from `DD.MM.YYYY` to any format string supported by Moment.js.
 
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+```handlebars
+<label>
+  Start date:
+  {{pikaday-input value=startsAt format="MM/DD/YYYY"}}
+</label>
+```
