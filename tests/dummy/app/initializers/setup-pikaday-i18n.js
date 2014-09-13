@@ -1,3 +1,5 @@
+/* globals moment */
+
 import Ember from 'ember';
 
 export default {
