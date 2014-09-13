@@ -8,12 +8,18 @@ export default Ember.Component.extend({
   setupPikaday: function() {
     var that = this;
 
-    var pikaday = new Pikaday({
+    var options = {
       field: this.$()[0],
       onSelect: function() { that.userSelectedDate(); },
       firstDay: 1,
       format: this.get('format') || 'DD.MM.YYYY'
-    });
+    };
+
+    if (this.get('i18n')) {
+      options.i18n = this.get('i18n');
+    }
+
+    var pikaday = new Pikaday(options);
 
     this.set('pikaday', pikaday);
     this.get('pikaday').setDate(this.get('value'), true);

@@ -75,6 +75,27 @@ test('format of the input is changeable', function() {
   this.subject().teardownPikaday();
 });
 
+test('default i18n configuration of Pikaday can be changed', function() {
+  var component = this.subject({
+    i18n: {
+      previousMonth: 'Vorheriger Monat',
+      nextMonth: 'Nächster Monat',
+      months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+      weekdays: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+      weekdaysShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']
+    }
+  });
+
+  this.append();
+
+  component.set('value', new Date(2014, 2, 10));
+  openPopup();
+
+  equal($('.pika-select-month option:selected').text(), 'März');
+
+  this.subject().teardownPikaday();
+});
+
 function selectDate(date) {
   var day = date.getDate();
   var month = date.getMonth();
