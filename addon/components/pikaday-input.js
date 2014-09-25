@@ -10,7 +10,11 @@ export default Ember.Component.extend({
 
     var options = {
       field: this.$()[0],
-      onSelect: function() { that.userSelectedDate(); },
+      onSelect: function() {
+        Ember.run(function() {
+          that.userSelectedDate();
+        });
+      },
       firstDay: 1,
       format: this.get('format') || 'DD.MM.YYYY'
     };
