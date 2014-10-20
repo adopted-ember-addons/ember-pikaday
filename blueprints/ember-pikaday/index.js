@@ -5,7 +5,7 @@ module.exports = {
     var that = this;
 
     return this.addBowerPackageToProject('pikaday').then(function() {
-        return that.addBowerPackageToProject('momentjs');
+        return that.addBowerPackageToProject('moment');
     });
   }
 };

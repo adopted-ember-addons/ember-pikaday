@@ -15,6 +15,6 @@
   },
   "devDependencies": {
     "pikaday": "~1.2.0",
-    "momentjs": "~2.8.3"
+    "moment": "~2.8.3"
   }
 }
