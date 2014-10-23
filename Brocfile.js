@@ -16,9 +16,9 @@ var app = new EmberAddon();
 // modules that you would like to import into your application
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
-app.import('bower_components/moment/moment.js');
-app.import('bower_components/moment/locale/de-at.js');
-app.import('bower_components/pikaday/pikaday.js');
-app.import('bower_components/pikaday/css/pikaday.css');
+app.import(app.bowerDirectory + '/moment/moment.js');
+app.import(app.bowerDirectory + '/moment/locale/de-at.js');
+app.import(app.bowerDirectory + '/pikaday/pikaday.js');
+app.import(app.bowerDirectory + '/pikaday/css/pikaday.css');
 
 module.exports = app.toTree();
