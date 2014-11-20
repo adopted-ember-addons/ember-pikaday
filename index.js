@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   name: 'ember-pikaday',
   included: function(app) {
