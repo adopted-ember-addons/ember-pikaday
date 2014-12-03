@@ -1,6 +1,7 @@
 import { test, moduleForComponent } from 'ember-qunit';
 import startApp from '../../helpers/start-app';
 import Ember from 'ember';
+import { selectDate, openPopup, selectorForYearOption, selectorForMonthOption, selectorForDayButtonWrapper } from 'ember-pikaday/helpers/pikaday';
 
 var App;
 
@@ -20,10 +21,10 @@ test('is an input tag', function() {
 });
 
 test('clicking the input opens the pikaday dialog', function() {
-  this.append();
+  var $component = this.append();
 
   ok($('.pika-single').hasClass('is-hidden'));
-  openPopup();
+  openPopup($component);
   ok(!$('.pika-single').hasClass('is-hidden'));
 
   this.subject().teardownPikaday();
@@ -31,7 +32,8 @@ test('clicking the input opens the pikaday dialog', function() {
 
 test('selecting a date should update the value attribute', function() {
   var component = this.subject();
-  this.append();
+  var $component = this.append();
+  openPopup($component);
   selectDate(new Date(2013, 3, 28));
 
   var date = this.subject().get('value');
@@ -44,10 +46,10 @@ test('selecting a date should update the value attribute', function() {
 });
 
 test('setting the value attribute should select the correct date', function() {
-  this.append();
+  var $component = this.append();
 
   this.subject().set('value', new Date(2010, 7, 10));
-  openPopup();
+  openPopup($component);
 
   ok($(selectorForYearOption(2010)).is(':selected'));
   ok($(selectorForMonthOption(7)).is(':selected'));
@@ -86,66 +88,12 @@ test('default i18n configuration of Pikaday can be changed', function() {
     }
   });
 
-  this.append();
+  var $component = this.append();
 
   component.set('value', new Date(2014, 2, 10));
-  openPopup();
+  openPopup($component);
 
   equal($('.pika-select-month option:selected').text(), 'März');
 
   this.subject().teardownPikaday();
 });
-
-function selectDate(date) {
-  var day = date.getDate();
-  var month = date.getMonth();
-  var year = date.getFullYear();
-
-  openPopup();
-
-  $(selectorForYearOption(year)).attr('selected', 'selected');
-  triggerNativeEvent($(selectorForYearSelect())[0], 'change');
-
-  $(selectorForMonthOption(month)).attr('selected', 'selected');
-  triggerNativeEvent($(selectorForMonthSelect())[0], 'change');
-
-  triggerNativeEvent($(selectorForDayButton(day))[0], 'mousedown');
-}
-
-function openPopup() {
-  click('input');
-}
-
-function selectorForMonthSelect() {
-  return '.pika-select-month';
-}
-
-function selectorForMonthOption(month) {
-  return selectorForMonthSelect() + ' option[value="' + month + '"]';
-}
-
-function selectorForYearSelect() {
-  return '.pika-select-year';
-}
-
-function selectorForYearOption(year) {
-  return selectorForYearSelect() + ' option[value="' + year + '"]';
-}
-
-function selectorForDayButton(day) {
-  return selectorForDayButtonWrapper(day) + ' button';
-}
-
-function selectorForDayButtonWrapper(day) {
-  return 'td[data-day="' + day + '"]';
-}
-
-function triggerNativeEvent(element, eventName) {
-  if (element.fireEvent) {
-    element.fireEvent('on' + eventName);
-  } else {
-    var event = document.createEvent('Events');
-    event.initEvent(eventName, true, false);
-    element.dispatchEvent(event);
-  }
-}
