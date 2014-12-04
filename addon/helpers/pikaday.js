@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 var $ = Ember.$;
 
-var openDatepicker =function(element) {
+var openDatepicker = function(element) {
   $(element).click();
 
   return PikadayInteractor;
