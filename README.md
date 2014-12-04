@@ -1,6 +1,6 @@
 ember-pikaday is an addon that can be installed with Ember CLI. It gives you a datepicker input component that can be used in your Ember.js application. Pikaday and Moment.js are used in the background so they are added as Bower dependencies to your application.
 
-**The component provided by ember-pikaday is fully acceptance tested.**
+**The component provided by ember-pikaday is fully acceptance tested. It also provides test helpers to interact with the datepicker in your own acceptance tests.**
 
 ## Installation
 
