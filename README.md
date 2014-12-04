@@ -68,3 +68,37 @@ export default {
   }
 };
 ```
+
+## Test Helpers
+
+The test helpers provided by ember-pikaday allow you to interact with the datepicker in your acceptance tests. After importing them you are ready to rock and roll.
+
+```
+import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
+```
+
+To open the datepicker use `openDatepicker` and pass the input element as argument.
+
+```
+openDatepicker(Ember.$('#my-datepicker'));
+```
+
+`openDatepicker` not only opens the datepicker but also returns an interactor that can be used to interact with it. For example you can select a specific date by using `selectDate`.
+
+```
+var interactor = openDatepicker(Ember.$('#my-datepicker'));
+
+interactor.selectDate(new Date(1989, 3, 28));
+```
+
+To check if a specific day, month or year is selected there are also relevant methods available.
+
+```
+var interactor = openDatepicker(Ember.$('#my-datepicker'));
+
+interactor.selectDate(new Date(1989, 3, 28));
+
+equal(interactor.selectedYear(), 1989);
+equal(interactor.selectedMonth(), 3);
+equal(interactor.selectedDay(), 28);
+```
