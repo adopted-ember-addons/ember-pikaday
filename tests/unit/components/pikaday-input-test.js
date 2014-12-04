@@ -1,18 +1,8 @@
 import { test, moduleForComponent } from 'ember-qunit';
-import startApp from '../../helpers/start-app';
 import Ember from 'ember';
 import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
 
-var App;
-
-moduleForComponent('pikaday-input', 'PikadayInputComponent', {
-  setup: function() {
-    App = startApp();
-  },
-  teardown: function() {
-    Ember.run(App, 'destroy');
-  }
-});
+moduleForComponent('pikaday-input', 'PikadayInputComponent');
 
 test('is an input tag', function() {
   equal('INPUT', this.$().prop('tagName'));
