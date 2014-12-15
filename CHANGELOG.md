@@ -1,4 +1,4 @@
-## Unreleased
+## 0.3.0
 * Make test helpers available to application developers.
 
 ## 0.2.1
