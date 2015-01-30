@@ -16,10 +16,9 @@ var PikadayInteractor = {
     var month = date.getMonth();
     var year = date.getFullYear();
 
-    $(this.selectorForYearSelect + ' option[value="' + year + '"]').attr('selected', 'selected');
+    $(this.selectorForYearSelect).val(year);
     triggerNativeEvent($(this.selectorForYearSelect)[0], 'change');
-
-    $(this.selectorForMonthSelect + ' option[value="' + month + '"]').attr('selected', 'selected');
+    $(this.selectorForMonthSelect).val(month);
     triggerNativeEvent($(this.selectorForMonthSelect)[0], 'change');
 
     triggerNativeEvent($('td[data-day="' + day + '"] button')[0], 'mousedown');
