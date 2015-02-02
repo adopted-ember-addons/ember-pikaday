@@ -10,6 +10,15 @@ test('is an input tag', function() {
   this.subject().teardownPikaday();
 });
 
+test('the input tag has the readonly attribute if it has been set on the component', function() {
+  var component = this.subject();
+  component.set('readonly', true);
+
+  ok(this.$().is('[readonly]'));
+
+  this.subject().teardownPikaday();
+});
+
 test('clicking the input opens the pikaday dialog', function() {
   var $input = this.append();
 
