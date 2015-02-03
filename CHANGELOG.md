@@ -1,3 +1,6 @@
+## 0.4.0
+* Add attribute binding for `readonly`. (Contribution of @DenizOkcu)
+
 ## 0.3.0
 * Make test helpers available to application developers.
 

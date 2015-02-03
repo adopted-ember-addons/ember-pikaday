@@ -32,6 +32,15 @@ You can also change the default format from `DD.MM.YYYY` to any format string su
 </label>
 ```
 
+The `readonly` attribute is supported as binding so you can make the input readonly for mobile or other usecases.
+
+```handlebars
+<label>
+  Start date:
+  {{pikaday-input value=startsAt readonly="readonly"}}
+</label>
+```
+
 ## Localization
 
 Localizing the datepicker is possible in two steps. To localize the output of the datepicker, this is the formatted string visible in the input field, you simply add the correct Moment.js locale file to your applications `Brocfile.js`.
