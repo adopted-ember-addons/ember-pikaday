@@ -31,6 +31,12 @@ var PikadayInteractor = {
   },
   selectedYear: function() {
     return $(this.selectorForYearSelect + ' option:selected').val();
+  },
+  minimumYear: function() {
+    return $(this.selectorForYearSelect).children().first().val();
+  },
+  maximumYear: function() {
+    return $(this.selectorForYearSelect).children().last().val();
   }
 };
 

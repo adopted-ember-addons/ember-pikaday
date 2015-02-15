@@ -32,6 +32,23 @@ You can also change the default format from `DD.MM.YYYY` to any format string su
 </label>
 ```
 
+You can change the `yearRange`. It defaults to 10. the `yearRange` can be a
+single number or two comma separated years.
+
+```handlebars
+<label>
+  Start date:
+  {{pikaday-input value=startsAt yearRange="4"}}
+</label>
+```
+
+```handlebars
+<label>
+  Start date:
+  {{pikaday-input value=startsAt yearRange="2004,2008"}}
+</label>
+```
+
 The `readonly` attribute is supported as binding so you can make the input readonly for mobile or other usecases.
 
 ```handlebars

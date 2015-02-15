@@ -17,7 +17,8 @@ export default Ember.Component.extend({
         });
       },
       firstDay: 1,
-      format: this.get('format') || 'DD.MM.YYYY'
+      format: this.get('format') || 'DD.MM.YYYY',
+      yearRange: that.determineYearRange()
     };
 
     if (this.get('i18n')) {
@@ -40,5 +41,19 @@ export default Ember.Component.extend({
 
   setDate: function() {
     this.get('pikaday').setDate(this.get('value'), true);
-  }.observes('value')
+  }.observes('value'),
+
+  determineYearRange: function() {
+    var yearRange = this.get('yearRange');
+
+    if (yearRange) {
+      if (yearRange.indexOf(',') > -1) {
+        return yearRange.split(',');
+      } else {
+        return yearRange;
+      }
+    } else {
+      return 10;
+    }
+  }
 });
