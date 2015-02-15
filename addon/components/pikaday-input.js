@@ -17,7 +17,8 @@ export default Ember.Component.extend({
         });
       },
       firstDay: 1,
-      format: this.get('format') || 'DD.MM.YYYY'
+      format: this.get('format') || 'DD.MM.YYYY',
+      yearRange: this.get('yearRange') || 10
     };
 
     if (this.get('i18n')) {
