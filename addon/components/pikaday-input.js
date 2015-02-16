@@ -2,6 +2,8 @@
 
 import Ember from 'ember';
 
+var moment = window.moment;
+
 export default Ember.Component.extend({
   tagName: 'input',
   attributeBindings: ['readonly'],
@@ -35,7 +37,9 @@ export default Ember.Component.extend({
   }.on('willDestroyElement'),
 
   userSelectedDate: function() {
-    this.set('value', this.get('pikaday').getDate());
+    var selectedDate = this.get('pikaday').getDate();
+    var utcDate = moment.utc([selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()]).toDate();
+    this.set('value', utcDate);
   },
 
   setDate: function() {
