@@ -38,8 +38,11 @@ export default Ember.Component.extend({
 
   userSelectedDate: function() {
     var selectedDate = this.get('pikaday').getDate();
-    var utcDate = moment.utc([selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()]).toDate();
-    this.set('value', utcDate);
+    if (this.get('utc'))
+    {
+      selectedDate = moment.utc([selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()]).toDate();
+    }
+    this.set('value', selectedDate);
   },
 
   setDate: function() {
