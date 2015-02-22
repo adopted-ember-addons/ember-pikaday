@@ -49,6 +49,16 @@ single number or two comma separated years.
 </label>
 ```
 
+If the second year of the comma separated years is set to `currentYear`, it sets
+the maximum selectable year to the current year.
+
+```handlebars
+<label>
+  Start date:
+  {{pikaday-input value=startsAt yearRange="2004,currentYear"}}
+</label>
+```
+
 The `readonly` attribute is supported as binding so you can make the input readonly for mobile or other usecases.
 
 ```handlebars
