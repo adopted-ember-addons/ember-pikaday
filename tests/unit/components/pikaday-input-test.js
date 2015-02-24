@@ -84,7 +84,7 @@ test('default i18n configuration of Pikaday can be changed', function(assert) {
 
 test('if utc is set the date returned from pikaday should be in UTC format', function(assert) {
   var component = this.subject();
-  component.set('utc', true);
+  component.set('useUTC', true);
   var $input = this.render();
   var interactor = openDatepicker($input);
 
