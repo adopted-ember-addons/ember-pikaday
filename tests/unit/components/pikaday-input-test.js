@@ -63,6 +63,44 @@ test('format of the input is changeable', function(assert) {
   assert.equal($input.val(), '2010.10.08');
 });
 
+test('yearRange of the input defaults to 10', function(assert) {
+  var $input = this.render();
+  var interactor = openDatepicker($input);
+  var currentYear = new Date().getFullYear();
+
+  assert.equal(interactor.minimumYear(), currentYear - 10);
+  assert.equal(interactor.maximumYear(), currentYear + 10);
+});
+
+test('yearRange of the input can be set with a range', function(assert) {
+  this.subject().set('yearRange', '4');
+  var $input = this.render();
+  var interactor = openDatepicker($input);
+  var currentYear = new Date().getFullYear();
+
+  assert.equal(interactor.minimumYear(), currentYear - 4);
+  assert.equal(interactor.maximumYear(), currentYear + 4);
+});
+
+test('yearRange of the input can be set with comma separated years', function(assert) {
+  this.subject().set('yearRange', '1900,2006');
+  var $input = this.render();
+  var interactor = openDatepicker($input);
+
+  assert.equal(interactor.minimumYear(), 1900);
+  assert.equal(interactor.maximumYear(), 2006);
+});
+
+test('yearRange of the input with comma separated years supports currentYear as max', function(assert) {
+  this.subject().set('yearRange', '1900,currentYear');
+  var $input = this.render();
+  var interactor = openDatepicker($input);
+  var currentYear = new Date().getFullYear();
+
+  assert.equal(interactor.minimumYear(), 1900);
+  assert.equal(interactor.maximumYear(), currentYear);
+});
+
 test('default i18n configuration of Pikaday can be changed', function(assert) {
   var component = this.subject({
     i18n: {
