@@ -1,3 +1,6 @@
+## 0.5.0
+* Add ability to specify `yearRange`. (Contribution of @brettchalupa)
+
 ## 0.4.0
 * Add attribute binding for `readonly`. (Contribution of @DenizOkcu)
 
