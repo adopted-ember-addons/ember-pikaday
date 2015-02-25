@@ -119,3 +119,18 @@ test('default i18n configuration of Pikaday can be changed', function(assert) {
 
   assert.equal($('.pika-select-month option:selected').text(), 'März');
 });
+
+test('if utc is set the date returned from pikaday should be in UTC format', function(assert) {
+  var component = this.subject();
+  component.set('useUTC', true);
+  var $input = this.render();
+  var interactor = openDatepicker($input);
+
+  interactor.selectDate(new Date(2013, 3, 28));
+
+  var date = this.subject().get('value');
+
+  assert.equal(date.getUTCFullYear(), 2013);
+  assert.equal(date.getUTCMonth(), 3);
+  assert.equal(date.getUTCDate(), 28);
+});
