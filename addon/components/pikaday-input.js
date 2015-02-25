@@ -1,8 +1,6 @@
-/* globals Pikaday */
+/* globals Pikaday, moment */
 
 import Ember from 'ember';
-
-var moment = window.moment;
 
 export default Ember.Component.extend({
   tagName: 'input',
@@ -39,9 +37,11 @@ export default Ember.Component.extend({
 
   userSelectedDate: function() {
     var selectedDate = this.get('pikaday').getDate();
+
     if (this.get('useUTC')) {
       selectedDate = moment.utc([selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()]).toDate();
     }
+
     this.set('value', selectedDate);
   },
 

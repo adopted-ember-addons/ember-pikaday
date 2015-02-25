@@ -68,9 +68,9 @@ The `readonly` attribute is supported as binding so you can make the input reado
 </label>
 ```
 
-## Use UTC timezone
+## Return dates in UTC time zone
 
-If you do not use UTC time zone, ember-pikaday will return date formatted in your local time zone. It may lead to strange situations when you set proper date, but afterwards use some kind of date-format helper that converts your date to UTC. In additive time-zones (e.g. +1) it will end up with yesterday date. If you need to always get UTC timezone dates pass the `useUTC=true` option to the component. The result will be JavaScript `Date Object` with UTC timezone.
+The date returned by ember-pikaday is in your local time zone due to the JavaScript default behaviour of `new Date()`. This can lead to problems when your application converts the date to UTC. In additive time zones (e.g. +0010) the resulting converted date could be yesterdays date. You can force the component to return a date with the UTC time zone by passing `useUTC=true` to it.
 
 ```handlebars
 <label>
@@ -79,7 +79,8 @@ If you do not use UTC time zone, ember-pikaday will return date formatted in you
 </label>
 ```
 
-However, remember that setting the value from your application (not by the user) will not automatically convert set date to UTC timezone. Therefore, if you `#set` the date formatted in local time zone outside from the component, ember-pikaday will show correct date but still in defined by you timezone.
+ember-pikaday will not automatically convert the date to UTC if your application is setting the datepicker value directly!
+
 
 ## Localization
 
