@@ -1,3 +1,6 @@
+## 0.6.0
+* Add ability to force the datepicker to return UTC dates. (Contribution of @jniechcial)
+
 ## 0.5.0
 * Add ability to specify `yearRange`. (Contribution of @brettchalupa)
 
