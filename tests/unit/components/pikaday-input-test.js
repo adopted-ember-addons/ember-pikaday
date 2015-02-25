@@ -9,24 +9,21 @@ test('is an input tag', function(assert) {
 });
 
 test('the input tag has the readonly attribute if it has been set on the component', function(assert) {
-  var component = this.subject();
-  component.set('readonly', true);
+  this.subject({ 'readonly': true });
 
   assert.ok(this.$().is('[readonly]'));
 });
 
 test('clicking the input opens the pikaday dialog', function(assert) {
-  var $input = this.render();
+  this.render();
 
   assert.ok($('.pika-single').hasClass('is-hidden'));
-  openDatepicker($input);
+  openDatepicker(this.$());
   assert.ok(!$('.pika-single').hasClass('is-hidden'));
 });
 
 test('selecting a date should update the value attribute', function(assert) {
-  var component = this.subject();
-  var $input = this.render();
-  var interactor = openDatepicker($input);
+  var interactor = openDatepicker(this.$());
 
   interactor.selectDate(new Date(2013, 3, 28));
 
@@ -38,10 +35,9 @@ test('selecting a date should update the value attribute', function(assert) {
 });
 
 test('setting the value attribute should select the correct date', function(assert) {
-  var $input = this.render();
+  this.subject({ value: new Date(2010, 7, 10) });
 
-  this.subject().set('value', new Date(2010, 7, 10));
-  var interactor = openDatepicker($input);
+  var interactor = openDatepicker(this.$());
 
   assert.equal(interactor.selectedYear(), 2010);
   assert.equal(interactor.selectedMonth(), 7);
@@ -49,23 +45,19 @@ test('setting the value attribute should select the correct date', function(asse
 });
 
 test('DD.MM.YYYY should be the default format for the input', function(assert) {
-  var $input = this.render();
-  this.subject().set('value', new Date(2010, 7, 10));
+  this.subject({ value: new Date(2010, 7, 10) });
 
-  assert.equal($input.val(), '10.08.2010');
+  assert.equal(this.$().val(), '10.08.2010');
 });
 
 test('format of the input is changeable', function(assert) {
-  this.subject().set('format', 'YYYY.DD.MM');
-  var $input = this.render();
-  this.subject().set('value', new Date(2010, 7, 10));
+  this.subject({ format: 'YYYY.DD.MM', value: new Date(2010, 7, 10) });
 
-  assert.equal($input.val(), '2010.10.08');
+  assert.equal(this.$().val(), '2010.10.08');
 });
 
 test('yearRange of the input defaults to 10', function(assert) {
-  var $input = this.render();
-  var interactor = openDatepicker($input);
+  var interactor = openDatepicker(this.$());
   var currentYear = new Date().getFullYear();
 
   assert.equal(interactor.minimumYear(), currentYear - 10);
@@ -73,9 +65,9 @@ test('yearRange of the input defaults to 10', function(assert) {
 });
 
 test('yearRange of the input can be set with a range', function(assert) {
-  this.subject().set('yearRange', '4');
-  var $input = this.render();
-  var interactor = openDatepicker($input);
+  this.subject({ yearRange: '4' });
+
+  var interactor = openDatepicker(this.$());
   var currentYear = new Date().getFullYear();
 
   assert.equal(interactor.minimumYear(), currentYear - 4);
@@ -83,18 +75,18 @@ test('yearRange of the input can be set with a range', function(assert) {
 });
 
 test('yearRange of the input can be set with comma separated years', function(assert) {
-  this.subject().set('yearRange', '1900,2006');
-  var $input = this.render();
-  var interactor = openDatepicker($input);
+  this.subject({ yearRange: '1900,2006' });
+
+  var interactor = openDatepicker(this.$());
 
   assert.equal(interactor.minimumYear(), 1900);
   assert.equal(interactor.maximumYear(), 2006);
 });
 
 test('yearRange of the input with comma separated years supports currentYear as max', function(assert) {
-  this.subject().set('yearRange', '1900,currentYear');
-  var $input = this.render();
-  var interactor = openDatepicker($input);
+  this.subject({ yearRange: '1900,currentYear' });
+
+  var interactor = openDatepicker(this.$());
   var currentYear = new Date().getFullYear();
 
   assert.equal(interactor.minimumYear(), 1900);
@@ -102,29 +94,26 @@ test('yearRange of the input with comma separated years supports currentYear as 
 });
 
 test('default i18n configuration of Pikaday can be changed', function(assert) {
-  var component = this.subject({
+  this.subject({
     i18n: {
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',
       months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
       weekdays: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
       weekdaysShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']
-    }
+    },
+    value: new Date(2014, 2, 10)
   });
 
-  var $input = this.render();
-
-  component.set('value', new Date(2014, 2, 10));
-  openDatepicker($input);
+  openDatepicker(this.$());
 
   assert.equal($('.pika-select-month option:selected').text(), 'März');
 });
 
 test('if utc is set the date returned from pikaday should be in UTC format', function(assert) {
-  var component = this.subject();
-  component.set('useUTC', true);
-  var $input = this.render();
-  var interactor = openDatepicker($input);
+  this.subject({ useUTC: true });
+
+  var interactor = openDatepicker(this.$());
 
   interactor.selectDate(new Date(2013, 3, 28));
 
