@@ -15,7 +15,7 @@
     "ember-qunit": "rwjblue/ember-qunit-builds#0.2.4"
   },
   "devDependencies": {
-    "pikaday": "~1.2.0",
+    "pikaday": "dbushell/Pikaday#master",
     "moment": "~2.8.3"
   }
 }
