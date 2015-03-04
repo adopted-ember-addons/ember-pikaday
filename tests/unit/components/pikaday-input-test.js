@@ -56,6 +56,13 @@ test('format of the input is changeable', function(assert) {
   assert.equal(this.$().val(), '2010.10.08');
 });
 
+test('assigning theme option to the component should add class to the pikaday dialog', function(assert) {
+  this.subject({ theme: 'dark-theme' });
+  this.render();
+
+  assert.ok($('.pika-single').hasClass('dark-theme'));
+});
+
 test('yearRange of the input defaults to 10', function(assert) {
   var interactor = openDatepicker(this.$());
   var currentYear = new Date().getFullYear();
