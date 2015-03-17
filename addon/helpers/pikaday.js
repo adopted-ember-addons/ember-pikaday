@@ -21,7 +21,7 @@ var PikadayInteractor = {
     $(this.selectorForMonthSelect).val(month);
     triggerNativeEvent($(this.selectorForMonthSelect)[0], 'change');
 
-    triggerNativeEvent($('td[data-day="' + day + '"] button')[0], 'mousedown');
+    triggerNativeEvent($('td[data-day="' + day + '"] button')[0], 'ontouchend' in document ? 'ontouchend' : 'mousedown');
   },
   selectedDay: function() {
     return $('.pika-single td.is-selected button').html();
