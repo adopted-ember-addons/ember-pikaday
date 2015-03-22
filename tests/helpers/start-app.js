@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import registerEmberPikadayTestHelpers from 'ember-pikaday/helpers/testing';
 import Application from '../../app';
 import Router from '../../router';
 import config from '../../config/environment';
@@ -12,6 +13,7 @@ export default function startApp(attrs) {
   Ember.run(function() {
     application = Application.create(attributes);
     application.setupForTesting();
+    registerEmberPikadayTestHelpers();
     application.injectTestHelpers();
   });
 

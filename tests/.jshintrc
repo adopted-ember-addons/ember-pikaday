@@ -1,5 +1,7 @@
 {
   "predef": [
+    "openDatepicker",
+    "selectDate",
     "document",
     "window",
     "location",
