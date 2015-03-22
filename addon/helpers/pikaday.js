@@ -3,6 +3,8 @@ import Ember from 'ember';
 var $ = Ember.$;
 
 var openDatepicker = function(element) {
+  Ember.deprecate('You are using the old `openDatepicker` method, please upgrade to the new asyncronous test helpers.', false, { url: 'https://github.com/edgycircle/ember-pikaday' });
+
   $(element).click();
 
   return PikadayInteractor;
@@ -12,6 +14,8 @@ var PikadayInteractor = {
   selectorForMonthSelect: '.pika-select-month',
   selectorForYearSelect: '.pika-select-year',
   selectDate: function(date) {
+    Ember.deprecate('You are using the old `selectDate` method, please upgrade to the new asyncronous test helpers.', false, { url: 'https://github.com/edgycircle/ember-pikaday' });
+
     var day = date.getDate();
     var month = date.getMonth();
     var year = date.getFullYear();
