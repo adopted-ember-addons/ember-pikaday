@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'input',
-  attributeBindings: ['readonly', 'disabled'],
+  attributeBindings: ['readonly', 'disabled', 'placeholder'],
 
   setupPikaday: function() {
     var that = this;
