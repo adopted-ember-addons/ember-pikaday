@@ -25,7 +25,9 @@ export default Ember.Component.extend({
       }.bind(this),
       firstDay: 1,
       format: this.get('format') || 'DD.MM.YYYY',
-      yearRange: that.determineYearRange()
+      yearRange: that.determineYearRange(),
+      minDate: that.get('minDate'),
+      maxDate: that.get('maxDate')
     };
 
     if (this.get('i18n')) {
@@ -74,5 +76,13 @@ export default Ember.Component.extend({
     } else {
       return 10;
     }
-  }
+  },
+
+  setMinDate: function () {
+    this.get('pikaday').setMinDate(this.get('minDate'), true);
+  }.observes('minDate'),
+
+  setMaxDate: function () {
+    this.get('pikaday').setMaxDate(this.get('maxDate'), true);
+  }.observes('maxDate')
 });
