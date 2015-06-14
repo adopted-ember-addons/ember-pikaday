@@ -53,7 +53,9 @@ export default Ember.Component.extend({
   },
 
   setDate: function() {
-    this.get('pikaday').setDate(this.get('value'), true);
+    Ember.run.scheduleOnce('afterRender', this, function() {
+      this.get('pikaday').setDate(this.get('value'), true);
+    });
   }.observes('value'),
 
   determineYearRange: function() {
@@ -61,7 +63,7 @@ export default Ember.Component.extend({
 
     if (yearRange) {
       if (yearRange.indexOf(',') > -1) {
-        var yearArray =  yearRange.split(',');
+        var yearArray = yearRange.split(',');
 
         if (yearArray[1] === 'currentYear') {
           yearArray[1] = new Date().getFullYear();
