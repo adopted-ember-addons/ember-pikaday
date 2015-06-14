@@ -1,3 +1,6 @@
+## 0.7.1
+* Fix `interactor.selectDate` in IE10.
+
 ## 0.7.0
 * Ignore `tmp/` directory for npm package. (Contribution of @odoe)
 * Set value to `null` when no date is selected due clearing the input.
