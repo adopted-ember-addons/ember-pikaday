@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   tagName: 'input',
   attributeBindings: ['readonly'],
 
-  setupPikaday: function() {
+  setupPikaday: Ember.on('didInsertElement', function() {
     var that = this;
 
     var options = {
@@ -36,11 +36,11 @@ export default Ember.Component.extend({
 
     this.set('pikaday', pikaday);
     this.get('pikaday').setDate(this.get('value'), true);
-  }.on('didInsertElement'),
+  }),
 
-  teardownPikaday: function() {
+  teardownPikaday: Ember.on('willDestroyElement', function() {
     this.get('pikaday').destroy();
-  }.on('willDestroyElement'),
+  }),
 
   userSelectedDate: function() {
     var selectedDate = this.get('pikaday').getDate();
@@ -52,9 +52,9 @@ export default Ember.Component.extend({
     this.set('value', selectedDate);
   },
 
-  setDate: function() {
+  setDate: Ember.observer('value', function() {
     this.get('pikaday').setDate(this.get('value'), true);
-  }.observes('value'),
+  }),
 
   determineYearRange: function() {
     var yearRange = this.get('yearRange');
