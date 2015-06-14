@@ -9,7 +9,7 @@
     "ember-qunit": "0.3.3",
     "ember-qunit-notifications": "0.0.7",
     "pikaday": "~1.2.0",
-    "moment": "~2.8.3"
+    "moment": "~2.8.3",
     "ember-resolver": "~0.1.15",
     "jquery": "^1.11.1",
     "loader.js": "ember-cli/loader.js#3.2.0",
