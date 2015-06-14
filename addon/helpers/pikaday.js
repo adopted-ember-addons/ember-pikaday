@@ -41,12 +41,12 @@ var PikadayInteractor = {
 };
 
 function triggerNativeEvent(element, eventName) {
-  if (element.fireEvent) {
-    element.fireEvent('on' + eventName);
-  } else {
+  if (document.createEvent) {
     var event = document.createEvent('Events');
     event.initEvent(eventName, true, false);
     element.dispatchEvent(event);
+  } else {
+    element.fireEvent('on' + eventName);
   }
 }
 
