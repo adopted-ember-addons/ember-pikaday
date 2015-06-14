@@ -8,7 +8,7 @@ ember-pikaday is an addon that can be installed with Ember CLI. It gives you a d
 
 ```bash
 cd your-project-directory
-ember install:addon ember-pikaday
+ember install ember-pikaday
 ```
 
 ## Usage
