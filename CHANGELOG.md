@@ -1,3 +1,7 @@
+## 0.7.0
+* Ignore `tmp/` directory for npm package. (Contribution of @odoe)
+* Set value to `null` when no date is selected due clearing the input.
+
 ## 0.6.0
 * Add ability to force the datepicker to return UTC dates. (Contribution of @jniechcial)
 
