@@ -18,11 +18,11 @@ export default Ember.Component.extend({
       },
       onClose: function() {
         Ember.run(function() {
-          if (this.get('pikaday').getDate() === null) {
-            this.set('value', null);
+          if (that.get('pikaday').getDate() === null) {
+            that.set('value', null);
           }
-        }.bind(this));
-      }.bind(this),
+        });
+      },
       firstDay: 1,
       format: this.get('format') || 'DD.MM.YYYY',
       yearRange: that.determineYearRange()
