@@ -53,7 +53,9 @@ export default Ember.Component.extend({
   },
 
   setDate: Ember.observer('value', function() {
-    this.get('pikaday').setDate(this.get('value'), true);
+    Ember.run.scheduleOnce('afterRender', this, function() {
+      this.get('pikaday').setDate(this.get('value'), true);
+    });
   }),
 
   determineYearRange: function() {
