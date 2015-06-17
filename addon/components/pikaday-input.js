@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'input',
-  attributeBindings: ['readonly'],
+  attributeBindings: ['readonly', 'disabled'],
 
   setupPikaday: Ember.on('didInsertElement', function() {
     var that = this;
@@ -25,7 +25,9 @@ export default Ember.Component.extend({
       },
       firstDay: 1,
       format: this.get('format') || 'DD.MM.YYYY',
-      yearRange: that.determineYearRange()
+      yearRange: that.determineYearRange(),
+      minDate: that.get('minDate'),
+      maxDate: that.get('maxDate')
     };
 
     if (this.get('i18n')) {
@@ -78,5 +80,13 @@ export default Ember.Component.extend({
     } else {
       return 10;
     }
-  }
+  },
+
+  setMinDate: function () {
+    this.get('pikaday').setMinDate(this.get('minDate'), true);
+  }.observes('minDate'),
+
+  setMaxDate: function () {
+    this.get('pikaday').setMaxDate(this.get('maxDate'), true);
+  }.observes('maxDate')
 });
