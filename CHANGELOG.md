@@ -1,3 +1,6 @@
+## 0.7.2
+* Do not call the `value` observer before `pikaday` is set. (Assistance by @DenizOkcu and @polymathnyc)
+
 ## 0.7.1
 * Fix `interactor.selectDate` in IE10.
 
