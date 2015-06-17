@@ -35,12 +35,20 @@ export default Ember.Component.extend({
     var pikaday = new Pikaday(options);
 
     this.set('pikaday', pikaday);
-    this.get('pikaday').setDate(this.get('value'), true);
+    this.setPikadayDate();
+
+    this.addObserver('value', function() {
+      that.setPikadayDate();
+    });
   }),
 
   teardownPikaday: Ember.on('willDestroyElement', function() {
     this.get('pikaday').destroy();
   }),
+
+  setPikadayDate: function() {
+    this.get('pikaday').setDate(this.get('value'), true);
+  },
 
   userSelectedDate: function() {
     var selectedDate = this.get('pikaday').getDate();
@@ -51,10 +59,6 @@ export default Ember.Component.extend({
 
     this.set('value', selectedDate);
   },
-
-  setDate: Ember.observer('value', function() {
-    this.get('pikaday').setDate(this.get('value'), true);
-  }),
 
   determineYearRange: function() {
     var yearRange = this.get('yearRange');
