@@ -123,3 +123,15 @@ test('if utc is set the date returned from pikaday should be in UTC format', fun
   assert.equal(date.getUTCMonth(), 3);
   assert.equal(date.getUTCDate(), 28);
 });
+
+test('placeholder is linked to the HTML element', function (assert) {
+  this.subject({ placeholder: 'I am the placeholder'});
+  this.render();
+  assert.equal(this.$().attr('placeholder'), 'I am the placeholder');
+});
+
+test('no placeholder exists is it isn\'t linked on the component', function (assert) {
+  this.subject({});
+  this.render();
+  assert.equal(this.$().attr('placeholder'), undefined);
+});
