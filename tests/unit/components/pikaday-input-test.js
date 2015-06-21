@@ -124,14 +124,50 @@ test('if utc is set the date returned from pikaday should be in UTC format', fun
   assert.equal(date.getUTCDate(), 28);
 });
 
-test('placeholder is linked to the HTML element', function (assert) {
+test('the input tag has the placeholder attribute and the correct value if it has been set on the component', function (assert) {
   this.subject({ placeholder: 'I am the placeholder'});
   this.render();
   assert.equal(this.$().attr('placeholder'), 'I am the placeholder');
 });
 
-test('no placeholder exists is it isn\'t linked on the component', function (assert) {
+test('the input tag does not have the placeholder attribute if it has not been set on the component', function (assert) {
   this.subject({});
   this.render();
   assert.equal(this.$().attr('placeholder'), undefined);
+});
+
+test('the input tag has the disabled attribute if it has been set on the component', function (assert) {
+  this.subject({ disabled: true });
+  this.render();
+  assert.ok(this.$().is('[disabled]'));
+});
+
+test('the input tag does not have the disabled attribute if it has not been set on the component', function (assert) {
+  this.subject({});
+  this.render();
+  assert.equal(this.$().attr('disabled'), undefined);
+});
+
+test('using disabled prevent from opening pikaday', function (assert) {
+  this.subject({ disabled: true });
+  this.render();
+
+  assert.ok($('.pika-single').hasClass('is-hidden'), 'should be closed before clicking');
+  openDatepicker(this.$());
+  assert.ok($('.pika-single').hasClass('is-hidden', 'should still be closed after clicking'));
+});
+
+test('the disabled attribute of the component is well linked with the input attribute', function (assert) {
+  var component = this.subject({ disabled: false });
+  this.render();
+
+  assert.equal(this.$().attr('disabled'), undefined,  'disabled should not be set');
+  assert.ok($('.pika-single').hasClass('is-hidden'), 'not disabled and pika-single is hidden');
+  openDatepicker(this.$());
+  assert.ok(!$('.pika-single').hasClass('is-hidden', 'not disabled and pika-single is shown'));
+  Ember.run(function () {
+    component.set('disabled', true);
+  });
+  assert.ok(this.$().is('[disabled]'), 'disabled should now be set');
+  assert.ok($('.pika-single').hasClass('is-hidden', 'disabled and pika-single should be hidden automatically'));
 });
