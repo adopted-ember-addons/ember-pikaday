@@ -1,3 +1,13 @@
+## 0.7.2
+* Do not call the `value` observer before `pikaday` is set. (Assistance by @DenizOkcu and @polymathnyc)
+
+## 0.7.1
+* Fix `interactor.selectDate` in IE10.
+
+## 0.7.0
+* Ignore `tmp/` directory for npm package. (Contribution of @odoe)
+* Set value to `null` when no date is selected due clearing the input.
+
 ## 0.6.0
 * Add ability to force the datepicker to return UTC dates. (Contribution of @jniechcial)
 

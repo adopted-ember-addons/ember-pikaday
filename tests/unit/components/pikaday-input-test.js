@@ -2,7 +2,7 @@ import { test, moduleForComponent } from 'ember-qunit';
 import Ember from 'ember';
 import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
 
-moduleForComponent('pikaday-input', 'PikadayInputComponent');
+moduleForComponent('pikaday-input', 'PikadayInputComponent', {});
 
 test('is an input tag', function(assert) {
   assert.equal('INPUT', this.$().prop('tagName'));

@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   tagName: 'input',
   attributeBindings: ['readonly', 'disabled', 'placeholder'],
 
-  setupPikaday: function() {
+  setupPikaday: Ember.on('didInsertElement', function() {
     var that = this;
 
     var options = {
@@ -14,6 +14,13 @@ export default Ember.Component.extend({
       onSelect: function() {
         Ember.run(function() {
           that.userSelectedDate();
+        });
+      },
+      onClose: function() {
+        Ember.run(function() {
+          if (that.get('pikaday').getDate() === null) {
+            that.set('value', null);
+          }
         });
       },
       firstDay: 1,
@@ -28,12 +35,20 @@ export default Ember.Component.extend({
     var pikaday = new Pikaday(options);
 
     this.set('pikaday', pikaday);
-    this.get('pikaday').setDate(this.get('value'), true);
-  }.on('didInsertElement'),
+    this.setPikadayDate();
 
-  teardownPikaday: function() {
+    this.addObserver('value', function() {
+      that.setPikadayDate();
+    });
+  }),
+
+  teardownPikaday: Ember.on('willDestroyElement', function() {
     this.get('pikaday').destroy();
-  }.on('willDestroyElement'),
+  }),
+
+  setPikadayDate: function() {
+    this.get('pikaday').setDate(this.get('value'), true);
+  },
 
   userSelectedDate: function() {
     var selectedDate = this.get('pikaday').getDate();
@@ -45,16 +60,12 @@ export default Ember.Component.extend({
     this.set('value', selectedDate);
   },
 
-  setDate: function() {
-    this.get('pikaday').setDate(this.get('value'), true);
-  }.observes('value'),
-
   determineYearRange: function() {
     var yearRange = this.get('yearRange');
 
     if (yearRange) {
       if (yearRange.indexOf(',') > -1) {
-        var yearArray =  yearRange.split(',');
+        var yearArray = yearRange.split(',');
 
         if (yearArray[1] === 'currentYear') {
           yearArray[1] = new Date().getFullYear();
