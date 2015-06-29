@@ -15,13 +15,14 @@ var PikadayInteractor = {
     var day = date.getDate();
     var month = date.getMonth();
     var year = date.getFullYear();
+    var selectEvent = 'ontouchend' in document ? 'touchend' : 'mousedown';
 
     $(this.selectorForYearSelect).val(year);
     triggerNativeEvent($(this.selectorForYearSelect)[0], 'change');
     $(this.selectorForMonthSelect).val(month);
     triggerNativeEvent($(this.selectorForMonthSelect)[0], 'change');
 
-    triggerNativeEvent($('td[data-day="' + day + '"] button')[0], 'mousedown');
+    triggerNativeEvent($('td[data-day="' + day + '"] button')[0], selectEvent);
   },
   selectedDay: function() {
     return $('.pika-single td.is-selected button').html();
