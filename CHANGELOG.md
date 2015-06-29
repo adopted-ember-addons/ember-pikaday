@@ -1,5 +1,8 @@
 ## 0.8.0
-
+* Add support for the `disabled` attribute. (Contribution of @leojpod)
+* Add support for the `placeholder` attribute. (Contribution of @leojpod)
+* Add Pikaday theme support through the `theme` attribute. (Contribution of @DerToti)
+* Make test helper `selectDate` work in environments supporting touch events like PhantomJS. This issue surfaced due to an update of Pikaday. (Contribution of @marcoow)
 * Bumped Pikaday dependency to `~> 1.3.3`.
 
 ## 0.7.2
