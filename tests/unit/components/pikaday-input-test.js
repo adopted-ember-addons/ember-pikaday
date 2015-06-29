@@ -56,6 +56,13 @@ test('format of the input is changeable', function(assert) {
   assert.equal(this.$().val(), '2010.10.08');
 });
 
+test('theme option adds theme as CSS class to DOM element', function(assert) {
+  this.subject({ theme: 'dark-theme' });
+  this.render();
+
+  assert.ok($('.pika-single').hasClass('dark-theme'));
+});
+
 test('yearRange of the input defaults to 10', function(assert) {
   var interactor = openDatepicker(this.$());
   var currentYear = new Date().getFullYear();
@@ -127,24 +134,28 @@ test('if utc is set the date returned from pikaday should be in UTC format', fun
 test('the input tag has the placeholder attribute and the correct value if it has been set on the component', function (assert) {
   this.subject({ placeholder: 'I am the placeholder'});
   this.render();
+
   assert.equal(this.$().attr('placeholder'), 'I am the placeholder');
 });
 
 test('the input tag does not have the placeholder attribute if it has not been set on the component', function (assert) {
   this.subject({});
   this.render();
+
   assert.equal(this.$().attr('placeholder'), undefined);
 });
 
 test('the input tag has the disabled attribute if it has been set on the component', function (assert) {
   this.subject({ disabled: true });
   this.render();
+
   assert.ok(this.$().is('[disabled]'));
 });
 
 test('the input tag does not have the disabled attribute if it has not been set on the component', function (assert) {
   this.subject({});
   this.render();
+
   assert.equal(this.$().attr('disabled'), undefined);
 });
 
@@ -165,9 +176,11 @@ test('the disabled attribute of the component is well linked with the input attr
   assert.ok($('.pika-single').hasClass('is-hidden'), 'not disabled and pika-single is hidden');
   openDatepicker(this.$());
   assert.ok(!$('.pika-single').hasClass('is-hidden', 'not disabled and pika-single is shown'));
+
   Ember.run(function () {
     component.set('disabled', true);
   });
+
   assert.ok(this.$().is('[disabled]'), 'disabled should now be set');
   assert.ok($('.pika-single').hasClass('is-hidden', 'disabled and pika-single should be hidden automatically'));
 });

@@ -31,6 +31,15 @@ You can also change the default format from `DD.MM.YYYY` to any format string su
 </label>
 ```
 
+You can define a theme which will be a CSS class that can be used as a hook for styling different themes.
+
+```handlebars
+<label>
+  Start date:
+  {{pikaday-input value=startsAt theme="dark-theme"}}
+</label>
+```
+
 You can change the `yearRange`. It defaults to 10. the `yearRange` can be a
 single number or two comma separated years.
 
