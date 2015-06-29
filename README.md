@@ -31,7 +31,7 @@ You can also change the default format from `DD.MM.YYYY` to any format string su
 </label>
 ```
 
-You can define a theme which will be a classname that can be used as a hook for styling different themes.
+You can define a theme which will be a CSS class that can be used as a hook for styling different themes.
 
 ```handlebars
 <label>
