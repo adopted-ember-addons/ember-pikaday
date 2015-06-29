@@ -1,3 +1,7 @@
+## 0.8.0
+
+* Bumped Pikaday dependency to `~> 1.3.3`.
+
 ## 0.7.2
 * Do not call the `value` observer before `pikaday` is set. (Assistance by @DenizOkcu and @polymathnyc)
 
