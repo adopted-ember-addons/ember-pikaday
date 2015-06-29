@@ -81,7 +81,6 @@ export default Ember.Component.extend({
   },
 
   autoHideOnDisabled: Ember.observer('disabled', function () {
-    //if disabled is false then hide the pikaday:
     if (this.get('disabled')) {
       this.get('pikaday').hide();
     }
