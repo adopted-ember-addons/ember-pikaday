@@ -81,8 +81,8 @@ export default Ember.Component.extend({
     }
   },
 
-  autoHideOnDisabled: Ember.observer('disabled', function () {
-    if (this.get('disabled')) {
+  autoHideOnDisabled: Ember.observer('disabled', 'pikaday', function () {
+    if (this.get('disabled') && this.get('pikaday')) {
       this.get('pikaday').hide();
     }
   })
