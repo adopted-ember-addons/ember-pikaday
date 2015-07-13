@@ -1,3 +1,7 @@
+## 0.9.0
+* Fix error where an initially disabled datepicker tries to hide itself even though it is not rendered yet. (Contribution of @jeffreybiles)
+* Improve ability to extend the component by assigning placeholder methods to the Pikaday events. (Contribution of @marcoow)
+
 ## 0.8.0
 * Add support for the `disabled` attribute. (Contribution of @leojpod)
 * Add support for the `placeholder` attribute. (Contribution of @leojpod)
