@@ -11,18 +11,10 @@ export default Ember.Component.extend({
 
     var options = {
       field: this.$()[0],
-      onSelect: function() {
-        Ember.run(function() {
-          that.userSelectedDate();
-        });
-      },
-      onClose: function() {
-        Ember.run(function() {
-          if (that.get('pikaday').getDate() === null) {
-            that.set('value', null);
-          }
-        });
-      },
+      onOpen: Ember.run.bind(this, this.onPikadayOpen),
+      onClose: Ember.run.bind(this, this.onPikadayClose),
+      onSelect: Ember.run.bind(this, this.onPikadaySelect),
+      onDraw: Ember.run.bind(this, this.onPikadayRedraw),
       firstDay: 1,
       format: this.get('format') || 'DD.MM.YYYY',
       yearRange: that.determineYearRange(),
@@ -50,6 +42,20 @@ export default Ember.Component.extend({
   setPikadayDate: function() {
     this.get('pikaday').setDate(this.get('value'), true);
   },
+
+  onPikadayOpen: Ember.K,
+
+  onPikadayClose: function() {
+    if (this.get('pikaday').getDate() === null) {
+      this.set('value', null);
+    }
+  },
+
+  onPikadaySelect: function() {
+    this.userSelectedDate();
+  },
+
+  onPikadayRedraw: Ember.K,
 
   userSelectedDate: function() {
     var selectedDate = this.get('pikaday').getDate();
