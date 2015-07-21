@@ -1,3 +1,7 @@
+## 0.10.0
+* Add ability to specify `firstDay`. (Contribution of @beerlington)
+* Add support for the `type` attribute. (Contribution of @ChiliConSql)
+
 ## 0.9.0
 * Fix error where an initially disabled datepicker tries to hide itself even though it is not rendered yet. (Contribution of @jeffreybiles)
 * Improve ability to extend the component by assigning placeholder methods to the Pikaday events. (Contribution of @marcoow)
