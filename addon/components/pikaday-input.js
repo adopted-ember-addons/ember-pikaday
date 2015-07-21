@@ -4,10 +4,12 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'input',
-  attributeBindings: ['readonly', 'disabled', 'placeholder'],
+  attributeBindings: ['readonly', 'disabled', 'placeholder', 'type'],
+  type: 'text',
 
   setupPikaday: Ember.on('didInsertElement', function() {
     var that = this;
+    var firstDay = this.get('firstDay');
 
     var options = {
       field: this.$()[0],
@@ -15,7 +17,7 @@ export default Ember.Component.extend({
       onClose: Ember.run.bind(this, this.onPikadayClose),
       onSelect: Ember.run.bind(this, this.onPikadaySelect),
       onDraw: Ember.run.bind(this, this.onPikadayRedraw),
-      firstDay: 1,
+      firstDay: (typeof firstDay !== 'undefined') ? parseInt(firstDay, 10) : 1,
       format: this.get('format') || 'DD.MM.YYYY',
       yearRange: that.determineYearRange(),
       theme: this.get('theme') || null
