@@ -184,3 +184,23 @@ test('the disabled attribute of the component is well linked with the input attr
   assert.ok(this.$().is('[disabled]'), 'disabled should now be set');
   assert.ok($('.pika-single').hasClass('is-hidden', 'disabled and pika-single should be hidden automatically'));
 });
+
+test('firstDay defaults to Monday (1)', function (assert) {
+  var component = this.subject();
+  this.render();
+  openDatepicker(this.$());
+
+  var firstDay = $('.pika-single .pika-table tr th:first-child').text();
+
+  assert.equal(firstDay, 'Mon', 'First day should be Monday');
+});
+
+test('firstDay option overrides the default first day value', function (assert) {
+  var component = this.subject({ firstDay: 0 });
+  this.render();
+  openDatepicker(this.$());
+
+  var firstDay = $('.pika-single .pika-table tr th:first-child').text();
+
+  assert.equal(firstDay, 'Sun', 'First day should be Sunday');
+});

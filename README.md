@@ -95,6 +95,20 @@ If the datepicker is shown to the user and it gets disabled it will close the da
 </label>
 ```
 
+The `firstDay` attribute is supported as a binding so you can set the first day of the calendar week.
+Defaults to Monday.
+
+* 0 = Sunday
+* 1 = Monday
+* etc...
+
+```handlebars
+<label>
+  Due date:
+  {{pikaday-input value=dueAt firstDay=0}}
+</label>
+```
+
 ## Return dates in UTC time zone
 
 The date returned by ember-pikaday is in your local time zone due to the JavaScript default behaviour of `new Date()`. This can lead to problems when your application converts the date to UTC. In additive time zones (e.g. +0010) the resulting converted date could be yesterdays date. You can force the component to return a date with the UTC time zone by passing `useUTC=true` to it.
