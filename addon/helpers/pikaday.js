@@ -9,8 +9,8 @@ var openDatepicker = function(element) {
 };
 
 var PikadayInteractor = {
-  selectorForMonthSelect: '.pika-select-month',
-  selectorForYearSelect: '.pika-select-year',
+  selectorForMonthSelect: '.pika-select-month:visible',
+  selectorForYearSelect: '.pika-select-year:visible',
   selectDate: function(date) {
     var day = date.getDate();
     var month = date.getMonth();
@@ -22,7 +22,7 @@ var PikadayInteractor = {
     $(this.selectorForMonthSelect).val(month);
     triggerNativeEvent($(this.selectorForMonthSelect)[0], 'change');
 
-    triggerNativeEvent($('td[data-day="' + day + '"] button')[0], selectEvent);
+    triggerNativeEvent($('td[data-day="' + day + '"] button:visible')[0], selectEvent);
   },
   selectedDay: function() {
     return $('.pika-single td.is-selected button').html();
