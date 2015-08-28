@@ -1,3 +1,7 @@
+## 0.11.0
+* Add support for `minDate` and `maxDate`. (Contribution of @yanglang)
+* Fix test helpers in scenarios with multiple date pickers on page. (Contribution of @LevelbossMike)
+
 ## 0.10.0
 * Add ability to specify `firstDay`. (Contribution of @beerlington)
 * Add support for the `type` attribute. (Contribution of @ChiliConSql)
