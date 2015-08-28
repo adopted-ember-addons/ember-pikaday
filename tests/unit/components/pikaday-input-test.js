@@ -186,7 +186,7 @@ test('the disabled attribute of the component is well linked with the input attr
 });
 
 test('firstDay defaults to Monday (1)', function (assert) {
-  var component = this.subject();
+  this.subject();
   this.render();
   openDatepicker(this.$());
 
@@ -196,7 +196,7 @@ test('firstDay defaults to Monday (1)', function (assert) {
 });
 
 test('firstDay option overrides the default first day value', function (assert) {
-  var component = this.subject({ firstDay: 0 });
+  this.subject({ firstDay: 0 });
   this.render();
   openDatepicker(this.$());
 
