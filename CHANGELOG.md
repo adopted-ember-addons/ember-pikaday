@@ -1,3 +1,6 @@
+## 0.12.0
+* Fix npm publish fail.
+
 ## 0.11.0
 * Add support for `minDate` and `maxDate`. (Contribution of @yanglang)
 * Fix test helpers in scenarios with multiple date pickers on page. (Contribution of @LevelbossMike)
