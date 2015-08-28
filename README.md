@@ -109,6 +109,24 @@ Defaults to Monday.
 </label>
 ```
 
+The `minDate` attribute is supported as a binding so you can set the earliest date that can be selected.
+
+```handlebars
+<label>
+  Due Date:
+  {{pikaday-input value=dueAt minDate=minDate}}
+</label>
+```
+
+The `maxDate` attribute is supported as a binding so you can set the latest date that can be selected.
+
+```handlebars
+<label>
+  Due Date:
+  {{pikaday-input value=dueAt maxDate=maxDate}}
+</label>
+```
+
 ## Return dates in UTC time zone
 
 The date returned by ember-pikaday is in your local time zone due to the JavaScript default behaviour of `new Date()`. This can lead to problems when your application converts the date to UTC. In additive time zones (e.g. +0010) the resulting converted date could be yesterdays date. You can force the component to return a date with the UTC time zone by passing `useUTC=true` to it.

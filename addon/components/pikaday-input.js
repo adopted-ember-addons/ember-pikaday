@@ -20,6 +20,8 @@ export default Ember.Component.extend({
       firstDay: (typeof firstDay !== 'undefined') ? parseInt(firstDay, 10) : 1,
       format: this.get('format') || 'DD.MM.YYYY',
       yearRange: that.determineYearRange(),
+      minDate: this.get('minDate') || null,
+      maxDate: this.get('maxDate') || null,
       theme: this.get('theme') || null
     };
 
@@ -35,6 +37,14 @@ export default Ember.Component.extend({
     this.addObserver('value', function() {
       that.setPikadayDate();
     });
+
+    this.addObserver('minDate', function() {
+      this.setMinDate();
+    });
+
+    this.addObserver('maxDate', function() {
+      this.setMaxDate();
+    });
   }),
 
   teardownPikaday: Ember.on('willDestroyElement', function() {
@@ -43,6 +53,14 @@ export default Ember.Component.extend({
 
   setPikadayDate: function() {
     this.get('pikaday').setDate(this.get('value'), true);
+  },
+
+  setMinDate: function() {
+    this.get('pikaday').setMinDate(this.get('minDate'));
+  },
+
+  setMaxDate: function() {
+    this.get('pikaday').setMaxDate(this.get('maxDate'));
   },
 
   onPikadayOpen: Ember.K,
