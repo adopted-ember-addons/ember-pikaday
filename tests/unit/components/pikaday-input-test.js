@@ -56,6 +56,26 @@ test('format of the input is changeable', function(assert) {
   assert.equal(this.$().val(), '2010.10.08');
 });
 
+test('set min date', function(assert) {
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  this.subject({minDate: tomorrow});
+  this.render();
+  openDatepicker(this.$());
+
+  assert.ok($('.is-today').hasClass('is-disabled'));
+});
+
+test('set max date', function(assert) {
+  var yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  this.subject({maxDate: yesterday});
+  this.render();
+  openDatepicker(this.$());
+
+  assert.ok($('.is-today').hasClass('is-disabled'));
+});
+
 test('theme option adds theme as CSS class to DOM element', function(assert) {
   this.subject({ theme: 'dark-theme' });
   this.render();
