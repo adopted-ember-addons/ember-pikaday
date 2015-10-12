@@ -213,3 +213,7 @@ equal(interactor.selectedYear(), 1989);
 equal(interactor.selectedMonth(), 3);
 equal(interactor.selectedDay(), 28);
 ```
+
+## Other Resources
+
+* [Emberscreencasts video on ember-pikaday](https://www.emberscreencasts.com/posts/56-ember-pikaday)
