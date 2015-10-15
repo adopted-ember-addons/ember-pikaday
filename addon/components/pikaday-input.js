@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'input',
-  attributeBindings: ['readonly', 'disabled', 'placeholder', 'type', 'name'],
+  attributeBindings: ['readonly', 'disabled', 'placeholder', 'type', 'name', 'size'],
   type: 'text',
 
   setupPikaday: Ember.on('didInsertElement', function() {
