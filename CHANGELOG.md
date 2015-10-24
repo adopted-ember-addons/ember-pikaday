@@ -1,4 +1,4 @@
-## Unpublished
+## 0.13.0
 * Add binding for `name` attribute. (Contribution of @listepo)
 * Add binding for `size` attribute. (Contribution of @peteonrails)
 * Set `value` to `null` when the input is cleared manually.
