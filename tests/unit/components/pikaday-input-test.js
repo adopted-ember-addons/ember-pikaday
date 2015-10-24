@@ -151,35 +151,35 @@ test('if utc is set the date returned from pikaday should be in UTC format', fun
   assert.equal(date.getUTCDate(), 28);
 });
 
-test('the input tag has the placeholder attribute and the correct value if it has been set on the component', function (assert) {
+test('the input tag has the placeholder attribute and the correct value if it has been set on the component', function(assert) {
   this.subject({ placeholder: 'I am the placeholder'});
   this.render();
 
   assert.equal(this.$().attr('placeholder'), 'I am the placeholder');
 });
 
-test('the input tag does not have the placeholder attribute if it has not been set on the component', function (assert) {
+test('the input tag does not have the placeholder attribute if it has not been set on the component', function(assert) {
   this.subject({});
   this.render();
 
   assert.equal(this.$().attr('placeholder'), undefined);
 });
 
-test('the input tag has the disabled attribute if it has been set on the component', function (assert) {
+test('the input tag has the disabled attribute if it has been set on the component', function(assert) {
   this.subject({ disabled: true });
   this.render();
 
   assert.ok(this.$().is('[disabled]'));
 });
 
-test('the input tag does not have the disabled attribute if it has not been set on the component', function (assert) {
+test('the input tag does not have the disabled attribute if it has not been set on the component', function(assert) {
   this.subject({});
   this.render();
 
   assert.equal(this.$().attr('disabled'), undefined);
 });
 
-test('using disabled prevent from opening pikaday', function (assert) {
+test('using disabled prevent from opening pikaday', function(assert) {
   this.subject({ disabled: true });
   this.render();
 
@@ -188,7 +188,7 @@ test('using disabled prevent from opening pikaday', function (assert) {
   assert.ok($('.pika-single').hasClass('is-hidden', 'should still be closed after clicking'));
 });
 
-test('the disabled attribute of the component is well linked with the input attribute', function (assert) {
+test('the disabled attribute of the component is well linked with the input attribute', function(assert) {
   var component = this.subject({ disabled: false });
   this.render();
 
@@ -205,7 +205,7 @@ test('the disabled attribute of the component is well linked with the input attr
   assert.ok($('.pika-single').hasClass('is-hidden', 'disabled and pika-single should be hidden automatically'));
 });
 
-test('firstDay defaults to Monday (1)', function (assert) {
+test('firstDay defaults to Monday (1)', function(assert) {
   this.subject();
   this.render();
   openDatepicker(this.$());
@@ -215,7 +215,7 @@ test('firstDay defaults to Monday (1)', function (assert) {
   assert.equal(firstDay, 'Mon', 'First day should be Monday');
 });
 
-test('firstDay option overrides the default first day value', function (assert) {
+test('firstDay option overrides the default first day value', function(assert) {
   this.subject({ firstDay: 0 });
   this.render();
   openDatepicker(this.$());
