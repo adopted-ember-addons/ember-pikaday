@@ -140,6 +140,14 @@ The date returned by ember-pikaday is in your local time zone due to the JavaScr
 
 ember-pikaday will not automatically convert the date to UTC if your application is setting the datepicker value directly!
 
+## Data Down, Actions Up
+
+ember-pikaday has its origin prior Embers moved to the Data Down, Actions Up (DDAU) paradigma. Therefore it operates in a two way binding mode by default. If you want to be closer to DDAU you can extend the `pikaday-input` component and overwrite certain callbacks to accomplish DDAU.
+
+`onOpen` is called whenever the datepicker opens.  
+`onClose` is called whenever the datepicker is closed.  
+`onSelect` is called whenever the user selected a date.  
+`onDraw` is called whenever the datepicker is (re-) drawn.
 
 ## Localization
 
