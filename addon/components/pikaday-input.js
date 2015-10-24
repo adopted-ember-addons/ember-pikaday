@@ -66,7 +66,7 @@ export default Ember.Component.extend({
   onPikadayOpen: Ember.K,
 
   onPikadayClose: function() {
-    if (this.get('pikaday').getDate() === null) {
+    if (this.get('pikaday').getDate() === null || Ember.isEmpty(this.$().val())) {
       this.set('value', null);
     }
   },
