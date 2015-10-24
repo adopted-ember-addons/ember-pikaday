@@ -216,4 +216,4 @@ equal(interactor.selectedDay(), 28);
 
 ## Other Resources
 
-* [Emberscreencasts video on ember-pikaday](https://www.emberscreencasts.com/posts/56-ember-pikaday)
+* [Video introduction by EmberScreencasts](https://www.emberscreencasts.com/posts/56-ember-pikaday)
