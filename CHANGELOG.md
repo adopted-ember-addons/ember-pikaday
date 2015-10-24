@@ -1,3 +1,8 @@
+## Unpublished
+* Add binding for `name` attribute. (Contribution of @listepo)
+* Add binding for `size` attribute. (Contribution of @peteonrails)
+* Set `value` to `null` when the input is cleared manually.
+
 ## 0.12.0
 * Fix npm publish fail.
 
