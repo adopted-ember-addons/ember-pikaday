@@ -1,6 +1,5 @@
-/* globals moment */
-
 import Ember from 'ember';
+import moment from 'moment';
 
 export default {
   name: 'setup-pikaday-i18n',

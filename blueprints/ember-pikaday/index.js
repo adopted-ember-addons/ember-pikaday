@@ -5,7 +5,7 @@ module.exports = {
     var that = this;
 
     return this.addBowerPackageToProject('pikaday').then(function() {
-        return that.addBowerPackageToProject('moment');
+      return that.addAddonToProject('ember-cli-moment-shim', '0.6.2');
     });
   }
 };

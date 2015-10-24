@@ -167,9 +167,8 @@ To localize the datepicker itself, this is the popup you see after clicking the 
 ```js
 // app/initializers/setup-pikaday-i18n.js
 
-/* globals moment */
-
 import Ember from 'ember';
+import moment from 'moment';
 
 export default {
   name: 'setup-pikaday-i18n',
