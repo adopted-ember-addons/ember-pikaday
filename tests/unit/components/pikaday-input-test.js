@@ -165,6 +165,20 @@ test('the input tag does not have the placeholder attribute if it has not been s
   assert.equal(this.$().attr('placeholder'), undefined);
 });
 
+test('the input tag has the required attribute if it has been set on the component', function(assert) {
+  this.subject({ required: true });
+  this.render();
+
+  assert.ok(this.$().is('[required]'));
+});
+
+test('the input tag does not have the required attribute if it has not been set on the component', function(assert) {
+  this.subject({});
+  this.render();
+
+  assert.equal(this.$().attr('required'), undefined);
+});
+
 test('the input tag has the disabled attribute if it has been set on the component', function(assert) {
   this.subject({ disabled: true });
   this.render();

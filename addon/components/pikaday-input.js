@@ -5,7 +5,7 @@ import moment from 'moment';
 
 export default Ember.Component.extend({
   tagName: 'input',
-  attributeBindings: ['readonly', 'disabled', 'placeholder', 'type', 'name', 'size'],
+  attributeBindings: ['readonly', 'disabled', 'placeholder', 'type', 'name', 'size', 'required'],
   type: 'text',
 
   setupPikaday: Ember.on('didInsertElement', function() {
