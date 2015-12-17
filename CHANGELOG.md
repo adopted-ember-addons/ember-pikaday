@@ -1,3 +1,7 @@
+## 0.14.0
+* Add binding for `required` attribute. (Contribution of @TristanToye)
+* Update Pikaday dependency to `1.4.0`. (Contribution of @drapergeek)
+
 ## 0.13.0
 * Add binding for `name` attribute. (Contribution of @listepo)
 * Add binding for `size` attribute. (Contribution of @peteonrails)
