@@ -3,6 +3,8 @@
 import Ember from 'ember';
 import moment from 'moment';
 
+const { isPresent } = Ember;
+
 export default Ember.Component.extend({
   tagName: 'input',
   attributeBindings: ['readonly', 'disabled', 'placeholder', 'type', 'name', 'size', 'required'],
@@ -28,6 +30,12 @@ export default Ember.Component.extend({
         maxDate: this.get('maxDate') || null,
         theme: this.get('theme') || null
       };
+      if (isPresent(this.get('position'))) {
+        options['position'] = this.get('position');
+      }
+      if (isPresent(this.get('reposition'))) {
+        options['reposition'] = this.get('reposition');
+      }
 
       if (this.get('i18n')) {
         options.i18n = this.get('i18n');
