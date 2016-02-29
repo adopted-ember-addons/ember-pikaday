@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   attributeBindings: ['readonly', 'disabled', 'placeholder', 'type', 'name', 'size'],
   type: 'text',
 
-  setupPikaday: Ember.on('didInsertElement', function() {
+  setupPikaday: Ember.on('didRender', function() {
     var that = this;
     var firstDay = this.get('firstDay');
 
