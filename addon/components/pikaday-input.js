@@ -7,44 +7,49 @@ export default Ember.Component.extend({
   attributeBindings: ['readonly', 'disabled', 'placeholder', 'type', 'name', 'size'],
   type: 'text',
 
+  firstRender: true,
+
   setupPikaday: Ember.on('didRender', function() {
-    var that = this;
-    var firstDay = this.get('firstDay');
+    if (this.get('firstRender')) {
+      var that = this;
+      var firstDay = this.get('firstDay');
 
-    var options = {
-      field: this.$()[0],
-      onOpen: Ember.run.bind(this, this.onPikadayOpen),
-      onClose: Ember.run.bind(this, this.onPikadayClose),
-      onSelect: Ember.run.bind(this, this.onPikadaySelect),
-      onDraw: Ember.run.bind(this, this.onPikadayRedraw),
-      firstDay: (typeof firstDay !== 'undefined') ? parseInt(firstDay, 10) : 1,
-      format: this.get('format') || 'DD.MM.YYYY',
-      yearRange: that.determineYearRange(),
-      minDate: this.get('minDate') || null,
-      maxDate: this.get('maxDate') || null,
-      theme: this.get('theme') || null
-    };
+      var options = {
+        field: this.$()[0],
+        onOpen: Ember.run.bind(this, this.onPikadayOpen),
+        onClose: Ember.run.bind(this, this.onPikadayClose),
+        onSelect: Ember.run.bind(this, this.onPikadaySelect),
+        onDraw: Ember.run.bind(this, this.onPikadayRedraw),
+        firstDay: (typeof firstDay !== 'undefined') ? parseInt(firstDay, 10) : 1,
+        format: this.get('format') || 'DD.MM.YYYY',
+        yearRange: that.determineYearRange(),
+        minDate: this.get('minDate') || null,
+        maxDate: this.get('maxDate') || null,
+        theme: this.get('theme') || null
+      };
 
-    if (this.get('i18n')) {
-      options.i18n = this.get('i18n');
+      if (this.get('i18n')) {
+        options.i18n = this.get('i18n');
+      }
+
+      var pikaday = new Pikaday(options);
+
+      this.set('pikaday', pikaday);
+      this.setPikadayDate();
+
+      this.addObserver('value', function() {
+        that.setPikadayDate();
+      });
+
+      this.addObserver('minDate', function() {
+        this.setMinDate();
+      });
+
+      this.addObserver('maxDate', function() {
+        this.setMaxDate();
+      });
+      this.set('firstRender', false);
     }
-
-    var pikaday = new Pikaday(options);
-
-    this.set('pikaday', pikaday);
-    this.setPikadayDate();
-
-    this.addObserver('value', function() {
-      that.setPikadayDate();
-    });
-
-    this.addObserver('minDate', function() {
-      this.setMinDate();
-    });
-
-    this.addObserver('maxDate', function() {
-      this.setMaxDate();
-    });
   }),
 
   teardownPikaday: Ember.on('willDestroyElement', function() {
