@@ -8,12 +8,17 @@ export default Ember.Component.extend({
   attributeBindings: ['readonly', 'disabled', 'placeholder', 'type', 'name', 'size', 'required'],
   type: 'text',
 
+  bound: true,  // Set this to false to make the calendar independent of the input. Refer https://github.com/dbushell/Pikaday/blob/master/README.md
+  renderInPlace: false, // Set this to true to make the parent of the component as the container (instead of <body>)
+  hideInput: false,
+
   setupPikaday: Ember.on('didInsertElement', function() {
     var that = this;
     var firstDay = this.get('firstDay');
 
     var options = {
       field: this.$()[0],
+      bound: this.get('bound'),
       onOpen: Ember.run.bind(this, this.onPikadayOpen),
       onClose: Ember.run.bind(this, this.onPikadayClose),
       onSelect: Ember.run.bind(this, this.onPikadaySelect),
@@ -28,6 +33,14 @@ export default Ember.Component.extend({
 
     if (this.get('i18n')) {
       options.i18n = this.get('i18n');
+    }
+
+    if (this.get('renderInPlace')) {
+      options.container = this.$().parent()[0];
+    }
+
+    if (this.get('hideInput')) {
+      this.$().css('display', 'none');
     }
 
     var pikaday = new Pikaday(options);
