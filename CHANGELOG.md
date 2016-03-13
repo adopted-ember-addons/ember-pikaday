@@ -1,3 +1,6 @@
+## Unreleased
+* Enable the addon to be used in other addons as dependency. (Contribution of @joedaniels29)
+
 ## 0.14.0
 * Add binding for `required` attribute. (Contribution of @TristanToye)
 * Update Pikaday dependency to `1.4.0`. (Contribution of @drapergeek)
