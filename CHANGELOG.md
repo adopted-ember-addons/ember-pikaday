@@ -1,4 +1,5 @@
 ## Unreleased
+* Use `didRender` instead of `didInsertElement`. (Contribution of @peteonrails)
 * Enable the addon to be used in other addons as dependency. (Contribution of @joedaniels29)
 
 ## 0.14.0
