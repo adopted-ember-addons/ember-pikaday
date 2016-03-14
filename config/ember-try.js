@@ -11,21 +11,33 @@ module.exports = {
       }
     },
     {
-      name: 'ember-1.12.1',
+      name: 'ember-1.13.13',
       dependencies: {
-        'ember': '1.12.1'
+        'ember': '1.13.13'
       }
     },
     {
-      name: 'ember-1.11.3',
+      name: 'ember-2.4.2',
       dependencies: {
-        'ember': '1.11.3'
+        'ember': '2.4.2'
       }
     },
     {
-      name: 'ember-1.10.1',
+      name: 'ember-2.3.1',
       dependencies: {
-        'ember': '1.10.1'
+        'ember': '2.3.1'
+      }
+    },
+    {
+      name: 'ember-2.2.2',
+      dependencies: {
+        'ember': '2.2.2'
+      }
+    },
+    {
+      name: 'ember-2.0.2',
+      dependencies: {
+        'ember': '2.0.2'
       }
     },
     {
