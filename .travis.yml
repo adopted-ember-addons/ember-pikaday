@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - "5.0"
+  - "0.12"
 
 sudo: false
 
@@ -14,10 +14,12 @@ env:
   - EMBER_TRY_SCENARIO=ember-release
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
+  - EMBER_TRY_SCENARIO=ember-2.4.2
+  - EMBER_TRY_SCENARIO=ember-2.3.1
+  - EMBER_TRY_SCENARIO=ember-2.2.2
+  - EMBER_TRY_SCENARIO=ember-2.0.2
+  - EMBER_TRY_SCENARIO=ember-1.13.13
   - EMBER_TRY_SCENARIO=ember-1.13.1
-  - EMBER_TRY_SCENARIO=ember-1.12.1
-  - EMBER_TRY_SCENARIO=ember-1.11.3
-  - EMBER_TRY_SCENARIO=ember-1.10.1
 
 matrix:
   fast_finish: true
