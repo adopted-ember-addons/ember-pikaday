@@ -28,8 +28,13 @@ export default Ember.Component.extend({
         yearRange: that.determineYearRange(),
         minDate: this.get('minDate') || null,
         maxDate: this.get('maxDate') || null,
-        theme: this.get('theme') || null
+        theme: this.get('theme') || null,
+        showWeekNumber: this.get('showWeekNumber') || null
       };
+
+      if (isPresent(this.get('disableDayFn'))) {
+        options['disableDayFn'] = Ember.run.bind(this, this.get('disableDayFn'));
+      }
       if (isPresent(this.get('position'))) {
         options['position'] = this.get('position');
       }
