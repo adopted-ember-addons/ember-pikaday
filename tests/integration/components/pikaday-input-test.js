@@ -2,6 +2,14 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
 
+const getFirstWeekendDayNumber = function() {
+  let date = new Date();
+  return [1,2,3,4,5,6,7].find(number => {
+    date.setDate(number);
+    return date.getDay() === 0 || date.getDay() === 6;
+  });
+};
+
 moduleForComponent('pikaday-input', 'Integration | Component | pikaday input', {
   integration: true
 });
@@ -214,4 +222,16 @@ test('firstDay option overrides the default first day value', function(assert) {
   var firstDay = $('.pika-single .pika-table tr th:first-child').text();
 
   assert.equal(firstDay, 'Sun', 'First day should be Sunday');
+});
+
+test('if an options hash is passed, default options are overridden', function(assert) {
+  assert.expect(2);
+  this.set('onOpen', function() {
+    assert.ok(true);
+  });
+  this.render(hbs`{{pikaday-input options=(hash onOpen=onOpen disableWeekends=true)}}`);
+  openDatepicker(this.$('input'));
+  const weekendDay = getFirstWeekendDayNumber();
+
+  assert.ok($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
 });
