@@ -24,14 +24,15 @@ test('clicking the input opens the pikaday dialog', function(assert) {
   assert.notOk($('.pika-single').hasClass('is-hidden'));
 });
 
-test('selecting a date should update the value attribute', function(assert) {
-  this.render(hbs`{{pikaday-input value=value}}`);
+test('selecting a date should send an action', function(assert) {
+  const expectedDate = new Date(2013, 3, 28);
+  this.on('onSelection', function(selectedDate) {
+    assert.deepEqual(selectedDate, expectedDate);
+  });
+  this.render(hbs`{{pikaday-input onSelection=(action 'onSelection')}}`);
 
   let interactor = openDatepicker(this.$('input'));
-  const expectedDate = new Date(2013, 3, 28);
   interactor.selectDate(expectedDate);
-
-  assert.deepEqual(this.get('value'), expectedDate);
 });
 
 test('setting the value attribute should select the correct date', function(assert) {
@@ -139,13 +140,14 @@ test('default i18n configuration of Pikaday can be changed', function(assert) {
 });
 
 test('if utc is set the date returned from pikaday should be in UTC format', function(assert) {
-  this.render(hbs`{{pikaday-input useUtc=true value=value}}`);
-  var interactor = openDatepicker(this.$('input'));
-
   const expectedDate = new Date(2013, 3, 28);
-  interactor.selectDate(expectedDate);
+  this.on('onSelection', function(selectedDate) {
+    assert.deepEqual(selectedDate, expectedDate);
+  });
+  this.render(hbs`{{pikaday-input onSelection=(action 'onSelection') useUtc=true}}`);
 
-  assert.deepEqual(this.get('value'), expectedDate);
+  var interactor = openDatepicker(this.$('input'));
+  interactor.selectDate(expectedDate);
 });
 
 test('the input tag has the placeholder attribute and the correct value if it has been set on the component', function(assert) {
