@@ -4,10 +4,10 @@ import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
 
 const getFirstWeekendDayNumber = function() {
   let date = new Date();
-  return [1,2,3,4,5,6,7].find(number => {
+  return [1,2,3,4,5,6,7].filter(number => {
     date.setDate(number);
     return date.getDay() === 0 || date.getDay() === 6;
-  });
+  })[0];
 };
 
 moduleForComponent('pikaday-input', 'Integration | Component | pikaday input', {
