@@ -3,7 +3,7 @@ import moment from 'moment';
 
 export default {
   name: 'setup-pikaday-i18n',
-  initialize: function(container, application) {
+  initialize: function(application) {
     var i18n = Ember.Object.extend({
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',
@@ -12,7 +12,7 @@ export default {
       weekdaysShort: moment.localeData()._weekdaysShort
     });
 
-    container.register('pikaday-i18n:main', i18n, { singleton: true });
+    application.register('pikaday-i18n:main', i18n, { singleton: true });
     application.inject('component:pikaday-input', 'i18n', 'pikaday-i18n:main');
   }
 };
