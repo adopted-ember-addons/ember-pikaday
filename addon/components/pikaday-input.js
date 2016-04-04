@@ -31,6 +31,7 @@ export default Ember.Component.extend({
         options.reposition = this.get('reposition');
       }
 
+      Ember.merge(options, this.get('options') || {});
       return options;
     }
   }),
