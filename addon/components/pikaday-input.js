@@ -117,7 +117,7 @@ export default Ember.Component.extend({
       selectedDate = moment.utc([selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()]).toDate();
     }
 
-    this.set('value', selectedDate);
+    this.get('onSelection')(selectedDate);
   },
 
   determineYearRange: function() {
