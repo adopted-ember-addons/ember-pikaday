@@ -21,6 +21,7 @@ export default Ember.Component.extend({
         options.i18n = this.get('i18n');
       }
 
+      Ember.merge(options, this.get('options') || {});
       return options;
     }
   }),
@@ -47,11 +48,14 @@ export default Ember.Component.extend({
     this.setupPikaday();
   },
 
-  didUpdateAttrs() {
+  didUpdateAttrs({ newAttrs }) {
     this._super(...arguments);
     this.setPikadayDate();
     this.setMinDate();
     this.setMaxDate();
+    if(newAttrs.options) {
+      this._updateOptions();
+    }
   },
 
   didRender() {
@@ -134,5 +138,9 @@ export default Ember.Component.extend({
     if (this.get('disabled') && this.get('pikaday')) {
       this.get('pikaday').hide();
     }
+  },
+
+  _updateOptions() {
+    this.get('pikaday').config(this.get('_options'));
   }
 });
