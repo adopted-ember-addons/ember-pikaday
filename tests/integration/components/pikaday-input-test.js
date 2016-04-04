@@ -235,3 +235,18 @@ test('if an options hash is passed, default options are overridden', function(as
 
   assert.ok($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
 });
+
+test('if updates pikaday config if options hash is changed', function(assert) {
+  const weekendDay = getFirstWeekendDayNumber();
+  this.set('disableWeekends', true);
+  this.render(hbs`{{pikaday-input options=(hash disableWeekends=disableWeekends)}}`);
+
+  openDatepicker(this.$('input'));
+  assert.ok($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
+
+  // close pikaday
+  this.$().click();
+  this.set('disableWeekends', false);
+  openDatepicker(this.$('input'));
+  assert.notOk($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
+});
