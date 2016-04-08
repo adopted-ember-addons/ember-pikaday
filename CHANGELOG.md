@@ -1,3 +1,6 @@
+## 1.1.0
+* Add support for `position` and `reposition`. (Contribution of @chrislopresto )
+
 ## 1.0.0
 * Use `didRender` instead of `didInsertElement`. (Contribution of @peteonrails)
 * Enable the addon to be used in other addons as dependency. (Contribution of @joedaniels29)

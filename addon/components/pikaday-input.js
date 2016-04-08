@@ -2,6 +2,8 @@
 import Ember from 'ember';
 import moment from 'moment';
 
+const { isPresent } = Ember;
+
 export default Ember.Component.extend({
   tagName: 'input',
   attributeBindings: [
@@ -14,11 +16,19 @@ export default Ember.Component.extend({
     'required'
   ],
   type: 'text',
+
   _options: Ember.computed('options', 'i18n', {
     get() {
       let options = this._defaultOptions();
-      if (this.get('i18n')) {
+
+      if (isPresent(this.get('i18n'))) {
         options.i18n = this.get('i18n');
+      }
+      if (isPresent(this.get('position'))) {
+        options.position = this.get('position');
+      }
+      if (isPresent(this.get('reposition'))) {
+        options.reposition = this.get('reposition');
       }
 
       Ember.merge(options, this.get('options') || {});
