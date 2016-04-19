@@ -150,7 +150,7 @@ The following event listeners are supported as bindings:
 `onPikadayDraw` is called whenever the datepicker is (re-) drawn.
 
 ```handlebars
-  {{pikaday-input value=dueAt onPikadayOpen=(action 'doSomethingCool')}}
+{{pikaday-input value=dueAt onPikadayOpen=(action 'doSomethingCool')}}
 ```
 
 ## Localization
