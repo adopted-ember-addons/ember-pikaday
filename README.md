@@ -150,9 +150,9 @@ ember-pikaday has its origin prior Embers moved to the Data Down, Actions Up (DD
 `onPikadayRedraw` is called whenever the datepicker is (re-) drawn.
 
 ```handlebars
-  {{pikaday-input value=startsAt onPikadaySelect=(action 'didSelectDate')}}
+{{pikaday-input value=startsAt onPikadaySelect=(action 'didSelectDate')}}
 ```
-The action `didSelectDate` will then receive the newly selected date.
+The action `didSelectDate` will fire when the user selects a new date. The action inside the parent component or controller will then receive the newly selected date as an argument.
 
 ## Localization
 
