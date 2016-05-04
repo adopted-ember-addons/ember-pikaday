@@ -149,6 +149,11 @@ ember-pikaday has its origin prior Embers moved to the Data Down, Actions Up (DD
 `onPikadaySelect` is called whenever the user selected a date.  
 `onPikadayRedraw` is called whenever the datepicker is (re-) drawn.
 
+```handlebars
+  {{pikaday-input value=startsAt onPikadaySelect=(action 'didSelectDate')}}
+```
+The action `didSelectDate` will then receive the newly selected date.
+
 ## Localization
 
 Localizing the datepicker is possible in two steps. To localize the output of the datepicker, this is the formatted string visible in the input field, you simply add the correct Moment.js locale file to your applications `Brocfile.js`.
