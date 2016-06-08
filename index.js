@@ -14,7 +14,7 @@ module.exports = {
 
     this._super.included(app);
 
-    const options = app.options.emberPikaday || {};
+    var options = app.options.emberPikaday || {};
     if (!options.excludePikadayAssets) {
       app.import(app.bowerDirectory + '/pikaday/pikaday.js');
       app.import(app.bowerDirectory + '/pikaday/css/pikaday.css');
