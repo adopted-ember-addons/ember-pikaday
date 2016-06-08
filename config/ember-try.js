@@ -16,6 +16,11 @@ module.exports = {
         resolutions: {
           'ember': '1.13.1'
         }
+      },
+      npm: {
+        devDependencies: {
+          'ember-hash-helper-polyfill': '0.1.0'
+        }
       }
     },
     {
@@ -26,6 +31,22 @@ module.exports = {
         },
         resolutions: {
           'ember': '1.13.13'
+        }
+      },
+      npm: {
+        devDependencies: {
+          'ember-hash-helper-polyfill': '0.1.0'
+        }
+      }
+    },
+    {
+      name: 'ember-2.4.3',
+      bower: {
+        dependencies: {
+          'ember': '2.4.3'
+        },
+        resolutions: {
+          'ember': '2.4.3'
         }
       }
     },
@@ -49,6 +70,11 @@ module.exports = {
         resolutions: {
           'ember': '2.2.2'
         }
+      },
+      npm: {
+        devDependencies: {
+          'ember-hash-helper-polyfill': '0.1.0'
+        }
       }
     },
     {
@@ -59,6 +85,11 @@ module.exports = {
         },
         resolutions: {
           'ember': '2.0.2'
+        }
+      },
+      npm: {
+        devDependencies: {
+          'ember-hash-helper-polyfill': '0.1.0'
         }
       }
     },
