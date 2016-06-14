@@ -11,9 +11,11 @@ cd your-project-directory
 ember install ember-pikaday
 ```
 
+*This README is for the new 2.X release of ember-pikaday. You can find the [1.X README in the stable-1 branch](https://github.com/edgycircle/ember-pikaday/blob/stable-1/README.md).*
+
 ## Usage
 
-While the input shows a formatted date to the user, the value attribute can be any valid JavaScript date including `Date` object. If the application sets the attribute without a user interaction the datepicker updates accordingly.
+While the input shows a formatted date to the user, the `value` attribute can be any valid JavaScript date including `Date` object. If the application sets the attribute without a user interaction the datepicker updates accordingly.
 
 ```handlebars
 <label>
@@ -157,7 +159,7 @@ Please refer to [pikaday configuration](https://github.com/dbushell/Pikaday#conf
 Localizing the datepicker is possible in two steps. To localize the output of the datepicker, this is the formatted string visible in the input field, you simply add the correct Moment.js locale file to your applications `ember-cli-build
 .js`.
 
-If I want to use the Austrian / German locale for example, my `ember-cli-build.js` will look like this. To use another locale you only have to change `de-at.js` to whatever locale you want to use.
+If I want to use the Austrian / German locale for example, your `ember-cli-build.js` will look like this. To use another locale you only have to change `de-at.js` to whatever locale you want to use.
 
 ```js
 app.import('bower_components/moment/moment.js');
