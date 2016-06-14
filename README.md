@@ -13,12 +13,12 @@ ember install ember-pikaday
 
 ## Usage
 
-While the input shows a formatted date to the user the bound attribute is always a JavaScript date object. If the application sets the attribute without a user interaction the datepicker updates accordingly.
+While the input shows a formatted date to the user, the value attribute can be any valid JavaScript date including `Date` object. If the application sets the attribute without a user interaction the datepicker updates accordingly.
 
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input value=startsAt}}
+  {{pikaday-input onSelection=(action 'doSomethingWithSelectedValue')}}
 </label>
 ```
 
@@ -27,7 +27,7 @@ You can also change the default format from `DD.MM.YYYY` to any format string su
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input value=startsAt format="MM/DD/YYYY"}}
+  {{pikaday-input format="MM/DD/YYYY"}}
 </label>
 ```
 
@@ -36,7 +36,7 @@ You can define a theme which will be a CSS class that can be used as a hook for 
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input value=startsAt theme="dark-theme"}}
+  {{pikaday-input theme="dark-theme" }}
 </label>
 ```
 
@@ -46,14 +46,14 @@ single number or two comma separated years.
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input value=startsAt yearRange="4"}}
+  {{pikaday-input yearRange="4"}}
 </label>
 ```
 
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input value=startsAt yearRange="2004,2008"}}
+  {{pikaday-input yearRange="2004,2008"}}
 </label>
 ```
 
@@ -63,7 +63,7 @@ the maximum selectable year to the current year.
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input value=startsAt yearRange="2004,currentYear"}}
+  {{pikaday-input yearRange="2004,currentYear"}}
 </label>
 ```
 
@@ -72,7 +72,7 @@ The `readonly` attribute is supported as binding so you can make the input reado
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input value=startsAt readonly="readonly"}}
+  {{pikaday-input readonly="readonly"}}
 </label>
 ```
 
@@ -81,7 +81,7 @@ The `placeholder` attribute is supported as binding so you can improve the user 
 ```handlebars
 <label>
   Due date:
-  {{pikaday-input value=dueAt placeholder="Due date of invoice"}}
+  {{pikaday-input placeholder="Due date of invoice"}}
 </label>
 ```
 
@@ -91,7 +91,7 @@ If the datepicker is shown to the user and it gets disabled it will close the da
 ```handlebars
 <label>
   Due date:
-  {{pikaday-input value=dueAt disabled=isDisabled}}
+  {{pikaday-input disabled=isDisabled}}
 </label>
 ```
 
@@ -105,7 +105,7 @@ Defaults to Monday.
 ```handlebars
 <label>
   Due date:
-  {{pikaday-input value=dueAt firstDay=0}}
+  {{pikaday-input firstDay=0}}
 </label>
 ```
 
@@ -114,7 +114,7 @@ The `minDate` attribute is supported as a binding so you can set the earliest da
 ```handlebars
 <label>
   Due Date:
-  {{pikaday-input value=dueAt minDate=minDate}}
+  {{pikaday-input minDate=minDate}}
 </label>
 ```
 
@@ -123,7 +123,7 @@ The `maxDate` attribute is supported as a binding so you can set the latest date
 ```handlebars
 <label>
   Due Date:
-  {{pikaday-input value=dueAt maxDate=maxDate}}
+  {{pikaday-input maxDate=maxDate}}
 </label>
 ```
 
@@ -134,26 +134,30 @@ The date returned by ember-pikaday is in your local time zone due to the JavaScr
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input value=startsAt useUTC=true}}
+  {{pikaday-input useUTC=true}}
 </label>
 ```
 
 ember-pikaday will not automatically convert the date to UTC if your application is setting the datepicker value directly!
 
-## Data Down, Actions Up
+## Using pikaday specific options
 
-ember-pikaday has its origin prior Embers moved to the Data Down, Actions Up (DDAU) paradigma. Therefore it operates in a two way binding mode by default. If you want to be closer to DDAU you can extend the `pikaday-input` component and overwrite certain callbacks to accomplish DDAU.
+You can pass any custom pikaday option through the component like this
 
-`onOpen` is called whenever the datepicker opens.  
-`onClose` is called whenever the datepicker is closed.  
-`onSelect` is called whenever the user selected a date.  
-`onDraw` is called whenever the datepicker is (re-) drawn.
+```handlebars
+<label>
+  {{pikaday-input options=(hash numberOfMonths=2 disableWeekends=true)}}
+</label>
+```
+
+Please refer to [pikaday configuration](https://github.com/dbushell/Pikaday#configuration)
 
 ## Localization
 
-Localizing the datepicker is possible in two steps. To localize the output of the datepicker, this is the formatted string visible in the input field, you simply add the correct Moment.js locale file to your applications `Brocfile.js`.
+Localizing the datepicker is possible in two steps. To localize the output of the datepicker, this is the formatted string visible in the input field, you simply add the correct Moment.js locale file to your applications `ember-cli-build
+.js`.
 
-If I want to use the Austrian / German locale for example, my `Brocfile.js` will look like this. To use another locale you only have to change `de-at.js` to whatever locale you want to use.
+If I want to use the Austrian / German locale for example, my `ember-cli-build.js` will look like this. To use another locale you only have to change `de-at.js` to whatever locale you want to use.
 
 ```js
 app.import('bower_components/moment/moment.js');
@@ -219,6 +223,20 @@ interactor.selectDate(new Date(1989, 3, 28));
 equal(interactor.selectedYear(), 1989);
 equal(interactor.selectedMonth(), 3);
 equal(interactor.selectedDay(), 28);
+```
+
+## Excluding assets
+
+By default, ember-pikaday will load for you the needed pikaday assets.
+If you need to use a custom version, you can now disable auto assests importing like this:
+
+```js
+// ember-cli-build.js
+var app = new EmberApp(defaults, {
+  emberPikaday: {
+    excludePikadayAssets: true
+  }
+});
 ```
 
 ## Other Resources

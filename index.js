@@ -14,7 +14,10 @@ module.exports = {
 
     this._super.included(app);
 
-    app.import(app.bowerDirectory + '/pikaday/pikaday.js');
-    app.import(app.bowerDirectory + '/pikaday/css/pikaday.css');
+    var options = app.options.emberPikaday || {};
+    if (!options.excludePikadayAssets) {
+      app.import(app.bowerDirectory + '/pikaday/pikaday.js');
+      app.import(app.bowerDirectory + '/pikaday/css/pikaday.css');
+    }
   }
 };
