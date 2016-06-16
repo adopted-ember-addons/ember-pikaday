@@ -13,7 +13,9 @@ export default Ember.Component.extend({
     'type',
     'name',
     'size',
-    'required'
+    'required',
+    'title',
+    'hidden'
   ],
   type: 'text',
 
