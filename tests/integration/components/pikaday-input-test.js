@@ -43,6 +43,22 @@ test('selecting a date should send an action', function(assert) {
   interactor.selectDate(expectedDate);
 });
 
+test('clearing the date should send an action', function(assert) {
+  this.set('value', new Date(2010, 7, 10));
+
+  this.on('onSelection', function(selectedDate) {
+    assert.equal(selectedDate, null);
+  });
+
+  this.render(hbs`{{pikaday-input value=value onSelection=(action 'onSelection')}}`);
+  openDatepicker(this.$('input'));
+
+  this.$('input').val('');
+
+  // close pikaday
+  this.$().click();
+});
+
 test('setting the value attribute should select the correct date', function(assert) {
   this.set('value', new Date(2010, 7, 10));
   this.render(hbs`{{pikaday-input value=value}}`);
