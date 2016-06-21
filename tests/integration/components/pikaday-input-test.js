@@ -167,14 +167,54 @@ test('default i18n configuration of Pikaday can be changed', function(assert) {
 });
 
 test('if utc is set the date returned from pikaday should be in UTC format', function(assert) {
-  const expectedDate = new Date(2013, 3, 28);
+  const expectedDate = new Date(Date.UTC(2013, 3, 28));
   this.on('onSelection', function(selectedDate) {
     assert.deepEqual(selectedDate, expectedDate);
   });
-  this.render(hbs`{{pikaday-input onSelection=(action 'onSelection') useUtc=true}}`);
+  this.render(hbs`{{pikaday-input onSelection=(action 'onSelection') useUTC=true}}`);
 
   var interactor = openDatepicker(this.$('input'));
-  interactor.selectDate(expectedDate);
+
+  interactor.selectDate(new Date(2013, 3, 28));
+});
+
+[
+  {
+    date: new Date(Date.UTC(2013, 3, 28, 0, 0, 0)),
+    useUTC: true
+  },
+  {
+    date: new Date(Date.UTC(2013, 3, 28, 23, 59, 59)),
+    useUTC: true
+  },
+  {
+    date: new Date(Date.UTC(2013, 3, 28, 12, 30, 30)),
+    useUTC: true
+  },
+  {
+    date: new Date(2013, 3, 28, 0, 0, 0),
+    useUTC: false
+  },
+  {
+    date: new Date(2013, 3, 28, 23, 59, 59),
+    useUTC: false
+  },
+  {
+    date: new Date(2013, 3, 28, 12, 30, 30),
+    useUTC: false
+  }
+].forEach(testParams => {
+  test('value is displayed correctly when using useUTC flag', function(assert) {
+    this.set('value', testParams.date);
+    this.set('useUTC', testParams.useUTC);
+    this.render(hbs`{{pikaday-input value=value useUTC=useUTC}}`);
+
+    var interactor = openDatepicker(this.$('input'));
+
+    assert.equal(interactor.selectedYear(), 2013);
+    assert.equal(interactor.selectedMonth(), 3);
+    assert.equal(interactor.selectedDay(), 28);
+  });
 });
 
 test('the input tag has the placeholder attribute and the correct value if it has been set on the component', function(assert) {
