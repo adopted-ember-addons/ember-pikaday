@@ -10,6 +10,10 @@ const getFirstWeekendDayNumber = function() {
   })[0];
 };
 
+function closePikaday(context) {
+  context.$().click();
+}
+
 moduleForComponent('pikaday-input', 'Integration | Component | pikaday input', {
   integration: true
 });
@@ -41,6 +45,21 @@ test('selecting a date should send an action', function(assert) {
 
   let interactor = openDatepicker(this.$('input'));
   interactor.selectDate(expectedDate);
+});
+
+test('clearing the date should send an action', function(assert) {
+  this.set('value', new Date(2010, 7, 10));
+
+  this.on('onSelection', function(selectedDate) {
+    assert.equal(selectedDate, null);
+  });
+
+  this.render(hbs`{{pikaday-input value=value onSelection=(action 'onSelection')}}`);
+  openDatepicker(this.$('input'));
+
+  this.$('input').val('');
+
+  closePikaday(this);
 });
 
 test('setting the value attribute should select the correct date', function(assert) {
@@ -244,8 +263,7 @@ test('if updates pikaday config if options hash is changed', function(assert) {
   openDatepicker(this.$('input'));
   assert.ok($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
 
-  // close pikaday
-  this.$().click();
+  closePikaday(this);
   this.set('disableWeekends', false);
   openDatepicker(this.$('input'));
   assert.notOk($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
