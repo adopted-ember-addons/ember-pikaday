@@ -62,6 +62,33 @@ test('clearing the date should send an action', function(assert) {
   closePikaday(this);
 });
 
+test('opening picker should send an action', function(assert) {
+  this.on('onOpen', function() {
+    assert.ok(true);
+  });
+  this.render(hbs`{{pikaday-input onOpen=(action 'onOpen')}}`);
+  openDatepicker(this.$('input'));
+});
+
+test('closing picker should send an action', function(assert) {
+  this.on('onClose', function() {
+    assert.ok(true);
+  });
+  this.render(hbs`{{pikaday-input onClose=(action 'onClose')}}`);
+  openDatepicker(this.$('input'));
+  closePikaday(this);
+});
+
+test('redrawing picker should send an action', function(assert) {
+  openDatepicker(this.$('input'));
+  closePikaday(this);
+  this.on('onDraw', function() {
+    assert.ok(true);
+  });
+  this.render(hbs`{{pikaday-input onDraw=(action 'onDraw')}}`);
+  openDatepicker(this.$('input'));
+});
+
 test('setting the value attribute should select the correct date', function(assert) {
   this.set('value', new Date(2010, 7, 10));
   this.render(hbs`{{pikaday-input value=value}}`);

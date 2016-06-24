@@ -104,21 +104,30 @@ export default Ember.Component.extend({
     }
   },
 
-  onPikadayOpen: Ember.K,
+  onOpen: Ember.K,
+  onClose: Ember.K,
   onSelection: Ember.K,
+  onDraw: Ember.K,
+
+  onPikadayOpen: function() {
+    this.get('onOpen')();
+  },
 
   onPikadayClose: function() {
     if (this.get('pikaday').getDate() === null || Ember.isEmpty(this.$().val())) {
       this.set('value', null);
       this.get('onSelection')(null);
     }
+    this.get('onClose')();
   },
 
   onPikadaySelect: function() {
     this.userSelectedDate();
   },
 
-  onPikadayRedraw: Ember.K,
+  onPikadayRedraw: function() {
+    this.get('onDraw')();
+  },
 
   userSelectedDate: function() {
     var selectedDate = this.get('pikaday').getDate();
