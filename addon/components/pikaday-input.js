@@ -6,6 +6,7 @@ const { isPresent } = Ember;
 
 export default Ember.Component.extend({
   tagName: 'input',
+
   attributeBindings: [
     'readonly',
     'disabled',
@@ -17,6 +18,7 @@ export default Ember.Component.extend({
     'title',
     'hidden'
   ],
+
   type: 'text',
 
   _options: Ember.computed('options', 'i18n', {
@@ -65,6 +67,7 @@ export default Ember.Component.extend({
     this.setPikadayDate();
     this.setMinDate();
     this.setMaxDate();
+
     if(newAttrs.options) {
       this._updateOptions();
     }
@@ -118,6 +121,7 @@ export default Ember.Component.extend({
       this.set('value', null);
       this.get('onSelection')(null);
     }
+
     this.get('onClose')();
   },
 
