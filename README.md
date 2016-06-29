@@ -164,6 +164,10 @@ You can pass any custom pikaday option through the component like this
 
 Please refer to [pikaday configuration](https://github.com/dbushell/Pikaday#configuration)
 
+## Inputless pikaday
+
+If you don't want to show an input field, you can use the `pikaday-inputless` component instead of `pikaday-input`. It has the same API, but doesn't support `onOpen` and `onClose`. When `disabled=true` on a `pikaday-inputless`, the datepicker gets hidden.
+
 ## Localization
 
 Localizing the datepicker is possible in two steps. To localize the output of the datepicker, this is the formatted string visible in the input field, you simply include all the locales by following the [ember-cli-moment-shim instructions](https://github.com/jasonmit/ember-cli-moment-shim#cherry-pick-locales-optimal) and include the following in your `ember-cli-build.js`
