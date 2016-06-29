@@ -8,7 +8,7 @@ Standalone datepicker:
 <br>
 
 Datepicker with bound and set value:
-{{pikaday-input value=startDate format='DD.MM.YYYY'}}
+{{pikaday-input value=startDate onSelection=(action (mut startDate)) format='DD.MM.YYYY'}}
 {{startDate}}
 <br>
 <button {{action "clearStartDate"}}>Clear Date</button>
