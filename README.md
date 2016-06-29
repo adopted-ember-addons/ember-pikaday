@@ -24,6 +24,16 @@ While the input shows a formatted date to the user, the `value` attribute can be
 </label>
 ```
 
+You can also pass in other closure actions to handle `onOpen`, `onClose` and `onDraw` events.
+
+```handlebars
+<label>
+  Start date:
+  {{pikaday-input onOpen=(action 'doSomethingOnOpen') onClose=(action 'doSomethingOnClose')
+    onDraw=(action 'doSomethingOnDraw')}}
+</label>
+```
+
 You can also change the default format from `DD.MM.YYYY` to any format string supported by Moment.js.
 
 ```handlebars
