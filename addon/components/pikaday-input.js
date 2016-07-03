@@ -73,6 +73,10 @@ export default Ember.Component.extend({
     }
   },
 
+  valueChanged: Ember.observer('value', function() {
+    this.setPikadayDate();
+  }),
+
   didRender() {
     this._super(...arguments);
     this.autoHideOnDisabled();
