@@ -73,6 +73,10 @@ export default Ember.Component.extend({
     }
   },
 
+  valueChanged: Ember.observer('value', function() {
+    this.setPikadayDate();
+  }),
+
   didRender() {
     this._super(...arguments);
     this.autoHideOnDisabled();
@@ -90,9 +94,13 @@ export default Ember.Component.extend({
   },
 
   setPikadayDate: function() {
+    let pikaday = this.get('pikaday');
+    if(!pikaday) {
+      return;
+    }
     const value = this.get('value');
     const date = this.get('useUTC') ? moment(moment.utc(value).format('YYYY-MM-DD')).toDate() : value;
-    this.get('pikaday').setDate(date, true);
+    pikaday.setDate(date, true);
   },
 
   setMinDate: function() {
