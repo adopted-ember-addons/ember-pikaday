@@ -9,6 +9,7 @@ export default Ember.Component.extend({
 
   attributeBindings: [
     'readonly',
+    'tabindex',
     'disabled',
     'placeholder',
     'type',
