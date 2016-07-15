@@ -20,7 +20,7 @@ While the input shows a formatted date to the user, the `value` attribute can be
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input onSelection=(action 'doSomethingWithSelectedValue')}}
+  {{pikaday-input onSelect=(action 'doSomethingWithSelectedValue')}}
 </label>
 ```
 
