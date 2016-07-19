@@ -90,8 +90,9 @@ export default Ember.Component.extend({
   },
 
   setPikadayDate: function() {
+    const DATE_FORMAT = 'YYYY-MM-DD';
     const value = this.get('value');
-    const date = this.get('useUTC') ? moment(moment.utc(value).format('YYYY-MM-DD')).toDate() : value;
+    const date = this.get('useUTC') ? moment(moment.utc(value).format(DATE_FORMAT), DATE_FORMAT).toDate() : value;
     this.get('pikaday').setDate(date, true);
   },
 
