@@ -1,5 +1,10 @@
 [View 1.X CHANGELOG](https://github.com/edgycircle/ember-pikaday/blob/stable-1/CHANGELOG.md)
 
+## 2.1.0
+- Remove Moment.js deprecation warning due to passed non-parsable arguments. (Contribution by [@mdentremont](https://github.com/mdentremont))
+- Allow binding of `tabindex` attribute. (Contribution by [@FUT](https://github.com/FUT))
+- Add inputless component. (Contribution by [@lan0](https://github.com/lan0))
+
 ## 2.0.0
 - Add support for `onOpen`, `onClose` and `onDraw` actions. (Contribution by [@leizhao4](https://github.com/leizhao4))
 
