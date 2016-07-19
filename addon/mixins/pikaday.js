@@ -72,9 +72,16 @@ export default Ember.Mixin.create({
   },
 
   setPikadayDate: function() {
+    const format = 'YYYY-MM-DD';
     const value = this.get('value');
-    const date = this.get('useUTC') ? moment(moment.utc(value).format('YYYY-MM-DD')).toDate() : value;
-    this.get('pikaday').setDate(date, true);
+
+    if (!value) {
+      this.get('pikaday').setDate(value, true);
+    } else {
+      const date = this.get('useUTC') ? moment(moment.utc(value).format(format), format).toDate() : value;
+
+      this.get('pikaday').setDate(date, true);
+    }
   },
 
   setMinDate: function() {
