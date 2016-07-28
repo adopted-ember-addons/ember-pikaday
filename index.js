@@ -5,19 +5,13 @@ module.exports = {
   name: 'ember-pikaday',
 
   included: function(app) {
-    // When ember-pikaday is used in another addon we have to do some work
-    // upfront. See this issue for more information:
-    // https://github.com/ember-cli/ember-cli/issues/3718
-    if (typeof app.import !== 'function' && app.app) {
-      app = app.app;
-    }
+    this._super.included.apply(this, arguments);
 
-    this._super.included(app);
-
-    var options = app.options.emberPikaday || {};
+    var host = this._findHost();
+    var options = host.options.emberPikaday || {};
     if (!options.excludePikadayAssets) {
-      app.import(app.bowerDirectory + '/pikaday/pikaday.js');
-      app.import(app.bowerDirectory + '/pikaday/css/pikaday.css');
+      this.import(host.bowerDirectory + '/pikaday/pikaday.js');
+      this.import(host.bowerDirectory + '/pikaday/css/pikaday.css');
     }
   }
 };
