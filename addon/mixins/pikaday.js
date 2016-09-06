@@ -2,7 +2,10 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { isPresent } = Ember;
+const {
+  isPresent,
+  run,
+} = Ember;
 const assign = Ember.assign || Ember.merge;
 
 export default Ember.Mixin.create({
@@ -32,10 +35,10 @@ export default Ember.Mixin.create({
       field: this.get('field'),
       container: this.get('pikadayContainer'),
       bound: this.get('pikadayContainer') ? false : true,
-      onOpen: Ember.run.bind(this, this.onPikadayOpen),
-      onClose: Ember.run.bind(this, this.onPikadayClose),
-      onSelect: Ember.run.bind(this, this.onPikadaySelect),
-      onDraw: Ember.run.bind(this, this.onPikadayRedraw),
+      onOpen: run.bind(this, this.onPikadayOpen),
+      onClose: run.bind(this, this.onPikadayClose),
+      onSelect: run.bind(this, this.onPikadaySelect),
+      onDraw: run.bind(this, this.onPikadayRedraw),
       firstDay: (typeof firstDay !== 'undefined') ? parseInt(firstDay, 10) : 1,
       format: this.get('format') || 'DD.MM.YYYY',
       yearRange: this.determineYearRange(),
@@ -87,13 +90,17 @@ export default Ember.Mixin.create({
 
   setMinDate: function() {
     if (this.get('minDate')) {
-      this.get('pikaday').setMinDate(this.get('minDate'));
+      run.later(() => {
+        this.get('pikaday').setMinDate(this.get('minDate'));
+      });
     }
   },
 
   setMaxDate: function() {
     if (this.get('maxDate')) {
-      this.get('pikaday').setMaxDate(this.get('maxDate'));
+      run.later(() => {
+        this.get('pikaday').setMaxDate(this.get('maxDate'));
+      });
     }
   },
 
