@@ -135,6 +135,23 @@ test('set max date', function(assert) {
   assert.ok($('.is-today').hasClass('is-disabled'));
 });
 
+test('set new date value with a new min date', function(assert) {
+  var tommorow = new Date(2010, 7, 10);
+  this.set('tommorow', tommorow);
+  this.render(hbs`{{pikaday-input value=tommorow minDate=tommorow}}`);
+  this.set('tommorow', new Date(2010, 7, 9));
+  assert.equal(this.$('input').val(), '09.08.2010');
+});
+
+
+test('set new date value with a new max date', function(assert) {
+  var tommorow = new Date(2010, 7, 10);
+  this.set('tommorow', tommorow);
+  this.render(hbs`{{pikaday-input value=tommorow maxDate=tommorow}}`);
+  this.set('tommorow', new Date(2010, 7, 11));
+  assert.equal(this.$('input').val(), '11.08.2010');
+});
+
 test('theme option adds theme as CSS class to DOM element', function(assert) {
   this.render(hbs`{{pikaday-input theme='dark-theme'}}`);
 
