@@ -9,8 +9,8 @@ var openDatepicker = function(element) {
 };
 
 var PikadayInteractor = {
-  selectorForMonthSelect: '.pika-select-month:visible',
-  selectorForYearSelect: '.pika-select-year:visible',
+  selectorForMonthSelect: '.pika-lendar:visible .pika-select-month',
+  selectorForYearSelect: '.pika-lendar:visible .pika-select-year',
   selectDate: function(date) {
     var day = date.getDate();
     var month = date.getMonth();
