@@ -3,6 +3,7 @@ import Ember from 'ember';
 import moment from 'moment';
 
 const { isPresent } = Ember;
+const assign = Ember.assign || Ember.merge
 
 export default Ember.Mixin.create({
   _options: Ember.computed('options', 'i18n', {
@@ -19,7 +20,7 @@ export default Ember.Mixin.create({
         options.reposition = this.get('reposition');
       }
 
-      Ember.merge(options, this.get('options') || {});
+      assign(options, this.get('options') || {});
       return options;
     }
   }),
