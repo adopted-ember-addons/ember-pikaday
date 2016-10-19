@@ -13,10 +13,6 @@ module.exports = function(defaults) {
     This build file does *not* influence how the addon or the app using it
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
-  app.import(app.bowerDirectory + '/moment/moment.js');
-  app.import(app.bowerDirectory + '/moment/locale/de-at.js');
-  app.import(app.bowerDirectory + '/pikaday/pikaday.js');
-  app.import(app.bowerDirectory + '/pikaday/css/pikaday.css');
 
   return app.toTree();
 };
