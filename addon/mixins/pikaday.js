@@ -3,7 +3,7 @@ import Ember from 'ember';
 import moment from 'moment';
 
 const { isPresent } = Ember;
-const assign = Ember.assign || Ember.merge
+const assign = Ember.assign || Ember.merge;
 
 export default Ember.Mixin.create({
   _options: Ember.computed('options', 'i18n', {
