@@ -1,6 +1,13 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
+import Ember from 'ember';
+
+const later = Ember.run.later;
+
+const {
+  run,
+} = Ember;
 
 const getFirstWeekendDayNumber = function() {
   let date = new Date();
@@ -15,7 +22,20 @@ function closePikaday(context) {
 }
 
 moduleForComponent('pikaday-input', 'Integration | Component | pikaday input', {
-  integration: true
+  integration: true,
+  beforeEach() {
+    Ember.run.later = function(ctx, fn) {
+      if (typeof fn === 'function') {
+        Ember.run.bind(ctx, fn)();
+      } else {
+        ctx();
+      }
+    };
+  },
+
+  afterEach() {
+    Ember.run.later = later;
+  },
 });
 
 test('it is an input tag', function(assert) {
@@ -120,7 +140,10 @@ test('set min date', function(assert) {
   tomorrow.setDate(tomorrow.getDate() + 1);
   this.set('tomorrow', tomorrow);
   this.render(hbs`{{pikaday-input minDate=tomorrow}}`);
-  this.$('input').click();
+
+  run(() => {
+    this.$('input').click();
+  });
 
   assert.ok($('.is-today').hasClass('is-disabled'));
 });
@@ -130,25 +153,38 @@ test('set max date', function(assert) {
   yesterday.setDate(yesterday.getDate() - 1);
   this.set('yesterday', yesterday);
   this.render(hbs`{{pikaday-input maxDate=yesterday}}`);
-  this.$('input').click();
+
+  run(() => {
+    this.$('input').click();
+  });
 
   assert.ok($('.is-today').hasClass('is-disabled'));
 });
 
 test('set new date value with a new min date', function(assert) {
   var tommorow = new Date(2010, 7, 10);
+
   this.set('tommorow', tommorow);
   this.render(hbs`{{pikaday-input value=tommorow minDate=tommorow}}`);
-  this.set('tommorow', new Date(2010, 7, 9));
+
+  run(() => {
+    this.set('tommorow', new Date(2010, 7, 9));
+  });
+
   assert.equal(this.$('input').val(), '09.08.2010');
 });
 
 
 test('set new date value with a new max date', function(assert) {
   var tommorow = new Date(2010, 7, 10);
+
   this.set('tommorow', tommorow);
   this.render(hbs`{{pikaday-input value=tommorow maxDate=tommorow}}`);
-  this.set('tommorow', new Date(2010, 7, 11));
+
+  run(() => {
+    this.set('tommorow', new Date(2010, 7, 11));
+  });
+
   assert.equal(this.$('input').val(), '11.08.2010');
 });
 
