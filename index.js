@@ -7,7 +7,10 @@ module.exports = {
   options: {
     nodeAssets: {
       pikaday: {
-        import: ['pikaday.js', 'css/pikaday.css']
+        import: [
+          { enabled: process.env.EMBER_CLI_FASTBOOT !== 'true', path: 'pikaday.js' },
+          'css/pikaday.css'
+        ]
       }
     }
   }
