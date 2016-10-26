@@ -14,7 +14,17 @@ export default Ember.Mixin.create({
       let options = this._defaultOptions();
 
       if (isPresent(this.get('i18n'))) {
-        options.i18n = this.get('i18n');
+        if(isPresent(this.get('i18n').t)) {
+          options.i18n = {
+            previousMonth : this.get('i18n').t('previousMonth').toString(),
+            nextMonth     : this.get('i18n').t('nextMonth').toString(),
+            months        : this.get('i18n').t('months').toString().split(','),
+            weekdays      : this.get('i18n').t('weekdays').toString().split(','),
+            weekdaysShort : this.get('i18n').t('weekdaysShort').toString().split(',')
+          };
+        } else {
+          options.i18n = this.get('i18n');
+        }
       }
       if (isPresent(this.get('position'))) {
         options.position = this.get('position');
