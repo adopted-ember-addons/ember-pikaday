@@ -1,5 +1,13 @@
 [View 1.X CHANGELOG](https://github.com/edgycircle/ember-pikaday/blob/stable-1/CHANGELOG.md)
 
+## 2.2.0
+- Fix test helper. (Contribution by [@duizendnegen](https://github.com/duizendnegen))
+- Use Pikaday through npm instead of bower. (Contribution by [@josemarluedke](https://github.com/josemarluedke))
+- Fix setting date to wait after min / max date to be updated. (Contribution by [@sl249](https://github.com/sl249))
+- Fix firing min/max date changes. (Contribution by [@patrickberkeley](https://github.com/patrickberkeley))
+- Basic Fastboot compatibility, by merely rendering an input and excluding Pikaday.js in Fastboot mode. (Contribution by [@josemarluedke](https://github.com/josemarluedke))
+- Support for modern `ember-i18n`. (Contribution by [@lcpriest](https://github.com/lcpriest))
+
 ## 2.1.0
 - Remove Moment.js deprecation warning due to passed non-parsable arguments. (Contribution by [@mdentremont](https://github.com/mdentremont))
 - Allow binding of `tabindex` attribute. (Contribution by [@FUT](https://github.com/FUT))
