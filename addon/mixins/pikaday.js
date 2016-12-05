@@ -114,10 +114,10 @@ export default Ember.Mixin.create({
     }
   },
 
-  onOpen: Ember.K,
-  onClose: Ember.K,
-  onSelection: Ember.K,
-  onDraw: Ember.K,
+  onOpen() {},
+  onClose() {},
+  onSelection() {},
+  onDraw() {},
 
   onPikadaySelect: function() {
     this.userSelectedDate();
