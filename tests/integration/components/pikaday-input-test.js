@@ -335,3 +335,43 @@ test('if updates pikaday config if options hash is changed', function(assert) {
   openDatepicker(this.$('input'));
   assert.notOk($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
 });
+
+test('we force value = minDate if currentDate < minDate and sync requested' ,function(assert) {
+  assert.expect(4);
+
+  let today = new Date();
+  let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
+
+  this.set('currentDate', today);
+  this.set('minDate', today);
+  this.set('forceSync', false);
+  this.render(hbs`{{pikaday-input enforceDateIntervals=forceSync minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+
+  this.set('minDate', tomorrow);
+  assert.equal(this.get('currentDate'), today, 'value should not change as sync is not required');
+  assert.equal(openDatepicker(this.$('input')).selectedDay(), today.getDate(), 'Pikadate date should not change as sync is not required');
+
+  this.set('forceSync', true);
+  assert.equal(this.get('currentDate'), tomorrow, 'value should change');
+  assert.equal(openDatepicker(this.$('input')).selectedDay(), tomorrow.getDate(), 'Pikadate date should change');
+});
+
+test('we force value = maxDate if  currentDate > maxDate and sync requested', function(assert) {
+  assert.expect(4);
+
+  let today = new Date();
+  let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
+
+  this.set('currentDate', tomorrow);
+  this.set('maxDate', tomorrow);
+  this.set('forceSync', false );
+  this.render(hbs`{{pikaday-input enforceDateIntervals=forceSync maxDate=maxDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+
+  this.set('maxDate', today);
+  assert.equal(this.get('currentDate'), tomorrow, 'value should not change as sync is not required');
+  assert.equal(openDatepicker(this.$('input')).selectedDay(), tomorrow.getDate(), 'Pikadate date should not change as sync is not required');
+
+  this.set('forceSync', true);
+  assert.equal(this.get('currentDate'), today, 'value should change');
+  assert.equal(openDatepicker(this.$('input')).selectedDay(), today.getDate(), 'Pikadate date should change');
+});

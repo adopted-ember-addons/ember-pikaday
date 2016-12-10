@@ -2,9 +2,16 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { isPresent } = Ember;
+const {
+  isPresent,
+  set,
+  get,
+  getProperties
+} = Ember;
 
 export default Ember.Mixin.create({
+  enforceDateIntervals: false,
+
   _options: Ember.computed('options', 'i18n', {
     get() {
       let options = this._defaultOptions();
@@ -85,14 +92,30 @@ export default Ember.Mixin.create({
   },
 
   setMinDate: function() {
-    if (this.get('minDate')) {
-      this.get('pikaday').setMinDate(this.get('minDate'));
+    const { enforceDateIntervals, pikaday, minDate, value } = getProperties(this, [ 'enforceDateIntervals', 'pikaday', 'minDate', 'value' ]);
+
+    if (minDate) {
+      pikaday.setMinDate(minDate);
+
+      // Force current value to not be lower than minDate
+      if ( enforceDateIntervals && value < minDate) {
+        pikaday.setDate(minDate);
+        get(this, 'onSelection')(minDate);
+      }
     }
   },
 
   setMaxDate: function() {
-    if (this.get('maxDate')) {
-      this.get('pikaday').setMaxDate(this.get('maxDate'));
+    const { enforceDateIntervals, pikaday, maxDate, value }  = getProperties(this, [ 'enforceDateIntervals', 'pikaday', 'maxDate', 'value' ]);
+
+    if (maxDate) {
+      pikaday.setMaxDate(maxDate);
+
+      // Force current value to not be greated than maxDate
+      if ( enforceDateIntervals && value > maxDate ) {
+        pikaday.setDate(maxDate);
+        get(this, 'onSelection')(maxDate);
+      }
     }
   },
 
