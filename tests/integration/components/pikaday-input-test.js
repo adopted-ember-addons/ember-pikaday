@@ -401,10 +401,10 @@ test('we force value = minDate if currentDate < minDate and sync requested' ,fun
   this.render(hbs`{{pikaday-input enforceDateIntervals=forceSync minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`);
 
   this.set('minDate', tomorrow);
-  assert.equal(this.get('currentDate'), today, 'value should not change as sync is not required');
+  assert.equal(this.get('currentDate').getDate(), today.getDate(), 'value should not change as sync is not required');
 
   this.set('forceSync', true);
-  assert.equal(this.get('currentDate'), tomorrow, 'value should change');
+  assert.equal(this.get('currentDate').getDate(), tomorrow.getDate(), 'value should change');
 });
 
 test('we force value = maxDate if  currentDate > maxDate and sync requested', function(assert) {
@@ -419,8 +419,8 @@ test('we force value = maxDate if  currentDate > maxDate and sync requested', fu
   this.render(hbs`{{pikaday-input enforceDateIntervals=forceSync maxDate=maxDate value=currentDate onSelection=(action (mut currentDate)) }}`);
 
   this.set('maxDate', today);
-  assert.equal(this.get('currentDate'), tomorrow, 'value should not change as sync is not required');
+  assert.equal(this.get('currentDate').getDate(), tomorrow.getDate(), 'value should not change as sync is not required');
 
   this.set('forceSync', true);
-  assert.equal(this.get('currentDate'), today, 'value should change');
+  assert.equal(this.get('currentDate').getDate(), today.getDate(), 'value should change');
 });
