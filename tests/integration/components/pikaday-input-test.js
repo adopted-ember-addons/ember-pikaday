@@ -1,6 +1,13 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
+import Ember from 'ember';
+
+const later = Ember.run.later;
+
+const {
+  run,
+} = Ember;
 
 const getFirstWeekendDayNumber = function() {
   let date = new Date();
@@ -15,7 +22,20 @@ function closePikaday(context) {
 }
 
 moduleForComponent('pikaday-input', 'Integration | Component | pikaday input', {
-  integration: true
+  integration: true,
+  beforeEach() {
+    Ember.run.later = function(ctx, fn) {
+      if (typeof fn === 'function') {
+        Ember.run.bind(ctx, fn)();
+      } else {
+        ctx();
+      }
+    };
+  },
+
+  afterEach() {
+    Ember.run.later = later;
+  },
 });
 
 test('it is an input tag', function(assert) {
@@ -120,7 +140,10 @@ test('set min date', function(assert) {
   tomorrow.setDate(tomorrow.getDate() + 1);
   this.set('tomorrow', tomorrow);
   this.render(hbs`{{pikaday-input minDate=tomorrow}}`);
-  this.$('input').click();
+
+  run(() => {
+    this.$('input').click();
+  });
 
   assert.ok($('.is-today').hasClass('is-disabled'));
 });
@@ -130,9 +153,39 @@ test('set max date', function(assert) {
   yesterday.setDate(yesterday.getDate() - 1);
   this.set('yesterday', yesterday);
   this.render(hbs`{{pikaday-input maxDate=yesterday}}`);
-  this.$('input').click();
+
+  run(() => {
+    this.$('input').click();
+  });
 
   assert.ok($('.is-today').hasClass('is-disabled'));
+});
+
+test('set new date value with a new min date', function(assert) {
+  var tommorow = new Date(2010, 7, 10);
+
+  this.set('tommorow', tommorow);
+  this.render(hbs`{{pikaday-input value=tommorow minDate=tommorow}}`);
+
+  run(() => {
+    this.set('tommorow', new Date(2010, 7, 9));
+  });
+
+  assert.equal(this.$('input').val(), '09.08.2010');
+});
+
+
+test('set new date value with a new max date', function(assert) {
+  var tommorow = new Date(2010, 7, 10);
+
+  this.set('tommorow', tommorow);
+  this.render(hbs`{{pikaday-input value=tommorow maxDate=tommorow}}`);
+
+  run(() => {
+    this.set('tommorow', new Date(2010, 7, 11));
+  });
+
+  assert.equal(this.$('input').val(), '11.08.2010');
 });
 
 test('theme option adds theme as CSS class to DOM element', function(assert) {
@@ -337,7 +390,7 @@ test('if updates pikaday config if options hash is changed', function(assert) {
 });
 
 test('we force value = minDate if currentDate < minDate and sync requested' ,function(assert) {
-  assert.expect(4);
+  assert.expect(2);
 
   let today = new Date();
   let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
@@ -349,15 +402,13 @@ test('we force value = minDate if currentDate < minDate and sync requested' ,fun
 
   this.set('minDate', tomorrow);
   assert.equal(this.get('currentDate'), today, 'value should not change as sync is not required');
-  assert.equal(openDatepicker(this.$('input')).selectedDay(), today.getDate(), 'Pikadate date should not change as sync is not required');
 
   this.set('forceSync', true);
   assert.equal(this.get('currentDate'), tomorrow, 'value should change');
-  assert.equal(openDatepicker(this.$('input')).selectedDay(), tomorrow.getDate(), 'Pikadate date should change');
 });
 
 test('we force value = maxDate if  currentDate > maxDate and sync requested', function(assert) {
-  assert.expect(4);
+  assert.expect(2);
 
   let today = new Date();
   let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
@@ -369,9 +420,7 @@ test('we force value = maxDate if  currentDate > maxDate and sync requested', fu
 
   this.set('maxDate', today);
   assert.equal(this.get('currentDate'), tomorrow, 'value should not change as sync is not required');
-  assert.equal(openDatepicker(this.$('input')).selectedDay(), tomorrow.getDate(), 'Pikadate date should not change as sync is not required');
 
   this.set('forceSync', true);
   assert.equal(this.get('currentDate'), today, 'value should change');
-  assert.equal(openDatepicker(this.$('input')).selectedDay(), today.getDate(), 'Pikadate date should change');
 });

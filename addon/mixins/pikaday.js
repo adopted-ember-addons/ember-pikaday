@@ -4,10 +4,12 @@ import moment from 'moment';
 
 const {
   isPresent,
-  set,
   get,
+  run,
   getProperties
 } = Ember;
+
+const assign = Ember.assign || Ember.merge;
 
 export default Ember.Mixin.create({
   enforceDateIntervals: false,
@@ -17,7 +19,17 @@ export default Ember.Mixin.create({
       let options = this._defaultOptions();
 
       if (isPresent(this.get('i18n'))) {
-        options.i18n = this.get('i18n');
+        if(isPresent(this.get('i18n').t)) {
+          options.i18n = {
+            previousMonth : this.get('i18n').t('previousMonth').toString(),
+            nextMonth     : this.get('i18n').t('nextMonth').toString(),
+            months        : this.get('i18n').t('months').toString().split(','),
+            weekdays      : this.get('i18n').t('weekdays').toString().split(','),
+            weekdaysShort : this.get('i18n').t('weekdaysShort').toString().split(',')
+          };
+        } else {
+          options.i18n = this.get('i18n');
+        }
       }
       if (isPresent(this.get('position'))) {
         options.position = this.get('position');
@@ -26,7 +38,7 @@ export default Ember.Mixin.create({
         options.reposition = this.get('reposition');
       }
 
-      Ember.merge(options, this.get('options') || {});
+      assign(options, this.get('options') || {});
       return options;
     }
   }),
@@ -38,10 +50,10 @@ export default Ember.Mixin.create({
       field: this.get('field'),
       container: this.get('pikadayContainer'),
       bound: this.get('pikadayContainer') ? false : true,
-      onOpen: Ember.run.bind(this, this.onPikadayOpen),
-      onClose: Ember.run.bind(this, this.onPikadayClose),
-      onSelect: Ember.run.bind(this, this.onPikadaySelect),
-      onDraw: Ember.run.bind(this, this.onPikadayRedraw),
+      onOpen: run.bind(this, this.onPikadayOpen),
+      onClose: run.bind(this, this.onPikadayClose),
+      onSelect: run.bind(this, this.onPikadaySelect),
+      onDraw: run.bind(this, this.onPikadayRedraw),
       firstDay: (typeof firstDay !== 'undefined') ? parseInt(firstDay, 10) : 1,
       format: this.get('format') || 'DD.MM.YYYY',
       yearRange: this.determineYearRange(),
@@ -53,9 +65,9 @@ export default Ember.Mixin.create({
 
   didUpdateAttrs({ newAttrs }) {
     this._super(...arguments);
-    this.setPikadayDate();
     this.setMinDate();
     this.setMaxDate();
+    this.setPikadayDate();
 
     if(newAttrs.options) {
       this._updateOptions();
@@ -95,8 +107,10 @@ export default Ember.Mixin.create({
     const { enforceDateIntervals, pikaday, minDate, value } = getProperties(this, [ 'enforceDateIntervals', 'pikaday', 'minDate', 'value' ]);
 
     if (minDate) {
-      pikaday.setMinDate(minDate);
+      run.later( () => {
+        pikaday.setMinDate(minDate);
 
+      });
       // Force current value to not be lower than minDate
       if ( enforceDateIntervals && value < minDate) {
         pikaday.setDate(minDate);
@@ -109,20 +123,22 @@ export default Ember.Mixin.create({
     const { enforceDateIntervals, pikaday, maxDate, value }  = getProperties(this, [ 'enforceDateIntervals', 'pikaday', 'maxDate', 'value' ]);
 
     if (maxDate) {
-      pikaday.setMaxDate(maxDate);
+      run.later( () => {
+        pikaday.setMaxDate(maxDate);
 
-      // Force current value to not be greated than maxDate
-      if ( enforceDateIntervals && value > maxDate ) {
-        pikaday.setDate(maxDate);
-        get(this, 'onSelection')(maxDate);
-      }
+        // Force current value to not be greated than maxDate
+        if ( enforceDateIntervals && value > maxDate ) {
+          pikaday.setDate(maxDate);
+          get(this, 'onSelection')(maxDate);
+        }
+      });
     }
   },
 
-  onOpen: Ember.K,
-  onClose: Ember.K,
-  onSelection: Ember.K,
-  onDraw: Ember.K,
+  onOpen() {},
+  onClose() {},
+  onSelection() {},
+  onDraw() {},
 
   onPikadaySelect: function() {
     this.userSelectedDate();

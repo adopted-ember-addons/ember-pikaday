@@ -11,6 +11,6 @@ export default Ember.Component.extend(PikadayMixin, {
     this.setupPikaday();
   },
 
-  onPikadayOpen: Ember.K,
-  onPikadayClose: Ember.K,
+  onPikadayOpen() {},
+  onPikadayClose() {},
 });

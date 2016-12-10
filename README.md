@@ -168,7 +168,7 @@ You can pass any custom pikaday option through the component like this
 
 ```handlebars
 <label>
-  {{pikaday-input options=(hash numberOfMonths=2 disableWeekends=true)}}
+  {{pikaday-input options=(hash numberOfMonths=2 disableWeekends=true disableDayFn=(action 'someAction'))}}
 </label>
 ```
 
