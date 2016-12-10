@@ -110,12 +110,11 @@ export default Ember.Mixin.create({
       run.later( () => {
         pikaday.setMinDate(minDate);
 
+        // Force current value to not be lower than minDate
+        if ( enforceDateIntervals && value < minDate) {
+          get(this, 'onSelection')(minDate);
+        }
       });
-      // Force current value to not be lower than minDate
-      if ( enforceDateIntervals && value < minDate) {
-        pikaday.setDate(minDate);
-        get(this, 'onSelection')(minDate);
-      }
     }
   },
 
@@ -128,7 +127,6 @@ export default Ember.Mixin.create({
 
         // Force current value to not be greated than maxDate
         if ( enforceDateIntervals && value > maxDate ) {
-          pikaday.setDate(maxDate);
           get(this, 'onSelection')(maxDate);
         }
       });
