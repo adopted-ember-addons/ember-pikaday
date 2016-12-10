@@ -139,6 +139,16 @@ The `maxDate` attribute is supported as a binding so you can set the latest date
 </label>
 ```
 
+The component can react if the current date value is lower than the minDate or above the max date. To activate this beavior `enforceDateIntervals` should be used.
+
+When `enforceDateIntervals` is `true` the component will set the pikaday date to minDate or maxDate (currentDate < minDate or currentDate > maxDate) and call `onSelection` with the new date.
+
+```handlebars
+<label>
+  {{pikaday-input maxDate=maxDate minDate=minDate enforceDateIntervals=true}}
+</label>
+```
+
 ## Return dates in UTC time zone
 
 The date returned by ember-pikaday is in your local time zone due to the JavaScript default behaviour of `new Date()`. This can lead to problems when your application converts the date to UTC. In additive time zones (e.g. +0010) the resulting converted date could be yesterdays date. You can force the component to return a date with the UTC time zone by passing `useUTC=true` to it.
