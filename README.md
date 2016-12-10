@@ -141,7 +141,7 @@ The `maxDate` attribute is supported as a binding so you can set the latest date
 
 The component can react if the current date value is lower than `minDate` or above `maxDate`. To activate this beavior `enforceDateIntervals` should be used.
 
-When `enforceDateIntervals` is `true` the component will set the pikaday date to minDate or maxDate (currentDate < minDate or currentDate > maxDate) and call `onSelection` with the new date.
+When `enforceDateIntervals` is `true` the component will call `onSelection` passing it `minDate` or `maxDate`.
 
 ```handlebars
 <label>
