@@ -389,38 +389,60 @@ test('if updates pikaday config if options hash is changed', function(assert) {
   assert.notOk($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
 });
 
-test('we force value = minDate if currentDate < minDate and sync requested' ,function(assert) {
-  assert.expect(2);
+test('if minDate < value and enforceDateIntervals is true we call onSelection with minDate' ,function(assert) {
+  assert.expect(1);
 
   let today = new Date();
   let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
 
   this.set('currentDate', today);
   this.set('minDate', today);
-  this.set('forceSync', false);
-  this.render(hbs`{{pikaday-input enforceDateIntervals=forceSync minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+  this.render(hbs`{{pikaday-input enforceDateIntervals=true minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`);
 
   this.set('minDate', tomorrow);
-  assert.equal(this.get('currentDate').getDate(), today.getDate(), 'value should not change as sync is not required');
-
-  this.set('forceSync', true);
   assert.equal(this.get('currentDate').getDate(), tomorrow.getDate(), 'value should change');
 });
 
-test('we force value = maxDate if  currentDate > maxDate and sync requested', function(assert) {
-  assert.expect(2);
+test("if minDate < value and enforceDateIntervals is false we do nothing", function(assert) {
+  assert.expect(1);
+
+  let today = new Date();
+  let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
+
+  this.set('currentDate', today);
+  this.set('minDate', today);
+  this.render(hbs`{{pikaday-input enforceDateIntervals=false minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+
+  this.set('minDate', tomorrow);
+  assert.equal(this.get('currentDate').getDate(), today.getDate(), 'value should change');
+
+});
+
+test('if maxDate > value and enforceDateIntervals is true we call onSelection with maxDate', function(assert) {
+  assert.expect(1);
 
   let today = new Date();
   let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
 
   this.set('currentDate', tomorrow);
   this.set('maxDate', tomorrow);
-  this.set('forceSync', false );
-  this.render(hbs`{{pikaday-input enforceDateIntervals=forceSync maxDate=maxDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+  this.render(hbs`{{pikaday-input enforceDateIntervals=true maxDate=maxDate value=currentDate onSelection=(action (mut currentDate)) }}`);
 
   this.set('maxDate', today);
-  assert.equal(this.get('currentDate').getDate(), tomorrow.getDate(), 'value should not change as sync is not required');
-
-  this.set('forceSync', true);
   assert.equal(this.get('currentDate').getDate(), today.getDate(), 'value should change');
+});
+
+test("if maxDate > value and enforceDateIntervals is false we do nothing", function(assert) {
+  assert.expect(1);
+
+  let today = new Date();
+  let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
+
+  this.set('currentDate', tomorrow);
+  this.set('maxDate', tomorrow);
+  this.render(hbs`{{pikaday-input enforceDateIntervals=false maxDate=maxDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+
+  this.set('maxDate', today);
+  assert.equal(this.get('currentDate').getDate(), tomorrow.getDate(), 'value should change');
+
 });

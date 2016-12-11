@@ -40,6 +40,17 @@ module.exports = {
       }
     },
     {
+      name: 'ember-2.8.3',
+      bower: {
+        dependencies: {
+          'ember': '2.8.3'
+        },
+        resolutions: {
+          'ember': '2.8.3'
+        }
+      }
+    },
+    {
       name: 'ember-2.4.3',
       bower: {
         dependencies: {
