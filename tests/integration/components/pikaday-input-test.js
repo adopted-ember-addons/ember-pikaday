@@ -397,7 +397,7 @@ test('if minDate is greater than value we we set pikaday\'s current date to minD
 
   this.set('currentDate', today);
   this.set('minDate', today);
-  this.render(hbs`{{pikaday-input enforceDateIntervals=true minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+  this.render(hbs`{{pikaday-input minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`);
 
   this.set('minDate', tomorrow);
   assert.equal(this.get('currentDate').getDate(), tomorrow.getDate(), 'value should change');
@@ -411,7 +411,7 @@ test('if maxDate is lower than value we set pikaday\'s current date to maxDate',
 
   this.set('currentDate', tomorrow);
   this.set('maxDate', tomorrow);
-  this.render(hbs`{{pikaday-input enforceDateIntervals=true maxDate=maxDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+  this.render(hbs`{{pikaday-input maxDate=maxDate value=currentDate onSelection=(action (mut currentDate)) }}`);
 
   this.set('maxDate', today);
   assert.equal(this.get('currentDate').getDate(), today.getDate(), 'value should change');
