@@ -110,11 +110,11 @@ export default Ember.Mixin.create({
       });
 
       // If the current date is lower than minDate we set date to minDate
-      if (value < minDate) {
-        run.schedule('sync', () => {
+      run.schedule('sync', () => {
+        if (value < minDate) {
           pikaday.setDate(minDate);
-        });
-      }
+        }
+      });
     }
   },
 
@@ -127,11 +127,11 @@ export default Ember.Mixin.create({
       });
 
       // If the current date is greater than maxDate we set date to maxDate
-      if (value > maxDate) {
-        run.schedule('sync', () => {
+      run.schedule('sync', () => {
+        if (value > maxDate) {
           pikaday.setDate(maxDate);
-        });
-      }
+        }
+      });
     }
   },
 
