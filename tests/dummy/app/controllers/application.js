@@ -10,7 +10,4 @@ export default Ember.Controller.extend({
       console.log(value);
     }
   },
-
-  neverGoBackDate: new Date(),
-  neverGoBackMinDate: Ember.computed.readOnly('neverGoBackDate')
 });
