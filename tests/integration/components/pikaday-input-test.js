@@ -389,7 +389,7 @@ test('if updates pikaday config if options hash is changed', function(assert) {
   assert.notOk($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
 });
 
-test('if minDate < value and enforceDateIntervals is true we call onSelection with minDate' ,function(assert) {
+test('if minDate is greater than value we we set pikaday\'s current date to minDate' ,function(assert) {
   assert.expect(1);
 
   let today = new Date();
@@ -403,7 +403,7 @@ test('if minDate < value and enforceDateIntervals is true we call onSelection wi
   assert.equal(this.get('currentDate').getDate(), tomorrow.getDate(), 'value should change');
 });
 
-test('if maxDate > value and enforceDateIntervals is true we call onSelection with maxDate', function(assert) {
+test('if maxDate is lower than value we set pikaday\'s current date to maxDate', function(assert) {
   assert.expect(1);
 
   let today = new Date();
