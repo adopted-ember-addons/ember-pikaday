@@ -388,3 +388,31 @@ test('if updates pikaday config if options hash is changed', function(assert) {
   openDatepicker(this.$('input'));
   assert.notOk($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
 });
+
+test('if minDate is greater than value we we set pikaday\'s current date to minDate' ,function(assert) {
+  assert.expect(1);
+
+  let today = new Date();
+  let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
+
+  this.set('currentDate', today);
+  this.set('minDate', today);
+  this.render(hbs`{{pikaday-input minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+
+  this.set('minDate', tomorrow);
+  assert.equal(this.get('currentDate').getDate(), tomorrow.getDate(), 'value should change');
+});
+
+test('if maxDate is lower than value we set pikaday\'s current date to maxDate', function(assert) {
+  assert.expect(1);
+
+  let today = new Date();
+  let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
+
+  this.set('currentDate', tomorrow);
+  this.set('maxDate', tomorrow);
+  this.render(hbs`{{pikaday-input maxDate=maxDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+
+  this.set('maxDate', today);
+  assert.equal(this.get('currentDate').getDate(), today.getDate(), 'value should change');
+});

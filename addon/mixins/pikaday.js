@@ -5,10 +5,13 @@ import moment from 'moment';
 const {
   isPresent,
   run,
+  getProperties
 } = Ember;
+
 const assign = Ember.assign || Ember.merge;
 
 export default Ember.Mixin.create({
+
   _options: Ember.computed('options', 'i18n', {
     get() {
       let options = this._defaultOptions();
@@ -99,17 +102,35 @@ export default Ember.Mixin.create({
   },
 
   setMinDate: function() {
-    if (this.get('minDate')) {
+    const { pikaday, minDate, value } = getProperties(this, [ 'pikaday', 'minDate', 'value' ]);
+
+    if (minDate) {
       run.later(() => {
-        this.get('pikaday').setMinDate(this.get('minDate'));
+        pikaday.setMinDate(minDate);
+      });
+
+      // If the current date is lower than minDate we set date to minDate
+      run.schedule('sync', () => {
+        if (value < minDate) {
+          pikaday.setDate(minDate);
+        }
       });
     }
   },
 
   setMaxDate: function() {
-    if (this.get('maxDate')) {
+    const { pikaday, maxDate, value }  = getProperties(this, [ 'pikaday', 'maxDate', 'value' ]);
+
+    if (maxDate) {
       run.later(() => {
-        this.get('pikaday').setMaxDate(this.get('maxDate'));
+        pikaday.setMaxDate(maxDate);
+      });
+
+      // If the current date is greater than maxDate we set date to maxDate
+      run.schedule('sync', () => {
+        if (value > maxDate) {
+          pikaday.setDate(maxDate);
+        }
       });
     }
   },

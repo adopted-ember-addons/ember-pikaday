@@ -3,7 +3,7 @@
 
 module.exports = {
   name: 'ember-pikaday',
-
+  
   options: {
     nodeAssets: {
       pikaday: {

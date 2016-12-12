@@ -9,5 +9,5 @@ export default Ember.Controller.extend({
     doSomethingWithSelectedValue(value) {
       console.log(value);
     }
-  }
+  },
 });
