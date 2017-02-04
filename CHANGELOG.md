@@ -1,5 +1,9 @@
 [View 1.X CHANGELOG](https://github.com/edgycircle/ember-pikaday/blob/stable-1/CHANGELOG.md)
 
+## 2.2.1
+- Enforce current date to be between specified min & max date, also on changes of those (Contribution by [@showy](https://github.com/showy))
+- Replace deprecated `Ember.K` syntax with JavaScript alternative (Contribution by [@locks](https://github.com/locks))
+
 ## 2.2.0
 - Fix test helper. (Contribution by [@duizendnegen](https://github.com/duizendnegen))
 - Use Pikaday through npm instead of bower. (Contribution by [@josemarluedke](https://github.com/josemarluedke))
