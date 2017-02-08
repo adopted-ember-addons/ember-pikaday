@@ -416,3 +416,17 @@ test('if maxDate is lower than value we set pikaday\'s current date to maxDate',
   this.set('maxDate', today);
   assert.equal(this.get('currentDate').getDate(), today.getDate(), 'value should change');
 });
+
+test('if value is null we don\'t enforce minDate or maxDate', function(assert) {
+  assert.expect(1);
+
+  let today = new Date();
+  let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
+
+  this.set('currentDate', null);
+  this.render(hbs`{{pikaday-input maxDate=maxDate minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+
+  run(() => this.set('maxDate', tomorrow));
+  run(() => this.set('minDate', today));
+  assert.equal(this.get('currentDate'), null, 'value should be null');
+});
