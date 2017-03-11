@@ -61,13 +61,13 @@ export default Ember.Mixin.create({
     };
   },
 
-  didUpdateAttrs({ newAttrs }) {
+  didUpdateAttrs() {
     this._super(...arguments);
     this.setMinDate();
     this.setMaxDate();
     this.setPikadayDate();
 
-    if(newAttrs.options) {
+    if (this.get('options')) {
       this._updateOptions();
     }
   },
