@@ -1,5 +1,10 @@
 [View 1.X CHANGELOG](https://github.com/edgycircle/ember-pikaday/blob/stable-1/CHANGELOG.md)
 
+## 2.2.2
+- Fix infinite rendering invalidation detected (Contribution by [@jedrula](https://github.com/jedrula))
+- Fix 2.12 deprecation of arguments in component life cycle hooks (Contribution by [@leizhao4](https://github.com/leizhao4))
+- Fix enforcing minDate to allow null value (Contribution by [@ilucin](https://github.com/ilucin))
+
 ## 2.2.1
 - Enforce current date to be between specified min & max date, also on changes of those (Contribution by [@showy](https://github.com/showy))
 - Replace deprecated `Ember.K` syntax with JavaScript alternative (Contribution by [@locks](https://github.com/locks))
