@@ -7,6 +7,15 @@ Standalone datepicker:
 
 <br>
 
+Datepicker with minDate:
+{{pikaday-input
+  minDate=today
+  value=someDate
+  onSelection=(action (mut someDate))
+}}
+
+<br>
+
 Datepicker with bound and set value:
 {{pikaday-input value=startDate onSelection=(action (mut startDate)) format='DD.MM.YYYY'}}
 {{startDate}}

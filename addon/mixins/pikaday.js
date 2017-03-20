@@ -111,7 +111,7 @@ export default Ember.Mixin.create({
 
       // If the current date is lower than minDate we set date to minDate
       run.schedule('sync', () => {
-        if (value && value < minDate) {
+        if (value && moment(value).isBefore(minDate, 'day')) {
           pikaday.setDate(minDate);
         }
       });
