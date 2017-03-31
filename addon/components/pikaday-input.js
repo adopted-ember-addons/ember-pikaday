@@ -14,7 +14,8 @@ export default Ember.Component.extend(PikadayMixin, {
     'size',
     'required',
     'title',
-    'hidden'
+    'hidden',
+    'autocomplete'
   ],
 
   type: 'text',

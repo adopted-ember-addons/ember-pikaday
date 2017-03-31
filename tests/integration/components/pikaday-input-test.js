@@ -324,6 +324,15 @@ test('the input tag has the disabled attribute if it has been set on the compone
   assert.ok(this.$('input').is('[disabled]'));
 });
 
+test('the input tag has the autocomplete attribute if it has been set on the component', function(assert) {
+  this.render(hbs`{{pikaday-input autocomplete=autocomplete}}`);
+
+  assert.notOk(this.$('input').attr('autocomplete'));
+
+  this.set('autocomplete', 'off');
+  assert.equal(this.$('input').attr('autocomplete'), 'off');
+});
+
 test('using disabled prevent from opening pikaday', function(assert) {
   this.render(hbs`{{pikaday-input disabled=true}}`);
 
