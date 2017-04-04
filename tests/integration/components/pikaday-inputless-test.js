@@ -1,6 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
+import $ from 'jquery';
 
 moduleForComponent('pikaday-inputless', 'Integration | Component | pikaday inputless', {
   integration: true

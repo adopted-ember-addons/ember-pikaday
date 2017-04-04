@@ -2,6 +2,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
 import Ember from 'ember';
+import $ from 'jquery';
 
 const later = Ember.run.later;
 
