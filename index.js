@@ -3,15 +3,18 @@
 
 module.exports = {
   name: 'ember-pikaday',
-  
   options: {
     nodeAssets: {
       pikaday: {
-        import: [
-          { enabled: process.env.EMBER_CLI_FASTBOOT !== 'true', path: 'pikaday.js' },
-          'css/pikaday.css'
-        ]
+        vendor: ['pikaday.js', 'css/pikaday.css']
       }
+    }
+  },
+  included() {
+    this._super.included.apply(this, arguments);
+    if (!process.env.EMBER_CLI_FASTBOOT) {
+      this.import('vendor/pikaday/pikaday.js');
+      this.import('vendor/pikaday/css/pikaday.css');
     }
   }
 };
