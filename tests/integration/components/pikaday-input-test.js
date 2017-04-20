@@ -399,7 +399,7 @@ test('if updates pikaday config if options hash is changed', function(assert) {
   assert.notOk($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
 });
 
-test('if minDate is greater than value we we set pikaday\'s current date to minDate' ,function(assert) {
+test('if minDate is greater than value we set pikaday\'s current date to minDate', function(assert) {
   assert.expect(1);
 
   let today = new Date();
@@ -439,4 +439,21 @@ test('if value is null we don\'t enforce minDate or maxDate', function(assert) {
   run(() => this.set('maxDate', tomorrow));
   run(() => this.set('minDate', today));
   assert.equal(this.get('currentDate'), null, 'value should be null');
+});
+
+test('the original date passed to minDate or maxDate is not modified by pikaday', function(assert) {
+  assert.expect(2);
+
+  let today = new Date();
+  let todayCopy = new Date(today);
+  let tomorrow = new Date(Date.now() + (60 * 60 * 24 * 1000));
+  let tomorrowCopy = new Date(tomorrow);
+
+  this.render(hbs`{{pikaday-input minDate=minDate maxDate=maxDate value=today}}`);
+
+  run(() => this.set('minDate', today));
+  run(() => this.set('maxDate', tomorrow));
+
+  assert.equal(today.toISOString(), todayCopy.toISOString(), 'value should not change');
+  assert.equal(tomorrow.toISOString(), tomorrowCopy.toISOString(), 'value should not change');
 });
