@@ -106,7 +106,8 @@ export default Ember.Mixin.create({
 
     if (minDate) {
       run.later(() => {
-        pikaday.setMinDate(minDate);
+        const _minDate = new Date(minDate.getTime());
+        pikaday.setMinDate(_minDate);
       });
 
       // If the current date is lower than minDate we set date to minDate
@@ -123,7 +124,8 @@ export default Ember.Mixin.create({
 
     if (maxDate) {
       run.later(() => {
-        pikaday.setMaxDate(maxDate);
+        const _maxDate = new Date(maxDate.getTime());
+        pikaday.setMaxDate(_maxDate);
       });
 
       // If the current date is greater than maxDate we set date to maxDate
