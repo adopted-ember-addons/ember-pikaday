@@ -14,7 +14,7 @@ module.exports = {
     this._super.included.apply(this, arguments);
     if (!process.env.EMBER_CLI_FASTBOOT) {
       this.import('vendor/pikaday/pikaday.js');
-      this.import('vendor/pikaday/css/pikaday.css');
     }
+    this.import('vendor/pikaday/css/pikaday.css');
   }
 };
