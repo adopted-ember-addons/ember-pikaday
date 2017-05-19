@@ -197,6 +197,53 @@ export default {
 };
 ```
 
+## Examples
+
+### Show `ember-pikaday` when clicking on a button:
+
+```handlebars
+<button {{action "togglePika"}}>Show Pika</button>
+{{#if showPika}}
+    {{pikaday-inputless value="2017-07-07"}}
+{{/if}}
+```
+```js
+// app/controller/index.js
+import Ember from 'ember';
+export default Ember.Controller.extend({
+  actions: {
+    togglePika() {
+      this.toggleProperty('showPika');
+    }
+});
+```
+
+### Show `ember-pikaday` when hovering over a div:
+
+```handlebars
+<div {{action "showPika" on="mouseEnter"}} {{action "hidePika" on="mouseLeave"}}>
+  Hover me to pika
+  {{#if showPika}}
+    {{pikaday-inputless value="2017-07-07"}}
+  {{/if}}
+</div>
+```
+
+```js
+// app/controller/index.js
+import Ember from 'ember';
+export default Ember.Controller.extend({
+  actions: {
+    showPika() {
+      this.set('showPika', true);
+    },
+    hidePika(){
+      this.set('showPika', false);
+    }
+  }
+});
+```
+
 ## Test Helpers
 
 The test helpers provided by ember-pikaday allow you to interact with the datepicker in your acceptance tests. After importing them you are ready to rock and roll.
