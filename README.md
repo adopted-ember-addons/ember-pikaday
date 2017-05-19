@@ -199,7 +199,7 @@ export default {
 
 ## Examples
 
-### Show `ember-pikaday` when click a button:
+### Show `ember-pikaday` when clicking on a button:
 
 ```handlebars
 <button {{action "togglePika"}}>Show Pika</button>
@@ -218,7 +218,7 @@ export default Ember.Controller.extend({
 });
 ```
 
-### Show `ember-pikaday` when hover to a div:
+### Show `ember-pikaday` when hovering over a div:
 
 ```handlebars
 <div {{action "showPika" on="mouseEnter"}} {{action "hidePika" on="mouseLeave"}}>
