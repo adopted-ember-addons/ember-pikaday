@@ -61,8 +61,13 @@ export default Ember.Mixin.create({
     };
   },
 
+	/**
+	 * When updating attrs, we need to reset some things in case they've changed.
+	 * @public
+	 * @memberOf {Mixins.Pikaday}
+	 * @return {undefined}
+	 */
   didUpdateAttrs() {
-    this._super(...arguments);
     this.setMinDate();
     this.setMaxDate();
     this.setPikadayDate();
