@@ -1,5 +1,15 @@
 [View 1.X CHANGELOG](https://github.com/edgycircle/ember-pikaday/blob/stable-1/CHANGELOG.md)
 
+## 2.2.3
+- Allow binding of `autocomplete` attribute (Contribution by [@npafundi](https://github.com/npafundi))
+- Upgrade to Ember CLI 2.12.1 (Contribution by [@leizhao4](https://github.com/leizhao4))
+- Set minDate and maxDate using a copy to avoid modifying original date (Contribution by [@sandydoo](https://github.com/sandydoo))
+- Fix ember-cli-node-asset deprecation of complex imports inline (Contribution by [@leizhao4](https://github.com/leizhao4))
+- Remove deprecation warning in using `didUpdateAttrs` (Contribution by [@tsteuwer](https://github.com/tsteuwer))
+- Make setDate asychronous (Contribution by [@bdollard](https://github.com/bdollard))
+- run super on willDestroy (Contribution by [@devotox](https://github.com/devotox))
+- Prepare for FastBoot 1.0 (Contribution by [@josemarluedke](https://github.com/josemarluedke))
+
 ## 2.2.2
 - Fix infinite rendering invalidation detected (Contribution by [@jedrula](https://github.com/jedrula))
 - Fix 2.12 deprecation of arguments in component life cycle hooks (Contribution by [@leizhao4](https://github.com/leizhao4))
