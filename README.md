@@ -215,6 +215,7 @@ export default Ember.Controller.extend({
     togglePika() {
       this.toggleProperty('showPika');
     }
+  }
 });
 ```
 
