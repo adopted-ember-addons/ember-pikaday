@@ -457,3 +457,29 @@ test('the original date passed to minDate or maxDate is not modified by pikaday'
   assert.equal(today.toISOString(), todayCopy.toISOString(), 'value should not change');
   assert.equal(tomorrow.toISOString(), tomorrowCopy.toISOString(), 'value should not change');
 });
+
+test('it sets the defaultDate', function(assert) {
+  assert.expect(1)
+
+  const today = new Date();
+
+  this.set('defaultDate', today)
+  this.render(hbs`{{pikaday-input defaultDate=defaultDate}}`)
+
+  assert.equal(this.get('defaultDate'), today)
+});
+
+test('it sets the initial date to the the defaultDate ', function(assert) {
+  assert.expect(3)
+
+  const date = new Date(2010, 7, 10);
+
+  this.set('defaultDate', date);
+  this.render(hbs`{{pikaday-input defaultDate=defaultDate}}`);
+
+  const interactor = openDatepicker(this.$('input'));
+
+  assert.equal(interactor.selectedYear(), 2010);
+  assert.equal(interactor.selectedMonth(), 7);
+  assert.equal(interactor.selectedDay(), 10);
+});

@@ -57,6 +57,8 @@ export default Ember.Mixin.create({
       yearRange: this.determineYearRange(),
       minDate: this.get('minDate') || null,
       maxDate: this.get('maxDate') || null,
+      defaultDate: this.get('defaultDate') || null,
+      setDefaultDate: !!this.get('defaultDate'),
       theme: this.get('theme') || null
     };
   },
@@ -86,6 +88,10 @@ export default Ember.Mixin.create({
 
   setupPikaday() {
     let pikaday = new Pikaday(this.get('_options'));
+
+    if (this.get('defaultDate')) {
+      this.set('value', this.get('defaultDate'));
+    }
 
     this.set('pikaday', pikaday);
     this.setPikadayDate();
