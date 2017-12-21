@@ -19,6 +19,7 @@ export default Ember.Component.extend(PikadayMixin, {
   ],
 
   type: 'text',
+  autocomplete: false,
 
   didInsertElement() {
     this.set('field', this.element);
