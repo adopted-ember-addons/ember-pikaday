@@ -82,7 +82,7 @@ export default Ember.Mixin.create({
   },
 
   didRender() {
-    this._super(...arguments);
+    this._super();
     this.autoHideOnDisabled();
   },
 
@@ -98,7 +98,7 @@ export default Ember.Mixin.create({
   },
 
   willDestroyElement() {
-    this._super(...arguments);
+    this._super();
     this.get('pikaday').destroy();
   },
 
