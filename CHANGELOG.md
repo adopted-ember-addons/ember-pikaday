@@ -1,5 +1,11 @@
 [View 1.X CHANGELOG](https://github.com/edgycircle/ember-pikaday/blob/stable-1/CHANGELOG.md)
 
+## 2.2.4
+- Fix syntax error (Contribution by [@quadstar](https://github.com/quadstar))) 
+- Add ability to set a default date (Contribution by [@jscn](https://github.com/jscn))
+- Remove arguments in component lifecycle hooks (Contribution by [@jbaily4](https://github.com/jbailey4))
+- Fixes moment deprecation by using a date format (Contribution by [@cah-danmonroe](https://github.com/cah-danmonroe))
+
 ## 2.2.3
 - Allow binding of `autocomplete` attribute (Contribution by [@npafundi](https://github.com/npafundi))
 - Upgrade to Ember CLI 2.12.1 (Contribution by [@leizhao4](https://github.com/leizhao4))
