@@ -5,6 +5,9 @@ export default Controller.extend({
   startDate: undefined,
   today: undefined,
 
+  isMinDateSet: true,
+  isMaxDateSet: true,
+
   init() {
     this._super(...arguments);
 
