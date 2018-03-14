@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-var $ = Ember.$;
+import $ from 'jquery';
 
 var openDatepicker = function(element) {
   $(element).click();

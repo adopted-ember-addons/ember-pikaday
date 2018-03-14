@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import moment from 'moment';
 
 export default {
   name: 'setup-pikaday-i18n',
   initialize: function() {
-    var i18n = Ember.Object.extend({
+    var i18n = EmberObject.extend({
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',
       months: moment.localeData()._months,
