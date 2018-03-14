@@ -26,7 +26,7 @@
     "ember-cli-eslint": "^4.2.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-moment-shim": "^3.0.1",
+    "ember-cli-moment-shim": "^3.6.0",
     "ember-cli-qunit": "^4.1.1",
     "ember-cli-release": "^0.2.9",
     "ember-cli-shims": "^1.2.0",
@@ -35,11 +35,12 @@
     "ember-disable-prototype-extensions": "^1.1.2",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
+    "ember-moment": "^7.6.0",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.18.2",
     "ember-source-channel-url": "^1.0.1",
-    "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-ember": "^5.0.3",
+    "eslint-plugin-node": "^5.2.1",
     "loader.js": "^4.2.3"
   },
   "keywords": [
