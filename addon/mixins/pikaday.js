@@ -71,6 +71,9 @@ export default Ember.Mixin.create({
 	 */
   didUpdateAttrs() {
     run.later(() => {
+      // Do not set or update anything when the component is destroying.
+      if (this.get('isDestroying') || this.get('isDestroyed')) { return; }
+
       this.setMinDate();
       this.setMaxDate();
       this.setPikadayDate();
