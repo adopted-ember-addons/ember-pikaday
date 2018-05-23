@@ -1,5 +1,9 @@
 [View 1.X CHANGELOG](https://github.com/edgycircle/ember-pikaday/blob/stable-1/CHANGELOG.md)
 
+## 2.2.5
+- Prevent error in run later when component was destroyed (Contribution by [@Schnellesadlerauge](https://github.com/Schnellesadlerauge)))
+- Upgrade to ember/ember-cli 2.18.2 (Contribution by [@mnutt](https://github.com/mnutt)))
+
 ## 2.2.4
 - Fix syntax error (Contribution by [@quadstar](https://github.com/quadstar))) 
 - Add ability to set a default date (Contribution by [@jscn](https://github.com/jscn))
