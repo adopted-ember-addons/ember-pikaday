@@ -143,6 +143,16 @@ The `maxDate` attribute is supported as a binding so you can set the latest date
 </label>
 ```
 
+The `clearInvalidDate` attribute is supported as a binding to clear the input value if the value is an invalid date. 
+Defaults to false.
+
+```handlebars
+<label>
+  Due Date:
+  {{pikaday-input clearInvalidDate=true}}
+</label>
+```
+
 ## Return dates in UTC time zone
 
 The date returned by ember-pikaday is in your local time zone due to the JavaScript default behaviour of `new Date()`. This can lead to problems when your application converts the date to UTC. In additive time zones (e.g. +0010) the resulting converted date could be yesterdays date. You can force the component to return a date with the UTC time zone by passing `useUTC=true` to it.
