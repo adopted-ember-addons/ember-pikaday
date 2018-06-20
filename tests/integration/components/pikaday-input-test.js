@@ -745,3 +745,20 @@ module('Integration | Component | pikaday-input', function(hooks) {
     assert.equal(Interactor.selectedDay(), 28);
   });
 });
+
+test('it clears input value if initial value is an invalid date ', function(assert) {
+  assert.expect(3)
+
+  this.render(hbs`{{pikaday-input id="pikadayTest" clearInvalidDate=true}}`);
+
+  openDatepicker(this.$('input'));
+
+  this.$('input').val('difouhbadsilufb33')
+  assert.equal(this.$('input').val(), 'difouhbadsilufb33');
+  
+  closePikaday(this);
+
+  assert.equal(this.get('value'), null);
+
+  assert.equal(this.$('input').val(), "");
+});
