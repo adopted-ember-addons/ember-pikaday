@@ -137,14 +137,15 @@ export default Mixin.create({
   },
 
   setMinDate: function() {
-    const { pikaday, minDate, value } = getProperties(this, [
-      'pikaday',
-      'minDate',
-      'value'
-    ]);
+    let { pikaday, minDate, value } = getProperties(this, [ 'pikaday', 'minDate', 'value' ]);
 
     if (minDate) {
-      const _minDate = new Date(minDate.getTime());
+      try {
+        minDate = minDate.getTime();
+      } catch (e) {
+        minDate = new Date(minDate);
+      }
+      const _minDate = new Date(minDate);
       pikaday.setMinDate(_minDate);
 
       // If the current date is lower than minDate we set date to minDate
@@ -162,14 +163,15 @@ export default Mixin.create({
   },
 
   setMaxDate: function() {
-    const { pikaday, maxDate, value } = getProperties(this, [
-      'pikaday',
-      'maxDate',
-      'value'
-    ]);
+    let { pikaday, maxDate, value }  = getProperties(this, [ 'pikaday', 'maxDate', 'value' ]);
 
     if (maxDate) {
-      const _maxDate = new Date(maxDate.getTime());
+      try {
+        maxDate = maxDate.getTime();
+      } catch (e) {
+        maxDate = new Date(maxDate);
+      }
+      const _maxDate = new Date(maxDate);
       pikaday.setMaxDate(_maxDate);
 
       // If the current date is greater than maxDate we set date to maxDate
