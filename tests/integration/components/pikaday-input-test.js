@@ -733,3 +733,15 @@ test('it clears input value if initial value is an invalid date ', function(asse
 
   assert.equal(this.$('input').val(), "");
 });
+test('the interactor should select the correct date when previous and next months are displayed', function(assert) {
+  const expectedDate = new Date(2018, 5, 28);
+  this.set('options', { showDaysInNextAndPreviousMonths: true });
+  this.render(hbs`{{pikaday-input options=options}}`);
+
+  var interactor = openDatepicker(this.$('input'));
+  interactor.selectDate(expectedDate);
+
+  assert.equal(interactor.selectedYear(), 2018);
+  assert.equal(interactor.selectedMonth(), 5);
+  assert.equal(interactor.selectedDay(), 28);
+});
