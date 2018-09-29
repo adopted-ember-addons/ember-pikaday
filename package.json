@@ -26,7 +26,6 @@
     "ember-cli-eslint": "^4.2.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-moment-shim": "^3.0.1",
     "ember-cli-qunit": "^4.1.1",
     "ember-cli-release": "^0.2.9",
     "ember-cli-shims": "^1.2.0",
@@ -51,6 +50,7 @@
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^1.1.1",
     "ember-cli-node-assets": "^0.2.2",
+    "ember-cli-moment-shim": "^3.6.0",
     "fastboot-transform": "^0.1.1",
     "pikaday": "^1.5.1"
   },
