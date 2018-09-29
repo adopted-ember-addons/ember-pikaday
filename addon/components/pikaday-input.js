@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import Component from '@ember/component';
 import PikadayMixin from 'ember-pikaday/mixins/pikaday';
 
-export default Ember.Component.extend(PikadayMixin, {
+export default Component.extend(PikadayMixin, {
   tagName: 'input',
 
   attributeBindings: [
@@ -30,7 +31,7 @@ export default Ember.Component.extend(PikadayMixin, {
   },
 
   onPikadayClose: function() {
-    if (this.get('pikaday').getDate() === null || Ember.isEmpty(this.$().val())) {
+    if (this.get('pikaday').getDate() === null || isEmpty(this.$().val())) {
       this.set('value', null);
       this.get('onSelection')(null);
     }

@@ -1,18 +1,15 @@
 /* globals Pikaday */
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+
+import { assign } from '@ember/polyfills';
+import { isPresent } from '@ember/utils';
+import { run } from '@ember/runloop';
+import { getProperties, computed } from '@ember/object';
 import moment from 'moment';
 
-const {
-  isPresent,
-  run,
-  getProperties
-} = Ember;
+export default Mixin.create({
 
-const assign = Ember.assign || Ember.merge;
-
-export default Ember.Mixin.create({
-
-  _options: Ember.computed('options', 'i18n', {
+  _options: computed('options', 'i18n', {
     get() {
       let options = this._defaultOptions();
 

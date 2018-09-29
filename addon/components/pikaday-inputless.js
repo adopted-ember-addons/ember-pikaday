@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import PikadayMixin from 'ember-pikaday/mixins/pikaday';
 import layout from 'ember-pikaday/templates/pikaday-inputless';
 
-export default Ember.Component.extend(PikadayMixin, {
+export default Component.extend(PikadayMixin, {
   layout,
 
   didInsertElement() {

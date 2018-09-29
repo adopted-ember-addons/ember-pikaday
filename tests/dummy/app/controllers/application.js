@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   startDate: new Date(),
   today: new Date(),
   actions: {

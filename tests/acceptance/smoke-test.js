@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import startApp from '../../tests/helpers/start-app';
 
@@ -10,7 +11,7 @@ module('Acceptance | Basic smoke test', {
   },
 
   afterEach: function() {
-    Ember.run(application, 'destroy');
+    run(application, 'destroy');
   }
 });
 
@@ -18,6 +19,6 @@ test('render datepickers', function(assert) {
   visit('/');
 
   andThen(function() {
-    assert.ok(Ember.$('body').text().match(/Welcome to Ember\.js/));
+    assert.ok($('body').text().match(/Welcome to Ember\.js/));
   });
 });

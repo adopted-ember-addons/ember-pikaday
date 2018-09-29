@@ -177,13 +177,13 @@ To localize the datepicker itself, this is the popup you see after clicking the 
 ```js
 // app/initializers/setup-pikaday-i18n.js
 
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import moment from 'moment';
 
 export default {
   name: 'setup-pikaday-i18n',
   initialize: function(application) {
-    var i18n = Ember.Object.extend({
+    var i18n = EmberObject.extend({
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',
       months: moment.localeData()._months,
@@ -195,6 +195,7 @@ export default {
     application.inject('component:pikaday-input', 'i18n', 'pikaday-i18n:main');
   }
 };
+
 ```
 
 ## Examples
@@ -232,8 +233,9 @@ export default Ember.Controller.extend({
 
 ```js
 // app/controller/index.js
-import Ember from 'ember';
-export default Ember.Controller.extend({
+
+import Controller from '@ember/controller';
+export default Controller.extend({
   actions: {
     showPika() {
       this.set('showPika', true);
@@ -243,6 +245,7 @@ export default Ember.Controller.extend({
     }
   }
 });
+
 ```
 
 ## Test Helpers
@@ -262,7 +265,7 @@ openDatepicker(Ember.$('#my-datepicker'));
 `openDatepicker` not only opens the datepicker but also returns an interactor that can be used to interact with it. For example you can select a specific date by using `selectDate`.
 
 ```js
-var interactor = openDatepicker(Ember.$('#my-datepicker'));
+let interactor = openDatepicker(Ember.$('#my-datepicker'));
 
 interactor.selectDate(new Date(1989, 3, 28));
 ```
@@ -270,7 +273,7 @@ interactor.selectDate(new Date(1989, 3, 28));
 To check if a specific day, month or year is selected there are also relevant methods available.
 
 ```js
-var interactor = openDatepicker(Ember.$('#my-datepicker'));
+let interactor = openDatepicker(Ember.$('#my-datepicker'));
 
 interactor.selectDate(new Date(1989, 3, 28));
 
@@ -286,7 +289,7 @@ If you need to use a custom version, you can now disable auto assests importing 
 
 ```js
 // ember-cli-build.js
-var app = new EmberApp(defaults, {
+let app = new EmberApp(defaults, {
   emberPikaday: {
     excludePikadayAssets: true
   }
