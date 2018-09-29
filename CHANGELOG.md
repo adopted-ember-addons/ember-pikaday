@@ -1,5 +1,12 @@
 [View 1.X CHANGELOG](https://github.com/edgycircle/ember-pikaday/blob/stable-1/CHANGELOG.md)
 
+## 2.2.6
+
+- Upgrade to ES6 modules (Contribution by [@esbanarango](https://github.com/esbanarango))
+- add test on interactor day selection edge case (Contribution by [@hakilebara](https://github.com/hakilebara))
+- set autocomplete to off as default (Contribution by [@luxferresum](https://github.com/luxferresum))
+- Move ember-cli-moment-shim to dependencies (Contribution by [@esbanarango](https://github.com/esbanarango))
+
 ## 2.2.5
 
 - Prevent error in run later when component was destroyed (Contribution by [@Schnellesadlerauge](https://github.com/Schnellesadlerauge)))
