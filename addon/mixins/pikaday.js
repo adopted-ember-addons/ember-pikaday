@@ -67,7 +67,7 @@ export default Mixin.create({
 	 * @return {undefined}
 	 */
   didUpdateAttrs() {
-    run.later(() => {
+    this.set('cancelToken', run.later(() => {
       // Do not set or update anything when the component is destroying.
       if (this.get('isDestroying') || this.get('isDestroyed')) { return; }
 
@@ -78,7 +78,7 @@ export default Mixin.create({
       if (this.get('options')) {
         this._updateOptions();
       }
-    });
+    }));
   },
 
   didRender() {
@@ -100,6 +100,7 @@ export default Mixin.create({
   willDestroyElement() {
     this._super();
     this.get('pikaday').destroy();
+    run.cancel(this.get('cancelToken'));
   },
 
   setPikadayDate: function() {
