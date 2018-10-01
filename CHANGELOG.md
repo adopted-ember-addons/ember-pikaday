@@ -1,5 +1,13 @@
 [View 1.X CHANGELOG](https://github.com/edgycircle/ember-pikaday/blob/stable-1/CHANGELOG.md)
 
+## 2.3.0
+
+- Cleanup scheduled task when component is torn down (Contribution by [@bdollard](https://github.com/bdollard))
+- chore: configure Prettier (Contribution by [@alexlafroscia](https://github.com/alexlafroscia))
+- Allow minDate & maxDate to be reset (Contribution by [@asjongers](https://github.com/asjongers))
+- Update Tests (Contribution by [@alexlafroscia](https://github.com/alexlafroscia))
+- fix: remove use of deprecated `sync` queue (Contribution by [@alexlafroscia](https://github.com/alexlafroscia)
+
 ## 2.2.6
 
 - Upgrade to ES6 modules (Contribution by [@esbanarango](https://github.com/esbanarango))
