@@ -1,10 +1,10 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click } from '@ember/test-helpers';
+import { render, click, fillIn } from '@ember/test-helpers';
+import findAll from 'ember-pikaday/test-support/-private/find-all';
 import hbs from 'htmlbars-inline-precompile';
-import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
+import { close as closePikaday, Interactor } from 'ember-pikaday/test-support';
 import { run, bind, later } from '@ember/runloop';
-import $ from 'jquery';
 
 const getFirstWeekendDayNumber = function() {
   let date = new Date();
@@ -14,9 +14,11 @@ const getFirstWeekendDayNumber = function() {
   })[0];
 };
 
-function closePikaday(context) {
-  context.$().click();
-}
+const getDisabledDayCB = weekendDay => e => {
+  const attr = e.attributes.getNamedItem('data-day');
+
+  return attr ? attr.value == weekendDay : false;
+};
 
 module('Integration | Component | pikaday-input', function(hooks) {
   setupRenderingTest(hooks);
@@ -40,7 +42,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input}}
     `);
 
-    assert.equal(this.$('input').length, 1);
+    assert.dom('input').exists();
   });
 
   test('the input tag has the readonly attribute if it has been set on the component', async function(assert) {
@@ -48,7 +50,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input readonly=true}}
     `);
 
-    assert.ok(this.$('input').is('[readonly]'));
+    assert.dom('input').hasAttribute('readonly');
   });
 
   test('clicking the input opens the pikaday dialog', async function(assert) {
@@ -56,11 +58,11 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input}}
     `);
 
-    assert.ok($('.pika-single').hasClass('is-hidden'));
+    assert.dom('.pika-single', document.body).hasClass('is-hidden');
 
     await click('input');
 
-    assert.notOk($('.pika-single').hasClass('is-hidden'));
+    assert.dom('.pika-single', document.body).doesNotHaveClass('is-hidden');
   });
 
   test('selecting a date should send an action', async function(assert) {
@@ -74,13 +76,12 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input onSelection=(action onSelection)}}
     `);
 
-    let interactor = openDatepicker(this.$('input'));
-    interactor.selectDate(expectedDate);
+    await click('input');
+    await Interactor.selectDate(expectedDate);
   });
 
   test('clearing the date should send an action', async function(assert) {
     this.set('value', new Date(2010, 7, 10));
-
     this.set('onSelection', function(selectedDate) {
       assert.equal(selectedDate, null);
     });
@@ -89,11 +90,10 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input value=value onSelection=(action onSelection)}}
     `);
 
-    openDatepicker(this.$('input'));
+    await click('input');
+    await fillIn('input', '');
 
-    this.$('input').val('');
-
-    closePikaday(this);
+    await closePikaday();
   });
 
   test('opening picker should send an action', async function(assert) {
@@ -105,7 +105,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input onOpen=(action onOpen)}}
     `);
 
-    openDatepicker(this.$('input'));
+    await click('input');
   });
 
   test('closing picker should send an action', async function(assert) {
@@ -117,14 +117,11 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input onClose=(action onClose)}}
     `);
 
-    openDatepicker(this.$('input'));
-    closePikaday(this);
+    await click('input');
+    await closePikaday();
   });
 
   test('redrawing picker should send an action', async function(assert) {
-    openDatepicker(this.$('input'));
-    closePikaday(this);
-
     this.set('onDraw', function() {
       assert.ok(true);
     });
@@ -133,7 +130,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input onDraw=(action onDraw)}}
     `);
 
-    openDatepicker(this.$('input'));
+    await click('input');
   });
 
   test('setting the value attribute should select the correct date', async function(assert) {
@@ -143,11 +140,11 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input value=value}}
     `);
 
-    var interactor = openDatepicker(this.$('input'));
+    await click('input');
 
-    assert.equal(interactor.selectedYear(), 2010);
-    assert.equal(interactor.selectedMonth(), 7);
-    assert.equal(interactor.selectedDay(), 10);
+    assert.equal(Interactor.selectedYear(), 2010);
+    assert.equal(Interactor.selectedMonth(), 7);
+    assert.equal(Interactor.selectedDay(), 10);
   });
 
   test('DD.MM.YYYY should be the default format for the input', async function(assert) {
@@ -182,7 +179,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
     await click('input');
 
-    assert.ok($('.is-today').hasClass('is-disabled'));
+    assert.dom('.is-today', document.body).hasClass('is-disabled');
   });
 
   test('reset min date', async function(assert) {
@@ -198,7 +195,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
     await click('input');
 
-    assert.ok(!$('.is-today').hasClass('is-disabled'));
+    assert.dom('.is-today', document.body).doesNotHaveClass('is-disabled');
   });
 
   test('set max date', async function(assert) {
@@ -210,11 +207,9 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input maxDate=yesterday}}
     `);
 
-    run(() => {
-      this.$('input').click();
-    });
+    await click('input');
 
-    assert.ok($('.is-today').hasClass('is-disabled'));
+    assert.dom('.is-today', document.body).hasClass('is-disabled');
   });
 
   test('reset max date', async function(assert) {
@@ -230,7 +225,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
     await click('input');
 
-    assert.ok(!$('.is-today').hasClass('is-disabled'));
+    assert.dom('.is-today', document.body).doesNotHaveClass('is-disabled');
   });
 
   test('set new date value with a new min date', async function(assert) {
@@ -268,7 +263,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input theme='dark-theme'}}
     `);
 
-    assert.ok($('.pika-single').hasClass('dark-theme'));
+    assert.dom('.pika-single', document.body).hasClass('dark-theme');
   });
 
   test('yearRange of the input defaults to 10', async function(assert) {
@@ -278,10 +273,10 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input}}
     `);
 
-    var interactor = openDatepicker(this.$('input'));
+    await click('input');
 
-    assert.equal(interactor.minimumYear(), currentYear - 10);
-    assert.equal(interactor.maximumYear(), currentYear + 10);
+    assert.equal(Interactor.minimumYear(), currentYear - 10);
+    assert.equal(Interactor.maximumYear(), currentYear + 10);
   });
 
   test('yearRange of the input can be set with a range', async function(assert) {
@@ -291,10 +286,10 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input yearRange='4'}}
     `);
 
-    var interactor = openDatepicker(this.$('input'));
+    await click('input');
 
-    assert.equal(interactor.minimumYear(), currentYear - 4);
-    assert.equal(interactor.maximumYear(), currentYear + 4);
+    assert.equal(Interactor.minimumYear(), currentYear - 4);
+    assert.equal(Interactor.maximumYear(), currentYear + 4);
   });
 
   test('yearRange of the input can be set with comma separated years', async function(assert) {
@@ -302,10 +297,10 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input yearRange='1900,2006'}}
     `);
 
-    var interactor = openDatepicker(this.$('input'));
+    await click('input');
 
-    assert.equal(interactor.minimumYear(), 1900);
-    assert.equal(interactor.maximumYear(), 2006);
+    assert.equal(Interactor.minimumYear(), 1900);
+    assert.equal(Interactor.maximumYear(), 2006);
   });
 
   test('yearRange of the input with comma separated years supports currentYear as max', async function(assert) {
@@ -313,11 +308,12 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input yearRange='1900,currentYear'}}
     `);
 
-    var interactor = openDatepicker(this.$('input'));
+    await click('input');
+
     var currentYear = new Date().getFullYear();
 
-    assert.equal(interactor.minimumYear(), 1900);
-    assert.equal(interactor.maximumYear(), currentYear);
+    assert.equal(Interactor.minimumYear(), 1900);
+    assert.equal(Interactor.maximumYear(), currentYear);
   });
 
   test('default i18n configuration of Pikaday can be changed', async function(assert) {
@@ -356,9 +352,17 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input value=value i18n=i18n}}
     `);
 
-    openDatepicker(this.$('input'));
+    await click('input');
 
-    assert.equal($('.pika-select-month option:selected').text(), 'März');
+    const monthOptions = await findAll(
+      '.pika-select-month option',
+      document.body
+    );
+    const selectedMonthOption = monthOptions.find(e =>
+      e.hasAttribute('selected')
+    );
+
+    assert.dom(selectedMonthOption).hasText('März');
   });
 
   test('if utc is set the date returned from pikaday should be in UTC format', async function(assert) {
@@ -368,12 +372,12 @@ module('Integration | Component | pikaday-input', function(hooks) {
     });
 
     await render(hbs`
-      {{pikaday-input onSelection=(action onSelection) useUTC=true}}
-    `);
+        {{pikaday-input onSelection=(action onSelection) useUTC=true}}
+      `);
 
-    var interactor = openDatepicker(this.$('input'));
+    await click('input');
 
-    interactor.selectDate(new Date(2013, 3, 28));
+    await Interactor.selectDate(new Date(2013, 3, 28));
   });
 
   [
@@ -410,11 +414,11 @@ module('Integration | Component | pikaday-input', function(hooks) {
         {{pikaday-input value=value useUTC=useUTC}}
       `);
 
-      var interactor = openDatepicker(this.$('input'));
+      await click('input');
 
-      assert.equal(interactor.selectedYear(), 2013);
-      assert.equal(interactor.selectedMonth(), 3);
-      assert.equal(interactor.selectedDay(), 28);
+      assert.equal(Interactor.selectedYear(), 2013);
+      assert.equal(Interactor.selectedMonth(), 3);
+      assert.equal(Interactor.selectedDay(), 28);
     });
   });
 
@@ -423,10 +427,11 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input placeholder=placeholder}}
     `);
 
-    assert.equal(this.$('input').attr('placeholder'), undefined);
+    assert.dom('input').doesNotHaveAttribute('placeholder');
 
     this.set('placeholder', 'I am the placeholder');
-    assert.equal(this.$('input').attr('placeholder'), 'I am the placeholder');
+
+    assert.dom('input').hasAttribute('placeholder', 'I am the placeholder');
   });
 
   test('the input tag has the required attribute if it has been set on the component', async function(assert) {
@@ -434,10 +439,11 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input required=required}}
     `);
 
-    assert.notOk(this.$('input').is('[required]'));
+    assert.dom('input').doesNotHaveAttribute('required');
 
     this.set('required', true);
-    assert.ok(this.$('input').is('[required]'));
+
+    assert.dom('input').hasAttribute('required');
   });
 
   test('the input tag has the disabled attribute if it has been set on the component', async function(assert) {
@@ -445,10 +451,11 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input disabled=disabled}}
     `);
 
-    assert.notOk(this.$('input').is('[disabled]'));
+    assert.dom('input').doesNotHaveAttribute('disabled');
 
     this.set('disabled', true);
-    assert.ok(this.$('input').is('[disabled]'));
+
+    assert.dom('input').hasAttribute('disabled');
   });
 
   test('the input tag has the autocomplete attribute if it has been set on the component', async function(assert) {
@@ -456,64 +463,57 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input autocomplete=autocomplete}}
     `);
 
-    assert.notOk(this.$('input').attr('autocomplete'));
+    assert.dom('input').doesNotHaveAttribute('autocomplete');
 
     this.set('autocomplete', 'off');
-    assert.equal(this.$('input').attr('autocomplete'), 'off');
+
+    assert.dom('input').hasAttribute('autocomplete', 'off');
   });
 
+  // WARNING: This test will fail if the browser is not focused
   test('using disabled prevent from opening pikaday', async function(assert) {
     await render(hbs`
       {{pikaday-input disabled=true}}
     `);
 
-    assert.ok(
-      $('.pika-single').hasClass('is-hidden'),
-      'should be closed before clicking'
-    );
+    assert
+      .dom('.pika-single', document.body)
+      .hasClass('is-hidden', 'should be closed before clicking');
 
-    openDatepicker(this.$('input'));
+    await click('input');
 
-    assert.ok(
-      $('.pika-single').hasClass(
-        'is-hidden',
-        'should still be closed after clicking'
-      )
-    );
+    assert
+      .dom('.pika-single', document.body)
+      .hasClass('is-hidden', 'should still be closed after clicking');
   });
 
   test('the disabled attribute of the component is well linked with the input attribute', async function(assert) {
+    this.set('disabled', false);
+
     await render(hbs`
       {{pikaday-input disabled=disabled}}
     `);
 
-    assert.notOk(
-      this.$('input').is('[disabled]'),
-      'disabled should not be set'
-    );
-    assert.ok(
-      $('.pika-single').hasClass('is-hidden'),
-      'not disabled and pika-single is hidden'
-    );
+    assert.dom('input').isNotDisabled();
+    assert
+      .dom('.pika-single', document.body)
+      .hasClass('is-hidden', 'not disabled and pika-single is hidden');
 
-    openDatepicker(this.$('input'));
+    await click('input');
 
-    assert.notOk(
-      $('.pika-single').hasClass(
-        'is-hidden',
-        'not disabled and pika-single is shown'
-      )
-    );
+    assert
+      .dom('.pika-single', document.body)
+      .doesNotHaveClass('is-hidden', 'not disabled and pika-single is shown');
 
     this.set('disabled', true);
 
-    assert.ok(this.$('input').is('[disabled]'), 'disabled should now be set');
-    assert.ok(
-      $('.pika-single').hasClass(
+    assert.dom('input').isDisabled();
+    assert
+      .dom('.pika-single', document.body)
+      .hasClass(
         'is-hidden',
         'disabled and pika-single should be hidden automatically'
-      )
-    );
+      );
   });
 
   test('firstDay defaults to Monday (1)', async function(assert) {
@@ -521,11 +521,11 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input}}
     `);
 
-    openDatepicker(this.$('input'));
+    await click('input');
 
-    var firstDay = $('.pika-single .pika-table tr th:first-child').text();
-
-    assert.equal(firstDay, 'Mon', 'First day should be Monday');
+    assert
+      .dom('.pika-single .pika-table tr th:first-child', document.body)
+      .hasText('Mon', 'First day should be Monday');
   });
 
   test('firstDay option overrides the default first day value', async function(assert) {
@@ -533,11 +533,11 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input firstDay=0}}
     `);
 
-    openDatepicker(this.$('input'));
+    await click('input');
 
-    var firstDay = $('.pika-single .pika-table tr th:first-child').text();
-
-    assert.equal(firstDay, 'Sun', 'First day should be Sunday');
+    assert
+      .dom('.pika-single .pika-table tr th:first-child', document.body)
+      .hasText('Sun', 'First day should be Sunday');
   });
 
   test('if an options hash is passed, default options are overridden', async function(assert) {
@@ -550,31 +550,44 @@ module('Integration | Component | pikaday-input', function(hooks) {
     await render(hbs`
       {{pikaday-input options=(hash onOpen=onOpen disableWeekends=true)}}
     `);
+    await click('input');
 
-    openDatepicker(this.$('input'));
     const weekendDay = getFirstWeekendDayNumber();
+    const disabledWeekendCell = findAll('td', document.body).find(
+      getDisabledDayCB(weekendDay)
+    );
 
-    assert.ok($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
+    assert.dom(disabledWeekendCell).hasClass('is-disabled');
   });
 
-  test('if updates pikaday config if options hash is changed', async function(assert) {
+  test('it updates pikaday config if options hash is changed', async function(assert) {
     const weekendDay = getFirstWeekendDayNumber();
+    let disabledWeekendCell;
+
     this.set('disableWeekends', true);
 
     await render(hbs`
       {{pikaday-input options=(hash disableWeekends=disableWeekends)}}
     `);
+    await click('input');
 
-    openDatepicker(this.$('input'));
+    disabledWeekendCell = findAll('td', document.body).find(
+      getDisabledDayCB(weekendDay)
+    );
 
-    assert.ok($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
+    assert.dom(disabledWeekendCell).hasClass('is-disabled');
 
-    closePikaday(this);
+    await closePikaday();
 
     this.set('disableWeekends', false);
-    openDatepicker(this.$('input'));
 
-    assert.notOk($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
+    await click('input');
+
+    disabledWeekendCell = findAll('td', document.body).find(
+      getDisabledDayCB(weekendDay)
+    );
+
+    assert.dom(disabledWeekendCell).doesNotHaveClass('is-disabled');
   });
 
   test("if minDate is greater than value we set pikaday's current date to minDate", async function(assert) {
@@ -691,11 +704,11 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input defaultDate=defaultDate}}
     `);
 
-    const interactor = openDatepicker(this.$('input'));
+    await click('input');
 
-    assert.equal(interactor.selectedYear(), 2010);
-    assert.equal(interactor.selectedMonth(), 7);
-    assert.equal(interactor.selectedDay(), 10);
+    assert.equal(Interactor.selectedYear(), 2010);
+    assert.equal(Interactor.selectedMonth(), 7);
+    assert.equal(Interactor.selectedDay(), 10);
   });
 
   test('the interactor should select the correct date when previous and next months are displayed', async function(assert) {
@@ -706,11 +719,12 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input options=options}}
     `);
 
-    var interactor = openDatepicker(this.$('input'));
-    interactor.selectDate(expectedDate);
+    await click('input');
 
-    assert.equal(interactor.selectedYear(), 2018);
-    assert.equal(interactor.selectedMonth(), 5);
-    assert.equal(interactor.selectedDay(), 28);
+    await Interactor.selectDate(expectedDate);
+
+    assert.equal(Interactor.selectedYear(), 2018);
+    assert.equal(Interactor.selectedMonth(), 5);
+    assert.equal(Interactor.selectedDay(), 28);
   });
 });

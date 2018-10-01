@@ -46,7 +46,8 @@
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-prettier": "^2.7.0",
     "loader.js": "^4.2.3",
-    "prettier": "^1.14.3"
+    "prettier": "^1.14.3",
+    "qunit-dom": "^0.8.0"
   },
   "dependencies": {
     "ember-cli-babel": "^6.6.0",
