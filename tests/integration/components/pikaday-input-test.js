@@ -173,7 +173,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
   });
 
   test('set min date', async function(assert) {
-    var tomorrow = new Date();
+    const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     this.set('tomorrow', tomorrow);
 
@@ -187,7 +187,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
   });
 
   test('reset min date', async function(assert) {
-    var tomorrow = new Date();
+    const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     this.set('tomorrow', tomorrow);
 
@@ -203,7 +203,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
   });
 
   test('set max date', async function(assert) {
-    var yesterday = new Date();
+    const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     this.set('yesterday', yesterday);
 
@@ -217,7 +217,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
   });
 
   test('reset max date', async function(assert) {
-    var yesterday = new Date();
+    const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     this.set('yesterday', yesterday);
 
@@ -233,7 +233,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
   });
 
   test('set new date value with a new min date', async function(assert) {
-    var tommorow = new Date(2010, 7, 10);
+    const tommorow = new Date(2010, 7, 10);
     this.set('tommorow', tommorow);
 
     await render(hbs`
@@ -248,7 +248,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
   });
 
   test('set new date value with a new max date', async function(assert) {
-    var tommorow = new Date(2010, 7, 10);
+    const tommorow = new Date(2010, 7, 10);
     this.set('tommorow', tommorow);
 
     await render(hbs`
@@ -271,7 +271,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
   });
 
   test('yearRange of the input defaults to 10', async function(assert) {
-    var currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear();
 
     await render(hbs`
       {{pikaday-input}}
@@ -284,7 +284,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
   });
 
   test('yearRange of the input can be set with a range', async function(assert) {
-    var currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear();
 
     await render(hbs`
       {{pikaday-input yearRange='4'}}
@@ -314,7 +314,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
     await click('input');
 
-    var currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear();
 
     assert.equal(Interactor.minimumYear(), 1900);
     assert.equal(Interactor.maximumYear(), currentYear);
