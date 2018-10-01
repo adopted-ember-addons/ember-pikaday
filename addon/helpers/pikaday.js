@@ -1,4 +1,14 @@
 import $ from 'jquery';
+import { deprecate } from '@ember/debug';
+
+deprecate(
+  'Pikaday helpers from `ember-pikaday/helpers/pikaday` will be removed in the next major version; please use `async/await` helpers from `ember-pikaday/test-support`',
+  true,
+  {
+    id: 'ember-pikaday.test-support-helpers',
+    until: '3.0.0'
+  }
+);
 
 var openDatepicker = function(element) {
   $(element).click();

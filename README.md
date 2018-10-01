@@ -249,36 +249,48 @@ export default Controller.extend({
 
 ## Test Helpers
 
-The test helpers provided by ember-pikaday allow you to interact with the datepicker in your acceptance tests. After importing them you are ready to rock and roll.
+The test helpers provided by `ember-pikaday` allow you to interact with the datepicker in your integration and acceptance tests.
+
+### Opening Pikaday
+
+To open the datepicker use `click` from the `@ember/test-helpers` package:
 
 ```js
-import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
+import { click } from '@ember/test-helpers';
+
+await click('.my-pikaday-input');
 ```
 
-To open the datepicker use `openDatepicker` and pass the input element as argument.
+### Closing Pikaday
+
+Pikaday can be closed with the provided `close` helper:
 
 ```js
-openDatepicker(Ember.$('#my-datepicker'));
+import { close as closePikaday } from 'ember-pikaday/test-support';
+
+await closePikaday('.my-pikaday-input');
 ```
 
-`openDatepicker` not only opens the datepicker but also returns an interactor that can be used to interact with it. For example you can select a specific date by using `selectDate`.
+### Interacting with Pikaday
+
+An `Interactor`, like a [page object](https://martinfowler.com/bliki/PageObject.html), provides helpers for getting and setting dates in a date picker:
 
 ```js
-let interactor = openDatepicker(Ember.$('#my-datepicker'));
+import { click } from '@ember/test-helpers';
+import { Interactor as Pikaday } from 'ember-pikaday/test-support';
 
-interactor.selectDate(new Date(1989, 3, 28));
+await click('#my-datepicker');
+await Pikaday.selectDate(new Date(1989, 3, 28));
 ```
 
-To check if a specific day, month or year is selected there are also relevant methods available.
+There are also methods available to check if a specific day, month or year is selected:
 
 ```js
-let interactor = openDatepicker(Ember.$('#my-datepicker'));
+await Interactor.selectDate(new Date(1989, 3, 28));
 
-interactor.selectDate(new Date(1989, 3, 28));
-
-equal(interactor.selectedYear(), 1989);
-equal(interactor.selectedMonth(), 3);
-equal(interactor.selectedDay(), 28);
+assert.equal(Interactor.selectedYear(), 1989);
+assert.equal(Interactor.selectedMonth(), 3);
+assert.equal(Interactor.selectedDay(), 28);
 ```
 
 ## Excluding assets
