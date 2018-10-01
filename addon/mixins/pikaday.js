@@ -155,6 +155,8 @@ export default Mixin.create({
           pikaday.setDate(minDate);
         }
       });
+    } else {
+      pikaday.setMinDate(null);
     }
   },
 
@@ -175,6 +177,8 @@ export default Mixin.create({
           pikaday.setDate(maxDate);
         }
       });
+    } else {
+      pikaday.setMaxDate(null);
     }
   },
 

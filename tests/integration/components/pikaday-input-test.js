@@ -145,6 +145,20 @@ test('set min date', function(assert) {
   assert.ok($('.is-today').hasClass('is-disabled'));
 });
 
+test('reset min date', function(assert) {
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  this.set('tomorrow', tomorrow);
+  this.render(hbs`{{pikaday-input minDate=tomorrow}}`);
+  this.set('tomorrow', null);
+
+  run(() => {
+    this.$('input').click();
+  });
+
+  assert.ok(!$('.is-today').hasClass('is-disabled'));
+});
+
 test('set max date', function(assert) {
   var yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
@@ -156,6 +170,20 @@ test('set max date', function(assert) {
   });
 
   assert.ok($('.is-today').hasClass('is-disabled'));
+});
+
+test('reset max date', function(assert) {
+  var yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  this.set('yesterday', yesterday);
+  this.render(hbs`{{pikaday-input maxDate=yesterday}}`);
+  this.set('yesterday', null);
+
+  run(() => {
+    this.$('input').click();
+  });
+
+  assert.ok(!$('.is-today').hasClass('is-disabled'));
 });
 
 test('set new date value with a new min date', function(assert) {
