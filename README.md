@@ -1,4 +1,7 @@
-# ember-pikaday [![Build Status](https://travis-ci.org/adopted-ember-addons/ember-pikaday.svg?branch=master)](https://travis-ci.org/adopted-ember-addons/ember-pikaday)
+# ember-pikaday
+
+[![Build Status](https://travis-ci.org/adopted-ember-addons/ember-pikaday.svg?branch=master)](https://travis-ci.org/adopted-ember-addons/ember-pikaday)
+[![Ember Observer Score](https://emberobserver.com/badges/ember-pikaday.svg)](https://emberobserver.com/addons/ember-pikaday)
 
 ember-pikaday is an addon that can be installed with Ember CLI. It gives you a datepicker input component that can be used in your Ember.js application. [ember-cli-moment-shim](https://github.com/jasonmit/ember-cli-moment-shim) is used in the background so it is added as NPM dependencies to your application.
 
