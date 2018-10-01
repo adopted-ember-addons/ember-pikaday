@@ -17,8 +17,10 @@ const getFirstWeekendDayNumber = function() {
 const getDisabledDayCB = weekendDay => e => {
   const attr = e.attributes.getNamedItem('data-day');
 
-  return attr ? attr.value == weekendDay : false;
-};
+  afterEach() {
+    Ember.run.later = later;
+  }
+});
 
 module('Integration | Component | pikaday-input', function(hooks) {
   setupRenderingTest(hooks);

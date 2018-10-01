@@ -137,7 +137,11 @@ export default Mixin.create({
   },
 
   setMinDate: function() {
-    let { pikaday, minDate, value } = getProperties(this, [ 'pikaday', 'minDate', 'value' ]);
+    const { pikaday, minDate, value } = getProperties(this, [
+      'pikaday',
+      'minDate',
+      'value'
+    ]);
 
     if (minDate) {
       try {
@@ -163,7 +167,11 @@ export default Mixin.create({
   },
 
   setMaxDate: function() {
-    let { pikaday, maxDate, value }  = getProperties(this, [ 'pikaday', 'maxDate', 'value' ]);
+    const { pikaday, maxDate, value } = getProperties(this, [
+      'pikaday',
+      'maxDate',
+      'value'
+    ]);
 
     if (maxDate) {
       try {
