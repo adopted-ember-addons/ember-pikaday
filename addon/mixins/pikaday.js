@@ -8,19 +8,31 @@ import { getProperties, computed } from '@ember/object';
 import moment from 'moment';
 
 export default Mixin.create({
-
   _options: computed('options', 'i18n', {
     get() {
       let options = this._defaultOptions();
 
       if (isPresent(this.get('i18n'))) {
-        if(isPresent(this.get('i18n').t)) {
+        if (isPresent(this.get('i18n').t)) {
           options.i18n = {
-            previousMonth : this.get('i18n').t('previousMonth').toString(),
-            nextMonth     : this.get('i18n').t('nextMonth').toString(),
-            months        : this.get('i18n').t('months').toString().split(','),
-            weekdays      : this.get('i18n').t('weekdays').toString().split(','),
-            weekdaysShort : this.get('i18n').t('weekdaysShort').toString().split(',')
+            previousMonth: this.get('i18n')
+              .t('previousMonth')
+              .toString(),
+            nextMonth: this.get('i18n')
+              .t('nextMonth')
+              .toString(),
+            months: this.get('i18n')
+              .t('months')
+              .toString()
+              .split(','),
+            weekdays: this.get('i18n')
+              .t('weekdays')
+              .toString()
+              .split(','),
+            weekdaysShort: this.get('i18n')
+              .t('weekdaysShort')
+              .toString()
+              .split(',')
           };
         } else {
           options.i18n = this.get('i18n');
@@ -49,7 +61,7 @@ export default Mixin.create({
       onClose: run.bind(this, this.onPikadayClose),
       onSelect: run.bind(this, this.onPikadaySelect),
       onDraw: run.bind(this, this.onPikadayRedraw),
-      firstDay: (typeof firstDay !== 'undefined') ? parseInt(firstDay, 10) : 1,
+      firstDay: typeof firstDay !== 'undefined' ? parseInt(firstDay, 10) : 1,
       format: this.get('format') || 'DD.MM.YYYY',
       yearRange: this.determineYearRange(),
       minDate: this.get('minDate') || null,
@@ -60,25 +72,30 @@ export default Mixin.create({
     };
   },
 
-	/**
-	 * When updating attrs, we need to reset some things in case they've changed.
-	 * @public
-	 * @memberOf {Mixins.Pikaday}
-	 * @return {undefined}
-	 */
+  /**
+   * When updating attrs, we need to reset some things in case they've changed.
+   * @public
+   * @memberOf {Mixins.Pikaday}
+   * @return {undefined}
+   */
   didUpdateAttrs() {
-    this.set('cancelToken', run.later(() => {
-      // Do not set or update anything when the component is destroying.
-      if (this.get('isDestroying') || this.get('isDestroyed')) { return; }
+    this.set(
+      'cancelToken',
+      run.later(() => {
+        // Do not set or update anything when the component is destroying.
+        if (this.get('isDestroying') || this.get('isDestroyed')) {
+          return;
+        }
 
-      this.setMinDate();
-      this.setMaxDate();
-      this.setPikadayDate();
+        this.setMinDate();
+        this.setMaxDate();
+        this.setPikadayDate();
 
-      if (this.get('options')) {
-        this._updateOptions();
-      }
-    }));
+        if (this.get('options')) {
+          this._updateOptions();
+        }
+      })
+    );
   },
 
   didRender() {
@@ -110,14 +127,20 @@ export default Mixin.create({
     if (!value) {
       this.get('pikaday').setDate(value, true);
     } else {
-      const date = this.get('useUTC') ? moment(moment.utc(value).format(format), format).toDate() : value;
+      const date = this.get('useUTC')
+        ? moment(moment.utc(value).format(format), format).toDate()
+        : value;
 
       this.get('pikaday').setDate(date, true);
     }
   },
 
   setMinDate: function() {
-    const { pikaday, minDate, value } = getProperties(this, [ 'pikaday', 'minDate', 'value' ]);
+    const { pikaday, minDate, value } = getProperties(this, [
+      'pikaday',
+      'minDate',
+      'value'
+    ]);
 
     if (minDate) {
       const _minDate = new Date(minDate.getTime());
@@ -125,7 +148,10 @@ export default Mixin.create({
 
       // If the current date is lower than minDate we set date to minDate
       run.schedule('sync', () => {
-        if (value && moment(value, this.get('format')).isBefore(minDate, 'day')) {
+        if (
+          value &&
+          moment(value, this.get('format')).isBefore(minDate, 'day')
+        ) {
           pikaday.setDate(minDate);
         }
       });
@@ -133,7 +159,11 @@ export default Mixin.create({
   },
 
   setMaxDate: function() {
-    const { pikaday, maxDate, value }  = getProperties(this, [ 'pikaday', 'maxDate', 'value' ]);
+    const { pikaday, maxDate, value } = getProperties(this, [
+      'pikaday',
+      'maxDate',
+      'value'
+    ]);
 
     if (maxDate) {
       const _maxDate = new Date(maxDate.getTime());
@@ -165,7 +195,13 @@ export default Mixin.create({
     var selectedDate = this.get('pikaday').getDate();
 
     if (this.get('useUTC')) {
-      selectedDate = moment.utc([selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()]).toDate();
+      selectedDate = moment
+        .utc([
+          selectedDate.getFullYear(),
+          selectedDate.getMonth(),
+          selectedDate.getDate()
+        ])
+        .toDate();
     }
 
     this.get('onSelection')(selectedDate);

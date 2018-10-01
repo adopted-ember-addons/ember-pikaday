@@ -11,7 +11,7 @@ cd your-project-directory
 ember install ember-pikaday
 ```
 
-*This README is for the new 2.X release of ember-pikaday. You can find the [1.X README in the stable-1 branch](https://github.com/edgycircle/ember-pikaday/blob/stable-1/README.md).*
+_This README is for the new 2.X release of ember-pikaday. You can find the [1.X README in the stable-1 branch](https://github.com/edgycircle/ember-pikaday/blob/stable-1/README.md)._
 
 ## Usage
 
@@ -110,9 +110,9 @@ If the datepicker is shown to the user and it gets disabled it will close the da
 The `firstDay` attribute is supported as a binding so you can set the first day of the calendar week.
 Defaults to Monday.
 
-* 0 = Sunday
-* 1 = Monday
-* etc...
+- 0 = Sunday
+- 1 = Monday
+- etc...
 
 ```handlebars
 <label>
@@ -195,7 +195,6 @@ export default {
     application.inject('component:pikaday-input', 'i18n', 'pikaday-i18n:main');
   }
 };
-
 ```
 
 ## Examples
@@ -208,6 +207,7 @@ export default {
     {{pikaday-inputless value="2017-07-07"}}
 {{/if}}
 ```
+
 ```js
 // app/controller/index.js
 import Ember from 'ember';
@@ -240,12 +240,11 @@ export default Controller.extend({
     showPika() {
       this.set('showPika', true);
     },
-    hidePika(){
+    hidePika() {
       this.set('showPika', false);
     }
   }
 });
-
 ```
 
 ## Test Helpers
@@ -298,4 +297,4 @@ let app = new EmberApp(defaults, {
 
 ## Other Resources
 
-* [Video introduction by EmberScreencasts](https://www.emberscreencasts.com/posts/56-ember-pikaday)
+- [Video introduction by EmberScreencasts](https://www.emberscreencasts.com/posts/56-ember-pikaday)

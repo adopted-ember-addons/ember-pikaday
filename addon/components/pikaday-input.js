@@ -38,6 +38,5 @@ export default Component.extend(PikadayMixin, {
     }
 
     this.get('onClose')();
-  },
+  }
 });
-

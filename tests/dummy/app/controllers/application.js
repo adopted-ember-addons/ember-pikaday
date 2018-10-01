@@ -11,5 +11,5 @@ export default Controller.extend({
     doSomethingWithSelectedValue(value) {
       console.log(value);
     }
-  },
+  }
 });

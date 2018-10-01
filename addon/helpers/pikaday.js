@@ -20,7 +20,14 @@ var PikadayInteractor = {
     $(this.selectorForMonthSelect).val(month);
     triggerNativeEvent($(this.selectorForMonthSelect)[0], 'change');
 
-    triggerNativeEvent($('td[data-day="' + day + '"]:not(.is-outside-current-month) button:visible')[0], selectEvent);
+    triggerNativeEvent(
+      $(
+        'td[data-day="' +
+          day +
+          '"]:not(.is-outside-current-month) button:visible'
+      )[0],
+      selectEvent
+    );
   },
   selectedDay: function() {
     return $('.pika-single td.is-selected button').html();
@@ -32,10 +39,16 @@ var PikadayInteractor = {
     return $(this.selectorForYearSelect + ' option:selected').val();
   },
   minimumYear: function() {
-    return $(this.selectorForYearSelect).children().first().val();
+    return $(this.selectorForYearSelect)
+      .children()
+      .first()
+      .val();
   },
   maximumYear: function() {
-    return $(this.selectorForYearSelect).children().last().val();
+    return $(this.selectorForYearSelect)
+      .children()
+      .last()
+      .val();
   }
 };
 
