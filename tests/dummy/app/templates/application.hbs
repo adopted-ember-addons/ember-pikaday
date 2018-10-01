@@ -7,13 +7,13 @@ Standalone datepicker:
 
 <br>
 
-Datepicker with minDate:
+Datepicker with minDate set to today ({{input type="checkbox" checked=isMinDateSet}}) and maxDate set to today ({{input type="checkbox" checked=isMaxDateSet}}):
 {{pikaday-input
-  minDate=today
+  minDate=(if isMinDateSet today null)
+  maxDate=(if isMaxDateSet today null)
   value=someDate
   onSelection=(action (mut someDate))
 }}
-
 <br>
 
 Datepicker with bound and set value:
