@@ -3,7 +3,7 @@ import Mixin from '@ember/object/mixin';
 
 import { assign } from '@ember/polyfills';
 import { isPresent } from '@ember/utils';
-import { run } from '@ember/runloop';
+import { run, next } from '@ember/runloop';
 import { getProperties, computed } from '@ember/object';
 import moment from 'moment';
 
@@ -147,7 +147,7 @@ export default Mixin.create({
       pikaday.setMinDate(_minDate);
 
       // If the current date is lower than minDate we set date to minDate
-      run.schedule('sync', () => {
+      next(() => {
         if (
           value &&
           moment(value, this.get('format')).isBefore(minDate, 'day')
@@ -172,7 +172,7 @@ export default Mixin.create({
       pikaday.setMaxDate(_maxDate);
 
       // If the current date is greater than maxDate we set date to maxDate
-      run.schedule('sync', () => {
+      next(() => {
         if (value > maxDate) {
           pikaday.setDate(maxDate);
         }
