@@ -2,8 +2,16 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-  startDate: new Date(),
-  today: new Date(),
+  startDate: undefined,
+  today: undefined,
+
+  init() {
+    this._super(...arguments);
+
+    this.set('startdate', new Date());
+    this.set('today', new Date());
+  },
+
   actions: {
     clearStartDate: function() {
       this.set('startDate', null);
