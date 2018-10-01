@@ -13,19 +13,22 @@
     "test": "ember try:each"
   },
   "repository": "https://github.com/edgycircle/ember-pikaday",
-  "engines": {
-    "node": "^4.5 || 6.* || >= 7.*"
-  },
   "author": "David Strauß",
   "license": "MIT",
+  "keywords": [
+    "ember-addon",
+    "pikaday",
+    "datepicker"
+  ],
   "devDependencies": {
+    "@ember/test-helpers": "^0.7.25",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~2.18.2",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-qunit": "^4.1.1",
+    "ember-cli-qunit": "^4.3.2",
     "ember-cli-release": "^0.2.9",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
@@ -33,6 +36,7 @@
     "ember-disable-prototype-extensions": "^1.1.2",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
+    "ember-maybe-import-regenerator": "^0.1.6",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.18.2",
     "ember-source-channel-url": "^1.0.1",
@@ -44,11 +48,6 @@
     "loader.js": "^4.2.3",
     "prettier": "^1.14.3"
   },
-  "keywords": [
-    "ember-addon",
-    "pikaday",
-    "datepicker"
-  ],
   "dependencies": {
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^1.1.1",
@@ -56,6 +55,9 @@
     "ember-cli-node-assets": "^0.2.2",
     "fastboot-transform": "^0.1.1",
     "pikaday": "^1.5.1"
+  },
+  "engines": {
+    "node": "^4.5 || 6.* || >= 7.*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
