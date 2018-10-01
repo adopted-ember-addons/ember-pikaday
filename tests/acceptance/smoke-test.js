@@ -19,6 +19,10 @@ test('render datepickers', function(assert) {
   visit('/');
 
   andThen(function() {
-    assert.ok($('body').text().match(/Welcome to Ember\.js/));
+    assert.ok(
+      $('body')
+        .text()
+        .match(/Welcome to Ember\.js/)
+    );
   });
 });

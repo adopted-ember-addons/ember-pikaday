@@ -3,9 +3,13 @@ import hbs from 'htmlbars-inline-precompile';
 import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
 import $ from 'jquery';
 
-moduleForComponent('pikaday-inputless', 'Integration | Component | pikaday inputless', {
-  integration: true
-});
+moduleForComponent(
+  'pikaday-inputless',
+  'Integration | Component | pikaday inputless',
+  {
+    integration: true
+  }
+);
 
 test('it has no input tag visible', function(assert) {
   this.render(hbs`{{pikaday-inputless}}`);
@@ -36,5 +40,8 @@ test('setting the value attribute should select the correct date', function(asse
 
 test('using disabled hides the picker', function(assert) {
   this.render(hbs`{{pikaday-inputless disabled=true}}`);
-  assert.ok($('.pika-single').hasClass('is-hidden'), 'should be closed before clicking');
+  assert.ok(
+    $('.pika-single').hasClass('is-hidden'),
+    'should be closed before clicking'
+  );
 });

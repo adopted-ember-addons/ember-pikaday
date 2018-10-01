@@ -23,7 +23,6 @@
     "ember-ajax": "^3.0.0",
     "ember-cli": "~2.18.2",
     "ember-cli-dependency-checker": "^2.0.0",
-    "ember-cli-eslint": "^4.2.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-qunit": "^4.1.1",
@@ -37,9 +36,13 @@
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.18.2",
     "ember-source-channel-url": "^1.0.1",
+    "eslint": "4",
+    "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-ember": "^5.0.3",
     "eslint-plugin-node": "^5.2.1",
-    "loader.js": "^4.2.3"
+    "eslint-plugin-prettier": "^2.7.0",
+    "loader.js": "^4.2.3",
+    "prettier": "^1.14.3"
   },
   "keywords": [
     "ember-addon",

@@ -12,5 +12,5 @@ export default Component.extend(PikadayMixin, {
   },
 
   onPikadayOpen() {},
-  onPikadayClose() {},
+  onPikadayClose() {}
 });

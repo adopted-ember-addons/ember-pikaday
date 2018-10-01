@@ -9,7 +9,7 @@ const later = Ember.run.later;
 
 const getFirstWeekendDayNumber = function() {
   let date = new Date();
-  return [1,2,3,4,5,6,7].filter(number => {
+  return [1, 2, 3, 4, 5, 6, 7].filter(number => {
     date.setDate(number);
     return date.getDay() === 0 || date.getDay() === 6;
   })[0];
@@ -33,7 +33,7 @@ moduleForComponent('pikaday-input', 'Integration | Component | pikaday input', {
 
   afterEach() {
     Ember.run.later = later;
-  },
+  }
 });
 
 test('it is an input tag', function(assert) {
@@ -72,7 +72,9 @@ test('clearing the date should send an action', function(assert) {
     assert.equal(selectedDate, null);
   });
 
-  this.render(hbs`{{pikaday-input value=value onSelection=(action 'onSelection')}}`);
+  this.render(
+    hbs`{{pikaday-input value=value onSelection=(action 'onSelection')}}`
+  );
   openDatepicker(this.$('input'));
 
   this.$('input').val('');
@@ -172,7 +174,6 @@ test('set new date value with a new min date', function(assert) {
   assert.equal(this.$('input').val(), '09.08.2010');
 });
 
-
 test('set new date value with a new max date', function(assert) {
   var tommorow = new Date(2010, 7, 10);
 
@@ -231,8 +232,29 @@ test('default i18n configuration of Pikaday can be changed', function(assert) {
   const i18n = {
     previousMonth: 'Vorheriger Monat',
     nextMonth: 'Nächster Monat',
-    months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-    weekdays: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+    months: [
+      'Januar',
+      'Februar',
+      'März',
+      'April',
+      'Mai',
+      'Juni',
+      'Juli',
+      'August',
+      'September',
+      'Oktober',
+      'November',
+      'Dezember'
+    ],
+    weekdays: [
+      'Sonntag',
+      'Montag',
+      'Dienstag',
+      'Mittwoch',
+      'Donnerstag',
+      'Freitag',
+      'Samstag'
+    ],
     weekdaysShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']
   };
   this.set('i18n', i18n);
@@ -249,7 +271,9 @@ test('if utc is set the date returned from pikaday should be in UTC format', fun
   this.on('onSelection', function(selectedDate) {
     assert.deepEqual(selectedDate, expectedDate);
   });
-  this.render(hbs`{{pikaday-input onSelection=(action 'onSelection') useUTC=true}}`);
+  this.render(
+    hbs`{{pikaday-input onSelection=(action 'onSelection') useUTC=true}}`
+  );
 
   var interactor = openDatepicker(this.$('input'));
 
@@ -334,22 +358,43 @@ test('the input tag has the autocomplete attribute if it has been set on the com
 test('using disabled prevent from opening pikaday', function(assert) {
   this.render(hbs`{{pikaday-input disabled=true}}`);
 
-  assert.ok($('.pika-single').hasClass('is-hidden'), 'should be closed before clicking');
+  assert.ok(
+    $('.pika-single').hasClass('is-hidden'),
+    'should be closed before clicking'
+  );
   openDatepicker(this.$('input'));
-  assert.ok($('.pika-single').hasClass('is-hidden', 'should still be closed after clicking'));
+  assert.ok(
+    $('.pika-single').hasClass(
+      'is-hidden',
+      'should still be closed after clicking'
+    )
+  );
 });
 
 test('the disabled attribute of the component is well linked with the input attribute', function(assert) {
   this.render(hbs`{{pikaday-input disabled=disabled}}`);
 
-  assert.notOk(this.$('input').is('[disabled]'),  'disabled should not be set');
-  assert.ok($('.pika-single').hasClass('is-hidden'), 'not disabled and pika-single is hidden');
+  assert.notOk(this.$('input').is('[disabled]'), 'disabled should not be set');
+  assert.ok(
+    $('.pika-single').hasClass('is-hidden'),
+    'not disabled and pika-single is hidden'
+  );
   openDatepicker(this.$('input'));
-  assert.notOk($('.pika-single').hasClass('is-hidden', 'not disabled and pika-single is shown'));
+  assert.notOk(
+    $('.pika-single').hasClass(
+      'is-hidden',
+      'not disabled and pika-single is shown'
+    )
+  );
 
   this.set('disabled', true);
   assert.ok(this.$('input').is('[disabled]'), 'disabled should now be set');
-  assert.ok($('.pika-single').hasClass('is-hidden', 'disabled and pika-single should be hidden automatically'));
+  assert.ok(
+    $('.pika-single').hasClass(
+      'is-hidden',
+      'disabled and pika-single should be hidden automatically'
+    )
+  );
 });
 
 test('firstDay defaults to Monday (1)', function(assert) {
@@ -375,7 +420,9 @@ test('if an options hash is passed, default options are overridden', function(as
   this.set('onOpen', function() {
     assert.ok(true);
   });
-  this.render(hbs`{{pikaday-input options=(hash onOpen=onOpen disableWeekends=true)}}`);
+  this.render(
+    hbs`{{pikaday-input options=(hash onOpen=onOpen disableWeekends=true)}}`
+  );
   openDatepicker(this.$('input'));
   const weekendDay = getFirstWeekendDayNumber();
 
@@ -385,7 +432,9 @@ test('if an options hash is passed, default options are overridden', function(as
 test('if updates pikaday config if options hash is changed', function(assert) {
   const weekendDay = getFirstWeekendDayNumber();
   this.set('disableWeekends', true);
-  this.render(hbs`{{pikaday-input options=(hash disableWeekends=disableWeekends)}}`);
+  this.render(
+    hbs`{{pikaday-input options=(hash disableWeekends=disableWeekends)}}`
+  );
 
   openDatepicker(this.$('input'));
   assert.ok($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
@@ -396,42 +445,56 @@ test('if updates pikaday config if options hash is changed', function(assert) {
   assert.notOk($(`td[data-day=${weekendDay}]`).hasClass('is-disabled'));
 });
 
-test('if minDate is greater than value we set pikaday\'s current date to minDate', function(assert) {
+test("if minDate is greater than value we set pikaday's current date to minDate", function(assert) {
   assert.expect(1);
 
   let today = new Date();
-  let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
+  let tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
 
   this.set('currentDate', today);
   this.set('minDate', today);
-  this.render(hbs`{{pikaday-input minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+  this.render(
+    hbs`{{pikaday-input minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`
+  );
 
   this.set('minDate', tomorrow);
-  assert.equal(this.get('currentDate').getDate(), tomorrow.getDate(), 'value should change');
+  assert.equal(
+    this.get('currentDate').getDate(),
+    tomorrow.getDate(),
+    'value should change'
+  );
 });
 
-test('if maxDate is lower than value we set pikaday\'s current date to maxDate', function(assert) {
+test("if maxDate is lower than value we set pikaday's current date to maxDate", function(assert) {
   assert.expect(1);
 
   let today = new Date();
-  let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
+  let tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
 
   this.set('currentDate', tomorrow);
   this.set('maxDate', tomorrow);
-  this.render(hbs`{{pikaday-input maxDate=maxDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+  this.render(
+    hbs`{{pikaday-input maxDate=maxDate value=currentDate onSelection=(action (mut currentDate)) }}`
+  );
 
   this.set('maxDate', today);
-  assert.equal(this.get('currentDate').getDate(), today.getDate(), 'value should change');
+  assert.equal(
+    this.get('currentDate').getDate(),
+    today.getDate(),
+    'value should change'
+  );
 });
 
-test('if value is null we don\'t enforce minDate or maxDate', function(assert) {
+test("if value is null we don't enforce minDate or maxDate", function(assert) {
   assert.expect(1);
 
   let today = new Date();
-  let tomorrow = new Date( Date.now() + (60 * 60 * 24 * 1000));
+  let tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
 
   this.set('currentDate', null);
-  this.render(hbs`{{pikaday-input maxDate=maxDate minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`);
+  this.render(
+    hbs`{{pikaday-input maxDate=maxDate minDate=minDate value=currentDate onSelection=(action (mut currentDate)) }}`
+  );
 
   run(() => this.set('maxDate', tomorrow));
   run(() => this.set('minDate', today));
@@ -443,31 +506,41 @@ test('the original date passed to minDate or maxDate is not modified by pikaday'
 
   let today = new Date();
   let todayCopy = new Date(today);
-  let tomorrow = new Date(Date.now() + (60 * 60 * 24 * 1000));
+  let tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
   let tomorrowCopy = new Date(tomorrow);
 
-  this.render(hbs`{{pikaday-input minDate=minDate maxDate=maxDate value=today}}`);
+  this.render(
+    hbs`{{pikaday-input minDate=minDate maxDate=maxDate value=today}}`
+  );
 
   run(() => this.set('minDate', today));
   run(() => this.set('maxDate', tomorrow));
 
-  assert.equal(today.toISOString(), todayCopy.toISOString(), 'value should not change');
-  assert.equal(tomorrow.toISOString(), tomorrowCopy.toISOString(), 'value should not change');
+  assert.equal(
+    today.toISOString(),
+    todayCopy.toISOString(),
+    'value should not change'
+  );
+  assert.equal(
+    tomorrow.toISOString(),
+    tomorrowCopy.toISOString(),
+    'value should not change'
+  );
 });
 
 test('it sets the defaultDate', function(assert) {
-  assert.expect(1)
+  assert.expect(1);
 
   const today = new Date();
 
-  this.set('defaultDate', today)
-  this.render(hbs`{{pikaday-input defaultDate=defaultDate}}`)
+  this.set('defaultDate', today);
+  this.render(hbs`{{pikaday-input defaultDate=defaultDate}}`);
 
-  assert.equal(this.get('defaultDate'), today)
+  assert.equal(this.get('defaultDate'), today);
 });
 
 test('it sets the initial date to the the defaultDate ', function(assert) {
-  assert.expect(3)
+  assert.expect(3);
 
   const date = new Date(2010, 7, 10);
 
@@ -483,7 +556,7 @@ test('it sets the initial date to the the defaultDate ', function(assert) {
 
 test('the interactor should select the correct date when previous and next months are displayed', function(assert) {
   const expectedDate = new Date(2018, 5, 28);
-  this.set('options', { showDaysInNextAndPreviousMonths: true })
+  this.set('options', { showDaysInNextAndPreviousMonths: true });
   this.render(hbs`{{pikaday-input options=options}}`);
 
   var interactor = openDatepicker(this.$('input'));
