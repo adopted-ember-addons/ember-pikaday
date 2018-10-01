@@ -1,10 +1,9 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, fillIn } from '@ember/test-helpers';
+import { render, click, fillIn, settled } from '@ember/test-helpers';
 import findAll from 'ember-pikaday/test-support/-private/find-all';
 import hbs from 'htmlbars-inline-precompile';
 import { close as closePikaday, Interactor } from 'ember-pikaday/test-support';
-import { run, bind, later } from '@ember/runloop';
 import td from 'testdouble';
 
 const getFirstWeekendDayNumber = function() {
@@ -23,20 +22,6 @@ const getDisabledDayCB = weekendDay => e => {
 
 module('Integration | Component | pikaday-input', function(hooks) {
   setupRenderingTest(hooks);
-
-  hooks.beforeEach(function() {
-    run.later = function(ctx, fn) {
-      if (typeof fn === 'function') {
-        bind(ctx, fn)();
-      } else {
-        ctx();
-      }
-    };
-  });
-
-  hooks.afterEach(function() {
-    run.later = later;
-  });
 
   test('it is an input tag', async function(assert) {
     await render(hbs`
@@ -240,9 +225,8 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input value=tommorow minDate=tommorow}}
     `);
 
-    run(() => {
-      this.set('tommorow', new Date(2010, 7, 9));
-    });
+    this.set('tommorow', new Date(2010, 7, 9));
+    await settled();
 
     assert.equal(this.$('input').val(), '09.08.2010');
   });
@@ -255,9 +239,8 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input value=tommorow maxDate=tommorow}}
     `);
 
-    run(() => {
-      this.set('tommorow', new Date(2010, 7, 11));
-    });
+    this.set('tommorow', new Date(2010, 7, 11));
+    await settled();
 
     assert.equal(this.$('input').val(), '11.08.2010');
   });
@@ -607,6 +590,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     `);
 
     this.set('minDate', tomorrow);
+    await settled();
 
     assert.equal(
       this.get('currentDate').getDate(),
@@ -629,6 +613,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     `);
 
     this.set('maxDate', today);
+    await settled();
 
     assert.equal(
       this.get('currentDate').getDate(),
@@ -649,8 +634,8 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input maxDate=maxDate minDate=minDate value=currentDate onSelection=(action (mut currentDate))}}
     `);
 
-    run(() => this.set('maxDate', tomorrow));
-    run(() => this.set('minDate', today));
+    this.set('maxDate', tomorrow);
+    this.set('minDate', today);
 
     assert.equal(this.get('currentDate'), null, 'value should be null');
   });
@@ -667,8 +652,8 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input minDate=minDate maxDate=maxDate value=today}}
     `);
 
-    run(() => this.set('minDate', today));
-    run(() => this.set('maxDate', tomorrow));
+    this.set('minDate', today);
+    this.set('maxDate', tomorrow);
 
     assert.equal(
       today.toISOString(),
