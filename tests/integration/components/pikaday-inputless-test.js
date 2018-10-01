@@ -1,9 +1,9 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click } from '@ember/test-helpers';
-import { Interactor } from 'ember-pikaday/test-support';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import td from 'testdouble';
+import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
+import $ from 'jquery';
 
 module('Integration | Component | pikaday-inputless', function(hooks) {
   setupRenderingTest(hooks);
@@ -13,22 +13,21 @@ module('Integration | Component | pikaday-inputless', function(hooks) {
       {{pikaday-inputless}}
     `);
 
-    assert.dom('input[type=hidden]').exists();
+    assert.equal(this.$('input[type=hidden]').length, 1);
   });
 
   test('selecting a date should send an action', async function(assert) {
     const expectedDate = new Date(2013, 3, 28);
-    const onSelection = td.function();
-    this.set('onSelection', onSelection);
+    this.set('onSelection', function(selectedDate) {
+      assert.deepEqual(selectedDate, expectedDate);
+    });
 
     await render(hbs`
       {{pikaday-inputless onSelection=(action onSelection)}}
     `);
 
-    await click('input');
-    await Interactor.selectDate(expectedDate);
-
-    assert.verify(onSelection(expectedDate));
+    let interactor = openDatepicker(this.$('input'));
+    interactor.selectDate(expectedDate);
   });
 
   test('setting the value attribute should select the correct date', async function(assert) {
@@ -38,11 +37,11 @@ module('Integration | Component | pikaday-inputless', function(hooks) {
       {{pikaday-inputless value=value}}
     `);
 
-    await click('input');
+    var interactor = openDatepicker(this.$('input'));
 
-    assert.equal(Interactor.selectedYear(), 2010);
-    assert.equal(Interactor.selectedMonth(), 7);
-    assert.equal(Interactor.selectedDay(), 10);
+    assert.equal(interactor.selectedYear(), 2010);
+    assert.equal(interactor.selectedMonth(), 7);
+    assert.equal(interactor.selectedDay(), 10);
   });
 
   test('using disabled hides the picker', async function(assert) {
@@ -50,8 +49,9 @@ module('Integration | Component | pikaday-inputless', function(hooks) {
       {{pikaday-inputless disabled=true}}
     `);
 
-    assert
-      .dom('.pika-single')
-      .hasClass('is-hidden', 'should be closed before clicking');
+    assert.ok(
+      $('.pika-single').hasClass('is-hidden'),
+      'should be closed before clicking'
+    );
   });
 });
