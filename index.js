@@ -3,7 +3,8 @@
 var fastbootTransform = require('fastboot-transform');
 
 module.exports = {
-  name: 'ember-pikaday',
+  name: require('./package').name,
+
   options: {
     nodeAssets: {
       pikaday: {
