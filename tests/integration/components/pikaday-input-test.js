@@ -143,7 +143,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input value=value}}
     `);
 
-    assert.equal(this.$('input').val(), '10.08.2010');
+    assert.dom('input').hasValue('10.08.2010');
   });
 
   test('format of the input is changeable', async function(assert) {
@@ -154,7 +154,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
       {{pikaday-input value=value format=format}}
     `);
 
-    assert.equal(this.$('input').val(), '2010.10.08');
+    assert.dom('input').hasValue('2010.10.08');
   });
 
   test('set min date', async function(assert) {
@@ -228,7 +228,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('tommorow', new Date(2010, 7, 9));
     await settled();
 
-    assert.equal(this.$('input').val(), '09.08.2010');
+    assert.dom('input').hasValue('09.08.2010');
   });
 
   test('set new date value with a new max date', async function(assert) {
@@ -242,7 +242,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('tommorow', new Date(2010, 7, 11));
     await settled();
 
-    assert.equal(this.$('input').val(), '11.08.2010');
+    assert.dom('input').hasValue('11.08.2010');
   });
 
   test('theme option adds theme as CSS class to DOM element', async function(assert) {
