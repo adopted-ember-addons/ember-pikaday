@@ -626,7 +626,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
     assert.equal(this.get('value'), null);
 
-    assert.equal(this.$('input').val(), "");
+    assert.equal(this.$('input').val(), '');
   });
 
   test("if maxDate is lower than value we set pikaday's current date to maxDate", async function(assert) {
