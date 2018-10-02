@@ -1,9 +1,8 @@
----
 language: node_js
 node_js:
   # we recommend testing addons with the same minimum supported node version as Ember CLI
   # so that your addon works for all apps
-  - "6"
+  - '6'
 
 sudo: false
 dist: trusty
@@ -12,6 +11,7 @@ addons:
   chrome: stable
 
 cache:
+  yarn: true
   directories:
     - $HOME/.npm
 
@@ -28,20 +28,20 @@ jobs:
   include:
     # runs linting and tests with current locked deps
 
-    - stage: "Tests"
-      name: "Tests"
+    - stage: 'Tests'
+      name: 'Tests'
       script:
-        - npm run lint:hbs
-        - npm run lint:js
-        - npm test
+        - yarn lint:hbs
+        - yarn lint:js
+        - yarn test
 
     # we recommend new addons test the current and previous LTS
     # as well as latest stable release (bonus points to beta/canary)
-    - stage: "Additional Tests"
-      env: EMBER_TRY_SCENARIO=ember-lts-2.16
+    - stage: 'Additional Tests'
+      env: EMBER_TRY_SCENARIO=ember-lts-2.12
+    - env: EMBER_TRY_SCENARIO=ember-lts-2.16
     - env: EMBER_TRY_SCENARIO=ember-lts-2.18
     - env: EMBER_TRY_SCENARIO=ember-release
     - env: EMBER_TRY_SCENARIO=ember-beta
     - env: EMBER_TRY_SCENARIO=ember-canary
     - env: EMBER_TRY_SCENARIO=ember-default-with-jquery
-
