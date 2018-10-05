@@ -3,7 +3,7 @@ import moment from 'moment';
 
 export default {
   name: 'setup-pikaday-i18n',
-  initialize: function() {
+  initialize() {
     const i18n = EmberObject.extend({
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',

@@ -19,7 +19,7 @@ const openDatepicker = function(element) {
 const PikadayInteractor = {
   selectorForMonthSelect: '.pika-lendar:visible .pika-select-month',
   selectorForYearSelect: '.pika-lendar:visible .pika-select-year',
-  selectDate: function(date) {
+  selectDate(date) {
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
@@ -39,22 +39,22 @@ const PikadayInteractor = {
       selectEvent
     );
   },
-  selectedDay: function() {
+  selectedDay() {
     return $('.pika-single td.is-selected button').html();
   },
-  selectedMonth: function() {
+  selectedMonth() {
     return $(this.selectorForMonthSelect + ' option:selected').val();
   },
-  selectedYear: function() {
+  selectedYear() {
     return $(this.selectorForYearSelect + ' option:selected').val();
   },
-  minimumYear: function() {
+  minimumYear() {
     return $(this.selectorForYearSelect)
       .children()
       .first()
       .val();
   },
-  maximumYear: function() {
+  maximumYear() {
     return $(this.selectorForYearSelect)
       .children()
       .last()

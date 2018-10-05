@@ -120,7 +120,7 @@ export default Mixin.create({
     run.cancel(this.get('cancelToken'));
   },
 
-  setPikadayDate: function() {
+  setPikadayDate() {
     const format = 'YYYY-MM-DD';
     const value = this.get('value');
 
@@ -135,7 +135,7 @@ export default Mixin.create({
     }
   },
 
-  setMinDate: function() {
+  setMinDate() {
     const { pikaday, minDate, value } = getProperties(this, [
       'pikaday',
       'minDate',
@@ -160,7 +160,7 @@ export default Mixin.create({
     }
   },
 
-  setMaxDate: function() {
+  setMaxDate() {
     const { pikaday, maxDate, value } = getProperties(this, [
       'pikaday',
       'maxDate',
@@ -187,15 +187,15 @@ export default Mixin.create({
   onSelection() {},
   onDraw() {},
 
-  onPikadaySelect: function() {
+  onPikadaySelect() {
     this.userSelectedDate();
   },
 
-  onPikadayRedraw: function() {
+  onPikadayRedraw() {
     this.get('onDraw')();
   },
 
-  userSelectedDate: function() {
+  userSelectedDate() {
     let selectedDate = this.get('pikaday').getDate();
 
     if (this.get('useUTC')) {
@@ -211,7 +211,7 @@ export default Mixin.create({
     this.get('onSelection')(selectedDate);
   },
 
-  determineYearRange: function() {
+  determineYearRange() {
     const yearRange = this.get('yearRange');
 
     if (yearRange) {
