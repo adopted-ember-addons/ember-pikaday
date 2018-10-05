@@ -10,20 +10,20 @@ deprecate(
   }
 );
 
-var openDatepicker = function(element) {
+const openDatepicker = function(element) {
   $(element).click();
 
   return PikadayInteractor;
 };
 
-var PikadayInteractor = {
+const PikadayInteractor = {
   selectorForMonthSelect: '.pika-lendar:visible .pika-select-month',
   selectorForYearSelect: '.pika-lendar:visible .pika-select-year',
   selectDate: function(date) {
-    var day = date.getDate();
-    var month = date.getMonth();
-    var year = date.getFullYear();
-    var selectEvent = 'ontouchend' in document ? 'touchend' : 'mousedown';
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const selectEvent = 'ontouchend' in document ? 'touchend' : 'mousedown';
 
     $(this.selectorForYearSelect).val(year);
     triggerNativeEvent($(this.selectorForYearSelect)[0], 'change');
@@ -64,7 +64,7 @@ var PikadayInteractor = {
 
 function triggerNativeEvent(element, eventName) {
   if (document.createEvent) {
-    var event = document.createEvent('Events');
+    const event = document.createEvent('Events');
     event.initEvent(eventName, true, false);
     element.dispatchEvent(event);
   } else {

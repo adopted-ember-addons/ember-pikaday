@@ -14,6 +14,8 @@ module.exports = {
     browser: true
   },
   rules: {
+    'no-var': 'error',
+    'prefer-const': 'error'
   },
   overrides: [
     // node files
