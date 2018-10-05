@@ -7,7 +7,7 @@ import { close as closePikaday, Interactor } from 'ember-pikaday/test-support';
 import td from 'testdouble';
 
 const getFirstWeekendDayNumber = function() {
-  let date = new Date();
+  const date = new Date();
   return [1, 2, 3, 4, 5, 6, 7].filter(number => {
     date.setDate(number);
     return date.getDay() === 0 || date.getDay() === 6;
@@ -579,8 +579,8 @@ module('Integration | Component | pikaday-input', function(hooks) {
   test("if minDate is greater than value we set pikaday's current date to minDate", async function(assert) {
     assert.expect(1);
 
-    let today = new Date();
-    let tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
+    const today = new Date();
+    const tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
 
     this.set('currentDate', today);
     this.set('minDate', today);
@@ -602,8 +602,8 @@ module('Integration | Component | pikaday-input', function(hooks) {
   test("if maxDate is lower than value we set pikaday's current date to maxDate", async function(assert) {
     assert.expect(1);
 
-    let today = new Date();
-    let tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
+    const today = new Date();
+    const tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
 
     this.set('currentDate', tomorrow);
     this.set('maxDate', tomorrow);
@@ -625,8 +625,8 @@ module('Integration | Component | pikaday-input', function(hooks) {
   test("if value is null we don't enforce minDate or maxDate", async function(assert) {
     assert.expect(1);
 
-    let today = new Date();
-    let tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
+    const today = new Date();
+    const tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
 
     this.set('currentDate', null);
 
@@ -643,10 +643,10 @@ module('Integration | Component | pikaday-input', function(hooks) {
   test('the original date passed to minDate or maxDate is not modified by pikaday', async function(assert) {
     assert.expect(2);
 
-    let today = new Date();
-    let todayCopy = new Date(today);
-    let tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
-    let tomorrowCopy = new Date(tomorrow);
+    const today = new Date();
+    const todayCopy = new Date(today);
+    const tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
+    const tomorrowCopy = new Date(tomorrow);
 
     await render(hbs`
       {{pikaday-input minDate=minDate maxDate=maxDate value=today}}

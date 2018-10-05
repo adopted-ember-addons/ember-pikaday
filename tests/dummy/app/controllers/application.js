@@ -16,7 +16,7 @@ export default Controller.extend({
   },
 
   actions: {
-    clearStartDate: function() {
+    clearStartDate() {
       this.set('startDate', null);
     },
     doSomethingWithSelectedValue(value) {

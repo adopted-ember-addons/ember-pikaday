@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(environment /* appConfig */) {
-  let ENV = {
+  const ENV = {
     APP: {}
   };
 

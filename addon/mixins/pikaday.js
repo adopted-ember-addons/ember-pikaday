@@ -10,7 +10,7 @@ import moment from 'moment';
 export default Mixin.create({
   _options: computed('options', 'i18n', {
     get() {
-      let options = this._defaultOptions();
+      const options = this._defaultOptions();
 
       if (isPresent(this.get('i18n'))) {
         if (isPresent(this.get('i18n').t)) {
@@ -104,7 +104,7 @@ export default Mixin.create({
   },
 
   setupPikaday() {
-    let pikaday = new Pikaday(this.get('_options'));
+    const pikaday = new Pikaday(this.get('_options'));
 
     if (this.get('defaultDate')) {
       this.set('value', this.get('defaultDate'));
@@ -120,7 +120,7 @@ export default Mixin.create({
     run.cancel(this.get('cancelToken'));
   },
 
-  setPikadayDate: function() {
+  setPikadayDate() {
     const format = 'YYYY-MM-DD';
     const value = this.get('value');
 
@@ -135,7 +135,7 @@ export default Mixin.create({
     }
   },
 
-  setMinDate: function() {
+  setMinDate() {
     const { pikaday, minDate, value } = getProperties(this, [
       'pikaday',
       'minDate',
@@ -160,7 +160,7 @@ export default Mixin.create({
     }
   },
 
-  setMaxDate: function() {
+  setMaxDate() {
     const { pikaday, maxDate, value } = getProperties(this, [
       'pikaday',
       'maxDate',
@@ -187,16 +187,16 @@ export default Mixin.create({
   onSelection() {},
   onDraw() {},
 
-  onPikadaySelect: function() {
+  onPikadaySelect() {
     this.userSelectedDate();
   },
 
-  onPikadayRedraw: function() {
+  onPikadayRedraw() {
     this.get('onDraw')();
   },
 
-  userSelectedDate: function() {
-    var selectedDate = this.get('pikaday').getDate();
+  userSelectedDate() {
+    let selectedDate = this.get('pikaday').getDate();
 
     if (this.get('useUTC')) {
       selectedDate = moment
@@ -211,12 +211,12 @@ export default Mixin.create({
     this.get('onSelection')(selectedDate);
   },
 
-  determineYearRange: function() {
-    var yearRange = this.get('yearRange');
+  determineYearRange() {
+    const yearRange = this.get('yearRange');
 
     if (yearRange) {
       if (yearRange.indexOf(',') > -1) {
-        var yearArray = yearRange.split(',');
+        const yearArray = yearRange.split(',');
 
         if (yearArray[1] === 'currentYear') {
           yearArray[1] = new Date().getFullYear();

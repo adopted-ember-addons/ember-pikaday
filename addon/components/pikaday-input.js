@@ -27,11 +27,11 @@ export default Component.extend(PikadayMixin, {
     this.setupPikaday();
   },
 
-  onPikadayOpen: function() {
+  onPikadayOpen() {
     this.get('onOpen')();
   },
 
-  onPikadayClose: function() {
+  onPikadayClose() {
     if (this.get('pikaday').getDate() === null || isEmpty(this.$().val())) {
       this.set('value', null);
       this.get('onSelection')(null);

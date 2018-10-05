@@ -10,20 +10,20 @@ deprecate(
   }
 );
 
-var openDatepicker = function(element) {
+const openDatepicker = function(element) {
   $(element).click();
 
   return PikadayInteractor;
 };
 
-var PikadayInteractor = {
+const PikadayInteractor = {
   selectorForMonthSelect: '.pika-lendar:visible .pika-select-month',
   selectorForYearSelect: '.pika-lendar:visible .pika-select-year',
-  selectDate: function(date) {
-    var day = date.getDate();
-    var month = date.getMonth();
-    var year = date.getFullYear();
-    var selectEvent = 'ontouchend' in document ? 'touchend' : 'mousedown';
+  selectDate(date) {
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const selectEvent = 'ontouchend' in document ? 'touchend' : 'mousedown';
 
     $(this.selectorForYearSelect).val(year);
     triggerNativeEvent($(this.selectorForYearSelect)[0], 'change');
@@ -39,22 +39,22 @@ var PikadayInteractor = {
       selectEvent
     );
   },
-  selectedDay: function() {
+  selectedDay() {
     return $('.pika-single td.is-selected button').html();
   },
-  selectedMonth: function() {
+  selectedMonth() {
     return $(this.selectorForMonthSelect + ' option:selected').val();
   },
-  selectedYear: function() {
+  selectedYear() {
     return $(this.selectorForYearSelect + ' option:selected').val();
   },
-  minimumYear: function() {
+  minimumYear() {
     return $(this.selectorForYearSelect)
       .children()
       .first()
       .val();
   },
-  maximumYear: function() {
+  maximumYear() {
     return $(this.selectorForYearSelect)
       .children()
       .last()
@@ -64,7 +64,7 @@ var PikadayInteractor = {
 
 function triggerNativeEvent(element, eventName) {
   if (document.createEvent) {
-    var event = document.createEvent('Events');
+    const event = document.createEvent('Events');
     event.initEvent(eventName, true, false);
     element.dispatchEvent(event);
   } else {
