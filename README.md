@@ -1,6 +1,6 @@
 # ember-pikaday
 
-[![Build Status](https://travis-ci.org/adopted-ember-addons/ember-pikaday.svg?branch=master)](https://travis-ci.org/adopted-ember-addons/ember-pikaday)
+[![Build Status](https://travis-ci.com/adopted-ember-addons/ember-pikaday.svg?branch=master)](https://travis-ci.com/adopted-ember-addons/ember-pikaday)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-pikaday.svg)](https://emberobserver.com/addons/ember-pikaday)
 [![NPM](https://badgen.net/npm/v/ember-pikaday)](https://www.npmjs.com/package/ember-pikaday)
 
