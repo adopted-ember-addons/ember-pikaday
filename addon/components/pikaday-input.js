@@ -20,7 +20,7 @@ export default Component.extend(PikadayMixin, {
   ],
 
   type: 'text',
-  autocomplete: false,
+  autocomplete: 'off',
 
   didInsertElement() {
     this.set('field', this.element);
