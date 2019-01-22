@@ -58,7 +58,7 @@
     "testdouble": "^2.0.0"
   },
   "dependencies": {
-    "ember-cli-babel": "^6.16.0",
+    "ember-cli-babel": "^7.3.0",
     "ember-cli-htmlbars": "^3.0.0",
     "ember-cli-moment-shim": "^3.6.0",
     "ember-cli-node-assets": "^0.2.2",
