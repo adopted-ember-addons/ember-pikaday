@@ -176,6 +176,10 @@ If you don't want to show an input field, you can use the `pikaday-inputless` co
 
 Localizing the datepicker is possible in two steps. To localize the output of the datepicker, this is the formatted string visible in the input field, you simply include all the locales by following the [ember-cli-moment-shim instructions](https://github.com/jasonmit/ember-cli-moment-shim#cherry-pick-locales-optimal) and include the following in your `ember-cli-build.js`
 
+```js
+app.import('node_modules/moment/locale/de.js');
+```
+
 To localize the datepicker itself, this is the popup you see after clicking the input, a little more work is necessary. The prefered way to do this is writting a custom initializer to inject a localized `i18n` object into the datepicker component. Naturally you can use your own localized strings instead of the ones provided by Moment.js.
 
 ```js
