@@ -1,8 +1,7 @@
 import { triggerEvent } from '@ember/test-helpers';
-import $ from 'jquery';
 
-const MONTH_SELECTOR = '.pika-lendar:visible .pika-select-month';
-const YEAR_SELECTOR = '.pika-lendar:visible .pika-select-year';
+const MONTH_SELECTOR = '.pika-lendar .pika-select-month';
+const YEAR_SELECTOR = '.pika-lendar .pika-select-year';
 
 /**
  * @param {Date} date
@@ -13,42 +12,39 @@ export async function selectDate(date) {
   const year = date.getFullYear();
   const selectEvent = 'ontouchend' in document ? 'touchend' : 'mousedown';
 
-  $(YEAR_SELECTOR).val(year);
-  await triggerEvent($(YEAR_SELECTOR)[0], 'change');
+  const yearElement = document.querySelector(YEAR_SELECTOR);
+  yearElement.value = year;
+  await triggerEvent(yearElement, 'change');
 
-  $(MONTH_SELECTOR).val(month);
-  await triggerEvent($(MONTH_SELECTOR)[0], 'change');
+  const monthElement = document.querySelector(MONTH_SELECTOR);
+  monthElement.value = month;
+  await triggerEvent(monthElement, 'change');
 
   await triggerEvent(
-    $(
-      'td[data-day="' + day + '"]:not(.is-outside-current-month) button:visible'
-    )[0],
+    document.querySelector(
+      'td[data-day="' + day + '"]:not(.is-outside-current-month) button'
+    ),
     selectEvent
   );
 }
 
 export function selectedDay() {
-  return $('.pika-single td.is-selected button').html();
+  return document.querySelector('.pika-single td.is-selected button').innerHTML;
 }
 
 export function selectedMonth() {
-  return $(MONTH_SELECTOR + ' option:selected').val();
+  return document.querySelector(MONTH_SELECTOR).value;
 }
 
 export function selectedYear() {
-  return $(YEAR_SELECTOR + ' option:selected').val();
+  return document.querySelector(YEAR_SELECTOR).value;
 }
 
 export function minimumYear() {
-  return $(YEAR_SELECTOR)
-    .children()
-    .first()
-    .val();
+  return document.querySelector(YEAR_SELECTOR).options[0].value;
 }
 
 export function maximumYear() {
-  return $(YEAR_SELECTOR)
-    .children()
-    .last()
-    .val();
+  const options = document.querySelector(YEAR_SELECTOR).options;
+  return options[options.length - 1].value;
 }
