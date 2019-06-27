@@ -34,7 +34,7 @@ export default Component.extend(PikadayMixin, {
   onPikadayClose() {
     if (
       this.get('pikaday').getDate() === null ||
-      isEmpty(this.get('element.value'))
+      isEmpty(this.get('element').value)
     ) {
       this.set('value', null);
       this.get('onSelection')(null);
