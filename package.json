@@ -15,7 +15,7 @@
     "pikaday",
     "datepicker"
   ],
-  "repository": "https://github.com/edgycircle/ember-pikaday",
+  "repository": "https://github.com/adopted-ember-addons/ember-pikaday",
   "license": "MIT",
   "author": "David Strauß",
   "directories": {
