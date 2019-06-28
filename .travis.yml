@@ -6,7 +6,6 @@ node_js:
 
 sudo: false
 dist: trusty
-
 addons:
   chrome: stable
 
@@ -19,6 +18,10 @@ env:
   global:
     # See https://git.io/vdao3 for details.
     - JOBS=1
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
 
 jobs:
   fail_fast: true
