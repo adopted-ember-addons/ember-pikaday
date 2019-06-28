@@ -6,8 +6,11 @@ export default Component.extend(PikadayMixin, {
   layout,
 
   didInsertElement() {
-    this.set('field', this.$('.ember-pikaday-input')[0]);
-    this.set('pikadayContainer', this.$('.ember-pikaday-container')[0]);
+    this.set('field', this.element.querySelector('.ember-pikaday-input'));
+    this.set(
+      'pikadayContainer',
+      this.element.querySelector('.ember-pikaday-container')
+    );
     this.setupPikaday();
   },
 
