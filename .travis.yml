@@ -6,6 +6,7 @@ node_js:
 
 sudo: false
 dist: trusty
+
 addons:
   chrome: stable
 
