@@ -4,8 +4,10 @@
   "description": "A tested datepicker component for Ember CLI projects including test helpers for your own acceptance tests.",
   "scripts": {
     "build": "ember build",
+    "changelog": "lerna-changelog",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
+    "release": "release-it",
     "start": "ember serve",
     "test": "ember test",
     "test:all": "ember try:each"
@@ -51,9 +53,12 @@
     "eslint-plugin-ember": "^5.2.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-prettier": "^2.7.0",
+    "lerna-changelog": "^0.8.2",
     "loader.js": "^4.7.0",
     "prettier": "^1.14.3",
     "qunit-dom": "^0.8.0",
+    "release-it": "^12.3.0",
+    "release-it-lerna-changelog": "^1.0.3",
     "testdouble": "^2.0.0"
   },
   "dependencies": {
@@ -69,5 +74,18 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
+  },
+  "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md"
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true
+    }
   }
 }
