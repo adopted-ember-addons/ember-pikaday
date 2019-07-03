@@ -2,6 +2,18 @@
   "name": "ember-pikaday",
   "version": "2.3.1",
   "description": "A tested datepicker component for Ember CLI projects including test helpers for your own acceptance tests.",
+  "keywords": [
+    "datepicker",
+    "ember-addon",
+    "pikaday"
+  ],
+  "repository": "https://github.com/adopted-ember-addons/ember-pikaday",
+  "license": "MIT",
+  "author": "David Strauß",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
   "scripts": {
     "build": "ember build",
     "changelog": "lerna-changelog",
@@ -12,17 +24,13 @@
     "test": "ember test",
     "test:all": "ember try:each"
   },
-  "keywords": [
-    "ember-addon",
-    "pikaday",
-    "datepicker"
-  ],
-  "repository": "https://github.com/adopted-ember-addons/ember-pikaday",
-  "license": "MIT",
-  "author": "David Strauß",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
+  "dependencies": {
+    "ember-cli-babel": "^6.16.0",
+    "ember-cli-htmlbars": "^3.0.0",
+    "ember-cli-moment-shim": "^3.6.0",
+    "ember-cli-node-assets": "^0.2.2",
+    "fastboot-transform": "^0.1.1",
+    "pikaday": "^1.5.1"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
@@ -57,20 +65,15 @@
     "loader.js": "^4.7.0",
     "prettier": "^1.14.3",
     "qunit-dom": "^0.8.0",
-    "release-it": "^12.3.0",
+    "release-it": "^12.2.1",
     "release-it-lerna-changelog": "^1.0.3",
     "testdouble": "^2.0.0"
   },
-  "dependencies": {
-    "ember-cli-babel": "^6.16.0",
-    "ember-cli-htmlbars": "^3.0.0",
-    "ember-cli-moment-shim": "^3.6.0",
-    "ember-cli-node-assets": "^0.2.2",
-    "fastboot-transform": "^0.1.1",
-    "pikaday": "^1.5.1"
-  },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
