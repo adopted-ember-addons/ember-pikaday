@@ -1,3 +1,22 @@
+## v2.4.0 (2019-07-05)
+
+#### :rocket: Enhancement
+* [#220](https://github.com/adopted-ember-addons/ember-pikaday/pull/220) Remove jQuery from interactor and components ([@FabHof](https://github.com/FabHof))
+
+#### :memo: Documentation
+* [#218](https://github.com/adopted-ember-addons/ember-pikaday/pull/218) Add README localization example ([@Yelinz](https://github.com/Yelinz))
+
+#### :house: Internal
+* [#226](https://github.com/adopted-ember-addons/ember-pikaday/pull/226) run rwjblue's release it script ([@efx](https://github.com/efx))
+* [#225](https://github.com/adopted-ember-addons/ember-pikaday/pull/225) introduce lerna-changelog ([@efx](https://github.com/efx))
+* [#224](https://github.com/adopted-ember-addons/ember-pikaday/pull/224) remove bower configuration ([@efx](https://github.com/efx))
+* [#223](https://github.com/adopted-ember-addons/ember-pikaday/pull/223) update to new repository URL ([@efx](https://github.com/efx))
+
+#### Committers: 3
+- Eli Flanagan ([@efx](https://github.com/efx))
+- Fabian Hoffmann ([@FabHof](https://github.com/FabHof))
+- Yelin Zhang ([@Yelinz](https://github.com/Yelinz))
+
 [View 1.X CHANGELOG](https://github.com/edgycircle/ember-pikaday/blob/stable-1/CHANGELOG.md)
 
 ## 2.3.0
