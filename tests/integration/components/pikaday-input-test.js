@@ -66,6 +66,30 @@ module('Integration | Component | pikaday-input', function(hooks) {
     await Interactor.selectDate(expectedDate);
   });
 
+  test('selecting multiple dates should send actions', async function(assert) {
+    const expectedDate1 = new Date(2013, 3, 28);
+    const expectedDate2 = new Date(2014, 4, 1);
+
+    this.set('onSelection1', function(selectedDate) {
+      assert.deepEqual(selectedDate, expectedDate1);
+    });
+
+    this.set('onSelection2', function(selectedDate) {
+      assert.deepEqual(selectedDate, expectedDate2);
+    });
+
+    await render(hbs`
+      {{pikaday-input onSelection=(action onSelection1) class="first"}}
+      {{pikaday-input onSelection=(action onSelection2) class="second"}}
+    `);
+
+    await click('input.first');
+    await Interactor.selectDate(expectedDate1);
+
+    await click('input.second');
+    await Interactor.selectDate(expectedDate2);
+  });
+
   test('clearing the date should send an action', async function(assert) {
     this.set('value', new Date(2010, 7, 10));
     this.set('onSelection', function(selectedDate) {
