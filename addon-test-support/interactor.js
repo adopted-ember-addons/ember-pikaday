@@ -12,21 +12,28 @@ export async function selectDate(date) {
   const year = date.getFullYear();
   const selectEvent = 'ontouchend' in document ? 'touchend' : 'mousedown';
 
-  const yearElement = document.querySelector(YEAR_SELECTOR);
+  const yearElement = findVisibleElement(YEAR_SELECTOR);
   yearElement.value = year;
   await triggerEvent(yearElement, 'change');
 
-  const monthElement = document.querySelector(MONTH_SELECTOR);
+  const monthElement = findVisibleElement(MONTH_SELECTOR);
   monthElement.value = month;
   await triggerEvent(monthElement, 'change');
 
   await triggerEvent(
-    document.querySelector(
+    findVisibleElement(
       'td[data-day="' + day + '"]:not(.is-outside-current-month) button'
     ),
     selectEvent
   );
 }
+
+const findVisibleElement = function(selector) {
+  const elements = document.querySelectorAll(selector);
+  return Array.from(elements).find(function(e) {
+    return e.offsetParent != null;
+  });
+};
 
 export function selectedDay() {
   return document.querySelector('.pika-single td.is-selected button').innerHTML;
