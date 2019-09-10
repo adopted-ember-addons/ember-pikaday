@@ -1,3 +1,16 @@
+## v2.4.1 (2019-09-10)
+
+#### :bug: Bug Fix
+* [#230](https://github.com/adopted-ember-addons/ember-pikaday/pull/230) Fixes testing of multiple pikaday inputs ([@john-griffin](https://github.com/john-griffin))
+
+#### :house: Internal
+* [#230](https://github.com/adopted-ember-addons/ember-pikaday/pull/230) Fixes testing of multiple pikaday inputs ([@john-griffin](https://github.com/john-griffin))
+* [#228](https://github.com/adopted-ember-addons/ember-pikaday/pull/228) disable jquery integration for dummy app ([@efx](https://github.com/efx))
+
+#### Committers: 2
+- Eli Flanagan ([@efx](https://github.com/efx))
+- John Griffin ([@john-griffin](https://github.com/john-griffin))
+
 ## v2.4.0 (2019-07-05)
 
 #### :rocket: Enhancement
