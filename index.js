@@ -7,6 +7,9 @@ module.exports = {
   included() {
     this._super.included.apply(this, arguments);
 
+    const addonOptions =
+      (this.app.options && this.app.options.emberPikaday) || {};
+
     const dependencies = Object.keys(this.project.dependencies());
     const hasFastboot = dependencies.includes('ember-cli-fastboot');
 
@@ -16,6 +19,8 @@ module.exports = {
     }
 
     this.import('node_modules/pikaday/pikaday.js', importOptions);
-    this.import('node_modules/pikaday/css/pikaday.css');
+    if (!addonOptions.excludePikadayAssets) {
+      this.import('node_modules/pikaday/css/pikaday.css');
+    }
   }
 };
