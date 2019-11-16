@@ -1,24 +1,26 @@
 /* eslint-env node */
 'use strict';
-const fastbootTransform = require('fastboot-transform');
 
 module.exports = {
   name: require('./package').name,
 
-  options: {
-    nodeAssets: {
-      pikaday: {
-        vendor: ['pikaday.js', 'css/pikaday.css'],
-        processTree(input) {
-          return fastbootTransform(input);
-        }
-      }
-    }
-  },
   included() {
     this._super.included.apply(this, arguments);
 
-    this.import('vendor/pikaday/pikaday.js');
-    this.import('vendor/pikaday/css/pikaday.css');
+    const addonOptions =
+      (this.app.options && this.app.options.emberPikaday) || {};
+
+    const dependencies = Object.keys(this.project.dependencies());
+    const hasFastboot = dependencies.includes('ember-cli-fastboot');
+
+    const importOptions = {};
+    if (hasFastboot) {
+      importOptions.using = [{ transformation: 'fastbootShim' }];
+    }
+
+    this.import('node_modules/pikaday/pikaday.js', importOptions);
+    if (!addonOptions.excludePikadayAssets) {
+      this.import('node_modules/pikaday/css/pikaday.css');
+    }
   }
 };
