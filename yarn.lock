@@ -3438,9 +3438,10 @@ ember-cli-lodash-subset@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ember-cli-lodash-subset/-/ember-cli-lodash-subset-2.0.1.tgz#20cb68a790fe0fde2488ddfd8efbb7df6fe766f2"
 
-ember-cli-moment-shim@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.6.0.tgz#a6ce858e99b285eb9c539c8cebb698435f8d043a"
+ember-cli-moment-shim@^3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.7.1.tgz#3ad691c5027c1f38a4890fe47d74b5224cc98e32"
+  integrity sha512-U3HHuEU7sXQ78v25ifmIa9w4nQPQ7vK/LZ2bt18pN3aKNvIDYiLe/MDeXGmqfFIq3OfruKG+CF+7dOLqxuzSlQ==
   dependencies:
     broccoli-funnel "^2.0.0"
     broccoli-merge-trees "^2.0.0"
@@ -3449,7 +3450,6 @@ ember-cli-moment-shim@^3.6.0:
     chalk "^1.1.3"
     ember-cli-babel "^6.6.0"
     ember-cli-import-polyfill "^0.2.0"
-    exists-sync "^0.0.4"
     lodash.defaults "^4.2.0"
     moment "^2.19.3"
     moment-timezone "^0.5.13"
@@ -4186,7 +4186,7 @@ exists-stat@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/exists-stat/-/exists-stat-1.0.0.tgz#0660e3525a2e89d9e446129440c272edfa24b529"
 
-exists-sync@0.0.4, exists-sync@^0.0.4:
+exists-sync@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/exists-sync/-/exists-sync-0.0.4.tgz#9744c2c428cc03b01060db454d4b12f0ef3c8879"
 
