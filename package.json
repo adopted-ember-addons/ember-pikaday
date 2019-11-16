@@ -27,7 +27,7 @@
   "dependencies": {
     "ember-cli-babel": "^6.16.0",
     "ember-cli-htmlbars": "^3.0.0",
-    "ember-cli-moment-shim": "^3.6.0",
+    "ember-cli-moment-shim": "^3.7.1",
     "pikaday": "^1.5.1"
   },
   "devDependencies": {
