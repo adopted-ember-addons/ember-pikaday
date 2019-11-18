@@ -590,6 +590,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     await closePikaday();
 
     this.set('disableWeekends', false);
+    await settled();
 
     await click('input');
 
