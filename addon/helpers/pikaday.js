@@ -50,10 +50,10 @@ const PikadayInteractor = {
       .innerHTML;
   },
   selectedMonth() {
-    return document.querySelector(`${MONTH_SELECTOR} option:selected`).value;
+    return document.querySelector(`${MONTH_SELECTOR} option`).value;
   },
   selectedYear() {
-    return document.querySelector(`${MONTH_SELECTOR} option:selected`).value;
+    return document.querySelector(`${MONTH_SELECTOR} option`).value;
   },
   minimumYear() {
     return document.querySelector(YEAR_SELECTOR).firstChild.value;
