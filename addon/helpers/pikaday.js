@@ -10,31 +10,33 @@ deprecate(
   }
 );
 
-const openDatepicker = function(element) {
+const openDatepicker = function (element) {
   $(element).click();
 
   return PikadayInteractor;
 };
 
+const MONTH_SELECTOR = '.pika-lendar:visible .pika-select-month';
+const YEAR_SELECTOR = '.pika-lendar:visible .pika-select-year';
+
 const PikadayInteractor = {
-  selectorForMonthSelect: '.pika-lendar:visible .pika-select-month',
-  selectorForYearSelect: '.pika-lendar:visible .pika-select-year',
   selectDate(date) {
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
     const selectEvent = 'ontouchend' in document ? 'touchend' : 'mousedown';
 
-    $(this.selectorForYearSelect).val(year);
-    triggerNativeEvent($(this.selectorForYearSelect)[0], 'change');
-    $(this.selectorForMonthSelect).val(month);
-    triggerNativeEvent($(this.selectorForMonthSelect)[0], 'change');
+    const yearSelectorElements = document.querySelectorAll(YEAR_SELECTOR);
+    updateElementValues(yearSelectorElements, year);
+    triggerNativeEvent(yearSelectorElements[0], 'change');
+
+    const monthSelectorElements = document.querySelectorAll(MONTH_SELECTOR);
+    updateElementValues(monthSelectorElements, month);
+    triggerNativeEvent(monthSelectorElements[0], 'change');
 
     triggerNativeEvent(
-      $(
-        'td[data-day="' +
-          day +
-          '"]:not(.is-outside-current-month) button:visible'
+      document.querySelectorAll(
+        `td[data-day="'${day}'"]:not(.is-outside-current-month) button:visible}`
       )[0],
       selectEvent
     );
@@ -46,7 +48,7 @@ const PikadayInteractor = {
     return $(this.selectorForMonthSelect + ' option:selected').val();
   },
   selectedYear() {
-    return $(this.selectorForYearSelect + ' option:selected').val();
+    return document.querySelector(MONTH_SELECTOR + ' option:selected').value;
   },
   minimumYear() {
     return $(this.selectorForYearSelect)
@@ -60,6 +62,12 @@ const PikadayInteractor = {
       .last()
       .val();
   }
+};
+
+function updateElementValues(elements, value) {
+  Array.from(elements).forEach(function(e) {
+    e.value = value;
+  });
 };
 
 function triggerNativeEvent(element, eventName) {
