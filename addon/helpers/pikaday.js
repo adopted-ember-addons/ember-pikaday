@@ -19,8 +19,8 @@ const openDatepicker = function(element) {
   Ember.Logger.error(`${element} does not match any valid DOM element`);
 };
 
-const MONTH_SELECTOR = '.pika-lendar:visible .pika-select-month';
-const YEAR_SELECTOR = '.pika-lendar:visible .pika-select-year';
+const MONTH_SELECTOR = '.pika-lendar .pika-select-month';
+const YEAR_SELECTOR = '.pika-lendar .pika-select-year';
 
 const PikadayInteractor = {
   selectDate(date) {
@@ -39,7 +39,7 @@ const PikadayInteractor = {
 
     triggerNativeEvent(
       document.querySelector(
-        `td[data-day="'${day}'"]:not(.is-outside-current-month) button:visible}`
+        `td[data-day="'${day}'"]:not(.is-outside-current-month) button}`
       ),
       selectEvent
     );
