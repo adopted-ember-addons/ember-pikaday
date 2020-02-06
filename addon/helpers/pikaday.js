@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { deprecate } from '@ember/debug';
 
 deprecate(
@@ -10,9 +11,12 @@ deprecate(
 );
 
 const openDatepicker = function(element) {
-  document.querySelector(element).click();
-
-  return PikadayInteractor;
+  const pickerElement = document.querySelector(element);
+  if (pickerElement) {
+    pickerElement.click();
+    return PikadayInteractor;
+  }
+  Ember.Logger.error(`${element} does not match any valid DOM element`);
 };
 
 const MONTH_SELECTOR = '.pika-lendar:visible .pika-select-month';
@@ -58,12 +62,6 @@ const PikadayInteractor = {
     document.querySelector(YEAR_SELECTOR).lastChild.value;
   }
 };
-
-function updateElementValues(elements, value) {
-  Array.from(elements).forEach(function(e) {
-    e.value = value;
-  });
-}
 
 function triggerNativeEvent(element, eventName) {
   if (document.createEvent) {
