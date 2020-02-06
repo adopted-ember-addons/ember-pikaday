@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import { deprecate } from '@ember/debug';
 
 deprecate(
@@ -10,8 +9,8 @@ deprecate(
   }
 );
 
-const openDatepicker = function (element) {
-  $(element).click();
+const openDatepicker = function(element) {
+  document.querySelector(element).click();
 
   return PikadayInteractor;
 };
@@ -35,32 +34,28 @@ const PikadayInteractor = {
     triggerNativeEvent(monthSelectorElements[0], 'change');
 
     triggerNativeEvent(
-      document.querySelectorAll(
+      document.querySelector(
         `td[data-day="'${day}'"]:not(.is-outside-current-month) button:visible}`
-      )[0],
+      ),
       selectEvent
     );
   },
+
   selectedDay() {
-    return $('.pika-single td.is-selected button').html();
+    return document.querySelector('.pika-single td.is-selected button')
+      .innerHTML;
   },
   selectedMonth() {
-    return $(this.selectorForMonthSelect + ' option:selected').val();
+    return document.querySelector(`${MONTH_SELECTOR} option:selected`).value;
   },
   selectedYear() {
-    return document.querySelector(MONTH_SELECTOR + ' option:selected').value;
+    return document.querySelector(`${MONTH_SELECTOR} option:selected`).value;
   },
   minimumYear() {
-    return $(this.selectorForYearSelect)
-      .children()
-      .first()
-      .val();
+    return document.querySelector(YEAR_SELECTOR).firstChild.value;
   },
   maximumYear() {
-    return $(this.selectorForYearSelect)
-      .children()
-      .last()
-      .val();
+    document.querySelector(YEAR_SELECTOR).lastChild.value;
   }
 };
 
@@ -68,7 +63,7 @@ function updateElementValues(elements, value) {
   Array.from(elements).forEach(function(e) {
     e.value = value;
   });
-};
+}
 
 function triggerNativeEvent(element, eventName) {
   if (document.createEvent) {
