@@ -63,6 +63,12 @@ const PikadayInteractor = {
   }
 };
 
+function updateElementValues(elements, value) {
+  elements.forEach(function(e) {
+    e.value = value;
+  });
+}
+
 function triggerNativeEvent(element, eventName) {
   if (document.createEvent) {
     const event = document.createEvent('Events');
