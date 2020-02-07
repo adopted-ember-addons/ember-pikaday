@@ -7,9 +7,9 @@ export default {
     const i18n = EmberObject.extend({
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',
-      months: moment.localeData()._months,
-      weekdays: moment.localeData()._weekdays,
-      weekdaysShort: moment.localeData()._weekdaysShort
+      months: moment.localeData().months(),
+      weekdays: moment.localeData().weekdays(),
+      weekdaysShort: moment.localeData().weekdaysShort()
     });
 
     const container = arguments[0];
