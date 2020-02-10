@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import { deprecate } from '@ember/debug';
 
 deprecate(
@@ -11,56 +10,62 @@ deprecate(
 );
 
 const openDatepicker = function(element) {
-  $(element).click();
-
-  return PikadayInteractor;
+  const pickerElement = document.querySelector(element);
+  if (pickerElement) {
+    pickerElement.click();
+    return PikadayInteractor;
+  }
 };
 
+const MONTH_SELECTOR = '.pika-lendar .pika-select-month';
+const YEAR_SELECTOR = '.pika-lendar .pika-select-year';
+
 const PikadayInteractor = {
-  selectorForMonthSelect: '.pika-lendar:visible .pika-select-month',
-  selectorForYearSelect: '.pika-lendar:visible .pika-select-year',
   selectDate(date) {
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
     const selectEvent = 'ontouchend' in document ? 'touchend' : 'mousedown';
 
-    $(this.selectorForYearSelect).val(year);
-    triggerNativeEvent($(this.selectorForYearSelect)[0], 'change');
-    $(this.selectorForMonthSelect).val(month);
-    triggerNativeEvent($(this.selectorForMonthSelect)[0], 'change');
+    const yearSelectorElements = document.querySelectorAll(YEAR_SELECTOR);
+    updateElementValues(yearSelectorElements, year);
+    triggerNativeEvent(yearSelectorElements[0], 'change');
+
+    const monthSelectorElements = document.querySelectorAll(MONTH_SELECTOR);
+    updateElementValues(monthSelectorElements, month);
+    triggerNativeEvent(monthSelectorElements[0], 'change');
 
     triggerNativeEvent(
-      $(
-        'td[data-day="' +
-          day +
-          '"]:not(.is-outside-current-month) button:visible'
-      )[0],
+      document.querySelector(
+        `td[data-day="'${day}'"]:not(.is-outside-current-month) button}`
+      ),
       selectEvent
     );
   },
+
   selectedDay() {
-    return $('.pika-single td.is-selected button').html();
+    return document.querySelector('.pika-single td.is-selected button')
+      .innerHTML;
   },
   selectedMonth() {
-    return $(this.selectorForMonthSelect + ' option:selected').val();
+    return document.querySelector(MONTH_SELECTOR).value;
   },
   selectedYear() {
-    return $(this.selectorForYearSelect + ' option:selected').val();
+    return document.querySelector(YEAR_SELECTOR).value;
   },
   minimumYear() {
-    return $(this.selectorForYearSelect)
-      .children()
-      .first()
-      .val();
+    return document.querySelector(YEAR_SELECTOR).firstChild.value;
   },
   maximumYear() {
-    return $(this.selectorForYearSelect)
-      .children()
-      .last()
-      .val();
+    document.querySelector(YEAR_SELECTOR).lastChild.value;
   }
 };
+
+function updateElementValues(elements, value) {
+  elements.forEach(function(e) {
+    e.value = value;
+  });
+}
 
 function triggerNativeEvent(element, eventName) {
   if (document.createEvent) {
