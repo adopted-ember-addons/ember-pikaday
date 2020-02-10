@@ -194,9 +194,9 @@ export default {
     let i18n = EmberObject.extend({
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',
-      months: moment.localeData()._months,
-      weekdays: moment.localeData()._weekdays,
-      weekdaysShort: moment.localeData()._weekdaysShort
+      months: moment.localeData().months(),
+      weekdays: moment.localeData().weekdays(),
+      weekdaysShort: moment.localeData().weekdaysShort()
     });
 
     application.register('pikaday-i18n:main', i18n, { singleton: true });
