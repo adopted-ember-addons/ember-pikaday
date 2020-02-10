@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import { deprecate } from '@ember/debug';
 
 deprecate(
@@ -16,7 +15,6 @@ const openDatepicker = function(element) {
     pickerElement.click();
     return PikadayInteractor;
   }
-  Ember.Logger.error(`${element} does not match any valid DOM element`);
 };
 
 const MONTH_SELECTOR = '.pika-lendar .pika-select-month';
