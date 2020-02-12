@@ -24,7 +24,7 @@ While the input shows a formatted date to the user, the `value` attribute can be
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input onSelection=(action 'doSomethingWithSelectedValue')}}
+  <PikadayInput @onSelection={{action 'doSomethingWithSelectedValue'}}/>
 </label>
 ```
 
@@ -33,8 +33,8 @@ You can also pass in other closure actions to handle `onOpen`, `onClose` and `on
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input onOpen=(action 'doSomethingOnOpen') onClose=(action 'doSomethingOnClose')
-    onDraw=(action 'doSomethingOnDraw')}}
+  <PikadayInput @onOpen={{action 'doSomethingOnOpen'}} @onClose={{action 'doSomethingOnClose'}}
+    onDraw={{action 'doSomethingOnDraw'}}/>
 </label>
 ```
 
@@ -43,7 +43,7 @@ You can also change the default format from `DD.MM.YYYY` to any format string su
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input format="MM/DD/YYYY"}}
+  <PikadayInput @format={{"MM/DD/YYYY"}}/>
 </label>
 ```
 
@@ -52,7 +52,7 @@ You can define a theme which will be a CSS class that can be used as a hook for 
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input theme="dark-theme" }}
+  <PikadayInput @theme={{"dark-theme"}} />
 </label>
 ```
 
@@ -62,14 +62,14 @@ single number or two comma separated years.
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input yearRange="4"}}
+  <PikadayInput @yearRange={{"4"}}/>
 </label>
 ```
 
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input yearRange="2004,2008"}}
+  <PikadayInput @yearRange={{"2004,2008"}}/>
 </label>
 ```
 
@@ -79,7 +79,7 @@ the maximum selectable year to the current year.
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input yearRange="2004,currentYear"}}
+  <PikadayInput @yearRange={{"2004,currentYear"}}/>
 </label>
 ```
 
@@ -88,7 +88,7 @@ The `readonly` attribute is supported as binding so you can make the input reado
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input readonly="readonly"}}
+  <PikadayInput @readonly={{"readonly"}}/>
 </label>
 ```
 
@@ -97,7 +97,7 @@ The `placeholder` attribute is supported as binding so you can improve the user 
 ```handlebars
 <label>
   Due date:
-  {{pikaday-input placeholder="Due date of invoice"}}
+  <PikadayInput @placeholder={{"Due date of invoice"}}/>
 </label>
 ```
 
@@ -107,7 +107,7 @@ If the datepicker is shown to the user and it gets disabled it will close the da
 ```handlebars
 <label>
   Due date:
-  {{pikaday-input disabled=isDisabled}}
+  <PikadayInput @disabled={{isDisabled}}/>
 </label>
 ```
 
@@ -121,7 +121,7 @@ Defaults to Monday.
 ```handlebars
 <label>
   Due date:
-  {{pikaday-input firstDay=0}}
+  <PikadayInput @firstDay={{0}}/>
 </label>
 ```
 
@@ -130,7 +130,7 @@ The `minDate` attribute is supported as a binding so you can set the earliest da
 ```handlebars
 <label>
   Due Date:
-  {{pikaday-input minDate=minDate}}
+  <PikadayInput @minDate={{minDate}}/>
 </label>
 ```
 
@@ -139,7 +139,7 @@ The `maxDate` attribute is supported as a binding so you can set the latest date
 ```handlebars
 <label>
   Due Date:
-  {{pikaday-input maxDate=maxDate}}
+  <PikadayInput @maxDate={{maxDate}}/>
 </label>
 ```
 
@@ -150,7 +150,7 @@ The date returned by ember-pikaday is in your local time zone due to the JavaScr
 ```handlebars
 <label>
   Start date:
-  {{pikaday-input useUTC=true}}
+  <PikadayInput @useUTC={{true}}/>
 </label>
 ```
 
@@ -162,7 +162,7 @@ You can pass any custom pikaday option through the component like this
 
 ```handlebars
 <label>
-  {{pikaday-input options=(hash numberOfMonths=2 disableWeekends=true disableDayFn=(action 'someAction'))}}
+  <PikadayInput @options={{hash numberOfMonths=2 disableWeekends=true disableDayFn={{action 'someAction'}}}}/>
 </label>
 ```
 
@@ -212,7 +212,7 @@ export default {
 ```handlebars
 <button {{action "togglePika"}}>Show Pika</button>
 {{#if showPika}}
-    {{pikaday-inputless value="2017-07-07"}}
+    <PikadayInputless @value={{"2017-07-07"}}/>
 {{/if}}
 ```
 
@@ -234,7 +234,7 @@ export default Ember.Controller.extend({
 <div {{action "showPika" on="mouseEnter"}} {{action "hidePika" on="mouseLeave"}}>
   Hover me to pika
   {{#if showPika}}
-    {{pikaday-inputless value="2017-07-07"}}
+    <PikadayInputless @value={{"2017-07-07"}}/>
   {{/if}}
 </div>
 ```

@@ -25,7 +25,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('it is an input tag', async function(assert) {
     await render(hbs`
-      {{pikaday-input}}
+      <PikadayInput/>
     `);
 
     assert.dom('input').exists();
@@ -33,7 +33,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('the input tag has the readonly attribute if it has been set on the component', async function(assert) {
     await render(hbs`
-      {{pikaday-input readonly=true}}
+      <PikadayInput @readonly={{true}}/>
     `);
 
     assert.dom('input').hasAttribute('readonly');
@@ -41,7 +41,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('clicking the input opens the pikaday dialog', async function(assert) {
     await render(hbs`
-      {{pikaday-input}}
+      <PikadayInput/>
     `);
 
     assert.dom('.pika-single', document.body).hasClass('is-hidden');
@@ -59,7 +59,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     });
 
     await render(hbs`
-      {{pikaday-input onSelection=(action onSelection)}}
+      <PikadayInput @onSelection={{action this.onSelection}}/>
     `);
 
     await click('input');
@@ -79,8 +79,8 @@ module('Integration | Component | pikaday-input', function(hooks) {
     });
 
     await render(hbs`
-      {{pikaday-input onSelection=(action onSelection1) class="first"}}
-      {{pikaday-input onSelection=(action onSelection2) class="second"}}
+      <PikadayInput @onSelection={{action this.onSelection1}} class="first"/>
+      <PikadayInput @onSelection={{action this.onSelection2}} class="second"/>
     `);
 
     await click('input.first');
@@ -97,7 +97,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     });
 
     await render(hbs`
-      {{pikaday-input value=value onSelection=(action onSelection)}}
+      <PikadayInput @value={{this.value}} @onSelection={{action this.onSelection}}/>
     `);
 
     await click('input');
@@ -111,7 +111,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('onOpen', onOpen);
 
     await render(hbs`
-      {{pikaday-input onOpen=(action onOpen)}}
+      <PikadayInput @onOpen={{action this.onOpen}}/>
     `);
 
     await click('input');
@@ -124,7 +124,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('onClose', onClose);
 
     await render(hbs`
-      {{pikaday-input onClose=(action onClose)}}
+      <PikadayInput @onClose={{action this.onClose}}/>
     `);
 
     await click('input');
@@ -138,7 +138,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('onDraw', onDraw);
 
     await render(hbs`
-      {{pikaday-input onDraw=(action onDraw)}}
+      <PikadayInput @onDraw={{action this.onDraw}}/>
     `);
 
     await click('input');
@@ -150,7 +150,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('value', new Date(2010, 7, 10));
 
     await render(hbs`
-      {{pikaday-input value=value}}
+      <PikadayInput @value={{this.value}}/>
     `);
 
     await click('input');
@@ -164,7 +164,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('value', new Date(2010, 7, 10));
 
     await render(hbs`
-      {{pikaday-input value=value}}
+      <PikadayInput @value={{this.value}}/>
     `);
 
     assert.dom('input').hasValue('10.08.2010');
@@ -175,7 +175,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('format', 'YYYY.DD.MM');
 
     await render(hbs`
-      {{pikaday-input value=value format=format}}
+      <PikadayInput @value={{this.value}} @format={{this.format}}/>
     `);
 
     assert.dom('input').hasValue('2010.10.08');
@@ -187,7 +187,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('tomorrow', tomorrow);
 
     await render(hbs`
-      {{pikaday-input minDate=tomorrow}}
+      <PikadayInput @minDate={{this.tomorrow}}/>
     `);
 
     await click('input');
@@ -201,7 +201,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('tomorrow', tomorrow);
 
     await render(hbs`
-      {{pikaday-input minDate=tomorrow}}
+      <PikadayInput @minDate={{this.tomorrow}}/>
     `);
 
     this.set('tomorrow', null);
@@ -217,7 +217,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('yesterday', yesterday);
 
     await render(hbs`
-      {{pikaday-input maxDate=yesterday}}
+      <PikadayInput @maxDate={{this.yesterday}}/>
     `);
 
     await click('input');
@@ -231,7 +231,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('yesterday', yesterday);
 
     await render(hbs`
-      {{pikaday-input maxDate=yesterday}}
+      <PikadayInput @maxDate={{this.yesterday}}/>
     `);
 
     this.set('yesterday', null);
@@ -246,7 +246,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('tommorow', tommorow);
 
     await render(hbs`
-      {{pikaday-input value=tommorow minDate=tommorow}}
+      <PikadayInput @value={{this.tommorow}} @minDate={{this.tommorow}}/>
     `);
 
     this.set('tommorow', new Date(2010, 7, 9));
@@ -260,7 +260,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('tommorow', tommorow);
 
     await render(hbs`
-      {{pikaday-input value=tommorow maxDate=tommorow}}
+      <PikadayInput @value={{this.tommorow}} @maxDate={{this.tommorow}}/>
     `);
 
     this.set('tommorow', new Date(2010, 7, 11));
@@ -271,7 +271,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('theme option adds theme as CSS class to DOM element', async function(assert) {
     await render(hbs`
-      {{pikaday-input theme='dark-theme'}}
+      <PikadayInput @theme={{'dark-theme'}}/>
     `);
 
     assert.dom('.pika-single', document.body).hasClass('dark-theme');
@@ -281,7 +281,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     const currentYear = new Date().getFullYear();
 
     await render(hbs`
-      {{pikaday-input}}
+      <PikadayInput/>
     `);
 
     await click('input');
@@ -294,7 +294,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     const currentYear = new Date().getFullYear();
 
     await render(hbs`
-      {{pikaday-input yearRange='4'}}
+      <PikadayInput @yearRange={{'4'}}/>
     `);
 
     await click('input');
@@ -305,7 +305,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('yearRange of the input can be set with comma separated years', async function(assert) {
     await render(hbs`
-      {{pikaday-input yearRange='1900,2006'}}
+      <PikadayInput @yearRange={{'1900,2006'}}/>
     `);
 
     await click('input');
@@ -316,7 +316,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('yearRange of the input with comma separated years supports currentYear as max', async function(assert) {
     await render(hbs`
-      {{pikaday-input yearRange='1900,currentYear'}}
+      <PikadayInput @yearRange={{'1900,currentYear'}}/>
     `);
 
     await click('input');
@@ -360,7 +360,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('value', new Date(2014, 2, 10));
 
     await render(hbs`
-      {{pikaday-input value=value i18n=i18n}}
+      <PikadayInput @value={{this.value}} @i18n={{this.i18n}}/>
     `);
 
     await click('input');
@@ -383,7 +383,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     });
 
     await render(hbs`
-        {{pikaday-input onSelection=(action onSelection) useUTC=true}}
+        <PikadayInput @onSelection={{action this.onSelection}} @useUTC={{true}}/>
       `);
 
     await click('input');
@@ -422,7 +422,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
       this.set('useUTC', testParams.useUTC);
 
       await render(hbs`
-        {{pikaday-input value=value useUTC=useUTC}}
+        <PikadayInput @value={{this.value}} @useUTC={{this.useUTC}}/>
       `);
 
       await click('input');
@@ -435,7 +435,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('the input tag has the placeholder attribute and the correct value if it has been set on the component', async function(assert) {
     await render(hbs`
-      {{pikaday-input placeholder=placeholder}}
+      <PikadayInput @placeholder={{this.placeholder}}/>
     `);
 
     assert.dom('input').doesNotHaveAttribute('placeholder');
@@ -447,7 +447,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('the input tag has the required attribute if it has been set on the component', async function(assert) {
     await render(hbs`
-      {{pikaday-input required=required}}
+      <PikadayInput @required={{this.required}}/>
     `);
 
     assert.dom('input').doesNotHaveAttribute('required');
@@ -459,7 +459,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('the input tag has the disabled attribute if it has been set on the component', async function(assert) {
     await render(hbs`
-      {{pikaday-input disabled=disabled}}
+      <PikadayInput @disabled={{this.disabled}}/>
     `);
 
     assert.dom('input').doesNotHaveAttribute('disabled');
@@ -471,7 +471,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('the input tag has the autocomplete attribute if it has been set on the component', async function(assert) {
     await render(hbs`
-      {{pikaday-input autocomplete=autocomplete}}
+      <PikadayInput @autocomplete={{this.autocomplete}}/>
     `);
 
     assert.dom('input').doesNotHaveAttribute('autocomplete');
@@ -484,7 +484,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
   // WARNING: This test will fail if the browser is not focused
   test('using disabled prevent from opening pikaday', async function(assert) {
     await render(hbs`
-      {{pikaday-input disabled=true}}
+      <PikadayInput @disabled={{true}}/>
     `);
 
     assert
@@ -502,7 +502,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('disabled', false);
 
     await render(hbs`
-      {{pikaday-input disabled=disabled}}
+      <PikadayInput @disabled={{this.disabled}}/>
     `);
 
     assert.dom('input').isNotDisabled();
@@ -529,7 +529,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('firstDay defaults to Monday (1)', async function(assert) {
     await render(hbs`
-      {{pikaday-input}}
+      <PikadayInput/>
     `);
 
     await click('input');
@@ -541,7 +541,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('firstDay option overrides the default first day value', async function(assert) {
     await render(hbs`
-      {{pikaday-input firstDay=0}}
+      <PikadayInput @firstDay={{0}}/>
     `);
 
     await click('input');
@@ -556,7 +556,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('onOpen', onOpen);
 
     await render(hbs`
-      {{pikaday-input options=(hash onOpen=onOpen disableWeekends=true)}}
+      <PikadayInput @options={{hash onOpen=onOpen disableWeekends=true}}/>
     `);
     await click('input');
 
@@ -577,7 +577,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('disableWeekends', true);
 
     await render(hbs`
-      {{pikaday-input options=(hash disableWeekends=disableWeekends)}}
+      <PikadayInput @options={{hash disableWeekends=disableWeekends}}/>
     `);
     await click('input');
 
@@ -611,7 +611,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('minDate', today);
 
     await render(hbs`
-      {{pikaday-input minDate=minDate value=currentDate onSelection=(action (mut currentDate))}}
+      <PikadayInput @minDate={{this.minDate}} @value={{this.currentDate}} @onSelection={{action (mut this.currentDate)}}/>
     `);
 
     this.set('minDate', tomorrow);
@@ -634,7 +634,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('maxDate', tomorrow);
 
     await render(hbs`
-      {{pikaday-input maxDate=maxDate value=currentDate onSelection=(action (mut currentDate))}}
+      <PikadayInput @maxDate={{this.maxDate}} @value={{this.currentDate}} @onSelection={{action (mut this.currentDate)}}/>
     `);
 
     this.set('maxDate', today);
@@ -656,7 +656,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('currentDate', null);
 
     await render(hbs`
-      {{pikaday-input maxDate=maxDate minDate=minDate value=currentDate onSelection=(action (mut currentDate))}}
+      <PikadayInput @maxDate={{this.maxDate}} @minDate={{this.minDate}} @value={{this.currentDate}} @onSelection={{action (mut this.currentDate)}}/>
     `);
 
     this.set('maxDate', tomorrow);
@@ -674,7 +674,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     const tomorrowCopy = new Date(tomorrow);
 
     await render(hbs`
-      {{pikaday-input minDate=minDate maxDate=maxDate value=today}}
+      <PikadayInput @minDate={{this.minDate}} @maxDate={{this.maxDate}} @value={{this.today}}/>
     `);
 
     this.set('minDate', today);
@@ -700,7 +700,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('defaultDate', today);
 
     await render(hbs`
-      {{pikaday-input defaultDate=defaultDate}}
+      <PikadayInput @defaultDate={{this.defaultDate}}/>
     `);
 
     assert.equal(this.get('defaultDate'), today);
@@ -714,7 +714,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('defaultDate', date);
 
     await render(hbs`
-      {{pikaday-input defaultDate=defaultDate}}
+      <PikadayInput @defaultDate={{this.defaultDate}}/>
     `);
 
     await click('input');
@@ -729,7 +729,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
     this.set('options', { showDaysInNextAndPreviousMonths: true });
 
     await render(hbs`
-      {{pikaday-input options=options}}
+      <PikadayInput @options={{this.options}}/>
     `);
 
     await click('input');
