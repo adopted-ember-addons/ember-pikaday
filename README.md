@@ -162,7 +162,7 @@ You can pass any custom pikaday option through the component like this
 
 ```handlebars
 <label>
-  <PikadayInput @options={{hash numberOfMonths=2 disableWeekends=true disableDayFn={{action 'someAction'}}}}/>
+  <PikadayInput @options={{hash numberOfMonths=2 disableWeekends=true disableDayFn=(action 'someAction')}}/>
 </label>
 ```
 
