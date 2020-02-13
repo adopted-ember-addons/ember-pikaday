@@ -10,7 +10,7 @@ module('Integration | Component | pikaday-inputless', function(hooks) {
 
   test('it has no input tag visible', async function(assert) {
     await render(hbs`
-      {{pikaday-inputless}}
+      <PikadayInputless/>
     `);
 
     assert.dom('input[type=hidden]').exists();
@@ -22,7 +22,7 @@ module('Integration | Component | pikaday-inputless', function(hooks) {
     this.set('onSelection', onSelection);
 
     await render(hbs`
-      {{pikaday-inputless onSelection=(action onSelection)}}
+      <PikadayInputless @onSelection={{action this.onSelection}}/>
     `);
 
     await click('input');
@@ -35,7 +35,7 @@ module('Integration | Component | pikaday-inputless', function(hooks) {
     this.set('value', new Date(2010, 7, 10));
 
     await render(hbs`
-      {{pikaday-inputless value=value}}
+      <PikadayInputless @value={{this.value}}/>
     `);
 
     await click('input');
@@ -47,7 +47,7 @@ module('Integration | Component | pikaday-inputless', function(hooks) {
 
   test('using disabled hides the picker', async function(assert) {
     await render(hbs`
-      {{pikaday-inputless disabled=true}}
+      <PikadayInputless @disabled={{true}}/>
     `);
 
     assert
