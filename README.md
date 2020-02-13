@@ -33,8 +33,11 @@ You can also pass in other closure actions to handle `onOpen`, `onClose` and `on
 ```handlebars
 <label>
   Start date:
-  <PikadayInput @onOpen={{action 'doSomethingOnOpen'}} @onClose={{action 'doSomethingOnClose'}}
-    onDraw={{action 'doSomethingOnDraw'}}/>
+  <PikadayInput 
+    @onOpen={{action 'doSomethingOnOpen'}} 
+    @onClose={{action 'doSomethingOnClose'}}
+    @onDraw={{action 'doSomethingOnDraw'}}
+  />
 </label>
 ```
 
