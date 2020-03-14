@@ -4,11 +4,17 @@
 module.exports = {
   name: require('./package').name,
 
-  included() {
+  included(app) {
     this._super.included.apply(this, arguments);
 
-    const addonOptions =
-      (this.app.options && this.app.options.emberPikaday) || {};
+    let current = this;
+    //Get the top most application where config will reside
+    //ref: _findHost https://git.io/Jvi0N
+    do {
+      app = current.app || app;
+    } while (current.parent.parent && (current = current.parent));
+
+    const addonOptions = (app.options && app.options.emberPikaday) || {};
 
     const dependencies = Object.keys(this.project.dependencies());
     const hasFastboot = dependencies.includes('ember-cli-fastboot');
