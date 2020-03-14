@@ -1,4 +1,6 @@
 /* globals Pikaday */
+/* eslint-disable ember/no-new-mixins */
+
 import Mixin from '@ember/object/mixin';
 
 import { assign } from '@ember/polyfills';
