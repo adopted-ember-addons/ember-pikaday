@@ -9,6 +9,9 @@ ember-pikaday is an addon that can be installed with Ember CLI. It gives you a d
 **The component provided by ember-pikaday is fully acceptance tested. It also provides test helpers to interact with the datepicker in your own acceptance tests. It works in Ember 1.13.1+ or 2.0+, including beta and canary.**
 
 ## Installation
+* Ember.js v3.12 or above
+* Ember CLI v2.13 or above
+* Node.js v10 or above
 
 ```bash
 cd your-project-directory
