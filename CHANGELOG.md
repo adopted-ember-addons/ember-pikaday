@@ -1,3 +1,40 @@
+# Changelog
+
+## v3.0.0 (2020-04-15)
+
+#### :boom: Breaking Change
+
+This major version release drops support for Node.js 6 and 8 and for all
+Ember.js releases that happened before v3.12. Other than that there should be
+no other breaking changes included in this release.
+
+* [#307](https://github.com/adopted-ember-addons/ember-pikaday/pull/307) Update Ember CLI v3.14.0...v3.16.0 ([@jrjohnson](https://github.com/jrjohnson))
+
+#### :rocket: Enhancement
+* [#296](https://github.com/adopted-ember-addons/ember-pikaday/pull/296) Remove jquery ([@the-bionic](https://github.com/the-bionic))
+
+#### :bug: Bug Fix
+* [#309](https://github.com/adopted-ember-addons/ember-pikaday/pull/309) Fix build when included in an addon ([@jrjohnson](https://github.com/jrjohnson))
+* [#297](https://github.com/adopted-ember-addons/ember-pikaday/pull/297) Prefer moment's localeData methods ([@drouhard](https://github.com/drouhard))
+
+#### :memo: Documentation
+* [#298](https://github.com/adopted-ember-addons/ember-pikaday/pull/298) use angle bracket syntax ([@the-bionic](https://github.com/the-bionic))
+
+#### :house: Internal
+* [#319](https://github.com/adopted-ember-addons/ember-pikaday/pull/319) Delete unnecessary `codemods.log` file ([@Turbo87](https://github.com/Turbo87))
+* [#309](https://github.com/adopted-ember-addons/ember-pikaday/pull/309) Fix build when included in an addon ([@jrjohnson](https://github.com/jrjohnson))
+* [#257](https://github.com/adopted-ember-addons/ember-pikaday/pull/257) Testing setup cleanup ([@Turbo87](https://github.com/Turbo87))
+* [#234](https://github.com/adopted-ember-addons/ember-pikaday/pull/234) Replace `ember-cli-node-assets` with regular imports from `node_modules` ([@Turbo87](https://github.com/Turbo87))
+* [#235](https://github.com/adopted-ember-addons/ember-pikaday/pull/235) Add dependabot config file ([@Turbo87](https://github.com/Turbo87))
+* [#233](https://github.com/adopted-ember-addons/ember-pikaday/pull/233) Replace `ember-cli-template-lint` with just `ember-template-lint` ([@Turbo87](https://github.com/Turbo87))
+
+#### Committers: 4
+- Inem Patrick ([@the-bionic](https://github.com/the-bionic))
+- Jonathan Johnson ([@jrjohnson](https://github.com/jrjohnson))
+- Matt Drouhard ([@drouhard](https://github.com/drouhard))
+- Tobias Bieniek ([@Turbo87](https://github.com/Turbo87))
+
+
 ## v2.4.1 (2019-09-10)
 
 #### :bug: Bug Fix
