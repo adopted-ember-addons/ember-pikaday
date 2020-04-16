@@ -20,9 +20,9 @@ ember install ember-pikaday
 
 ## Major Versions
 
-- 3.x [CHANGELOG](https://github.com/adopted-ember-addons/ember-pikaday/blob/master/CHANGELOG.md#v300-2020-04-15)
-- 2.x [README.md](https://github.com/edgycircle/ember-pikaday/blob/v2.4.1/README.md) [CHANGELOG](https://github.com/adopted-ember-addons/ember-pikaday/blob/master/CHANGELOG.md#200)
-- 1.x [README.md](https://github.com/edgycircle/ember-pikaday/blob/stable-1/README.md) [CHANGELOG](https://github.com/adopted-ember-addons/ember-pikaday/blob/stable-1/CHANGELOG.md#100)
+- **3.x** [CHANGELOG](https://github.com/adopted-ember-addons/ember-pikaday/blob/master/CHANGELOG.md#v300-2020-04-15)
+- 2.x [README.md](https://github.com/edgycircle/ember-pikaday/blob/v2.4.1/README.md) | [CHANGELOG](https://github.com/adopted-ember-addons/ember-pikaday/blob/master/CHANGELOG.md#200)
+- 1.x [README.md](https://github.com/edgycircle/ember-pikaday/blob/stable-1/README.md) | [CHANGELOG](https://github.com/adopted-ember-addons/ember-pikaday/blob/stable-1/CHANGELOG.md#100)
 
 ## Usage
 
