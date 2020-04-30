@@ -6,7 +6,7 @@
 
 ember-pikaday is an addon that can be installed with Ember CLI. It gives you a datepicker input component that can be used in your Ember.js application. [ember-cli-moment-shim](https://github.com/jasonmit/ember-cli-moment-shim) is used in the background so it is added as NPM dependencies to your application.
 
-**The component provided by ember-pikaday is fully acceptance tested. It also provides test helpers to interact with the datepicker in your own acceptance tests. It works in Ember 1.13.1+ or 2.0+, including beta and canary.**
+**The component provided by ember-pikaday is fully acceptance tested. It also provides test helpers to interact with the datepicker in your own acceptance tests. It is tested against LTS versions >= Ember.js v3.12, including beta and canary. [ember-try-config](https://github.com/adopted-ember-addons/ember-pikaday/blob/master/config/ember-try.js)**
 
 ## Installation
 * Ember.js v3.12 or above
@@ -18,7 +18,11 @@ cd your-project-directory
 ember install ember-pikaday
 ```
 
-_This README is for the new 2.X release of ember-pikaday. You can find the [1.X README in the stable-1 branch](https://github.com/edgycircle/ember-pikaday/blob/stable-1/README.md)._
+## Major Versions
+
+- **3.x** [CHANGELOG](https://github.com/adopted-ember-addons/ember-pikaday/blob/master/CHANGELOG.md#v300-2020-04-15)
+- 2.x [README.md](https://github.com/edgycircle/ember-pikaday/blob/v2.4.1/README.md) | [CHANGELOG](https://github.com/adopted-ember-addons/ember-pikaday/blob/master/CHANGELOG.md#200)
+- 1.x [README.md](https://github.com/edgycircle/ember-pikaday/blob/stable-1/README.md) | [CHANGELOG](https://github.com/adopted-ember-addons/ember-pikaday/blob/stable-1/CHANGELOG.md#100)
 
 ## Usage
 
