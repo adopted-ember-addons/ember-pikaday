@@ -36,8 +36,8 @@ You can also pass in other closure actions to handle `onOpen`, `onClose` and `on
 ```handlebars
 <label>
   Start date:
-  <PikadayInput 
-    @onOpen={{action 'doSomethingOnOpen'}} 
+  <PikadayInput
+    @onOpen={{action 'doSomethingOnOpen'}}
     @onClose={{action 'doSomethingOnClose'}}
     @onDraw={{action 'doSomethingOnDraw'}}
   />
@@ -107,7 +107,7 @@ The `placeholder` attribute is supported as binding so you can improve the user 
 </label>
 ```
 
-The `disabled` attribute is supported as binding so you can disabled the datepicker entirely.
+The `disabled` attribute is supported as binding so you can disable the datepicker entirely.
 If the datepicker is shown to the user and it gets disabled it will close the datepicker itself.
 
 ```handlebars
@@ -186,7 +186,7 @@ Localizing the datepicker is possible in two steps. To localize the output of th
 app.import('node_modules/moment/locale/de.js');
 ```
 
-To localize the datepicker itself, this is the popup you see after clicking the input, a little more work is necessary. The prefered way to do this is writting a custom initializer to inject a localized `i18n` object into the datepicker component. Naturally you can use your own localized strings instead of the ones provided by Moment.js.
+To localize the datepicker itself, this is the popup you see after clicking the input, a little more work is necessary. The preferred way to do this is writing a custom initializer to inject a localized `i18n` object into the datepicker component. Naturally you can use your own localized strings instead of the ones provided by Moment.js.
 
 ```js
 // app/initializers/setup-pikaday-i18n.js
@@ -310,7 +310,7 @@ assert.equal(Interactor.selectedDay(), 28);
 ## Excluding assets
 
 By default, ember-pikaday will load for you the needed pikaday assets.
-If you need to use a custom version, you can now disable auto assests importing like this:
+If you need to use a custom version, you can now disable auto assets importing like this:
 
 ```js
 // ember-cli-build.js
