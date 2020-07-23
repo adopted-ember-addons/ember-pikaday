@@ -36,8 +36,8 @@ You can also pass in other closure actions to handle `onOpen`, `onClose` and `on
 ```handlebars
 <label>
   Start date:
-  <PikadayInput 
-    @onOpen={{action 'doSomethingOnOpen'}} 
+  <PikadayInput
+    @onOpen={{action 'doSomethingOnOpen'}}
     @onClose={{action 'doSomethingOnClose'}}
     @onDraw={{action 'doSomethingOnDraw'}}
   />
@@ -282,7 +282,7 @@ Pikaday can be closed with the provided `close` helper:
 ```js
 import { close as closePikaday } from 'ember-pikaday/test-support';
 
-await closePikaday('.my-pikaday-input');
+await closePikaday();
 ```
 
 ### Interacting with Pikaday
@@ -305,6 +305,24 @@ await Interactor.selectDate(new Date(1989, 3, 28));
 assert.equal(Interactor.selectedYear(), 1989);
 assert.equal(Interactor.selectedMonth(), 3);
 assert.equal(Interactor.selectedDay(), 28);
+```
+
+### Opening, Interacting and Closing
+
+Pikaday can be opened, a date selected, and then closed using the `fillInDate` test helper:
+
+```js
+import { fillInDate } from 'ember-pikaday/test-support';
+
+await fillInDate('.my-pikaday-input', new Date(1989, 3, 28));
+```
+
+This is equivalent to:
+
+```js
+await click('.my-pikaday-input');
+await Interactor.selectDate(new Date(1989, 3, 28));
+await closePikaday();
 ```
 
 ## Excluding assets
