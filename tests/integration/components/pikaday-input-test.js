@@ -3,7 +3,11 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click, fillIn, settled } from '@ember/test-helpers';
 import findAll from 'ember-pikaday/test-support/-private/find-all';
 import hbs from 'htmlbars-inline-precompile';
-import { close as closePikaday, Interactor } from 'ember-pikaday/test-support';
+import {
+  close as closePikaday,
+  fillInDate,
+  Interactor
+} from 'ember-pikaday/test-support';
 import td from 'testdouble';
 
 const getFirstWeekendDayNumber = function() {
@@ -739,5 +743,28 @@ module('Integration | Component | pikaday-input', function(hooks) {
     assert.equal(Interactor.selectedYear(), 2018);
     assert.equal(Interactor.selectedMonth(), 5);
     assert.equal(Interactor.selectedDay(), 28);
+  });
+
+  test('it selects dates when using multiple date pickers', async function(assert) {
+    const startsAt = new Date(2018, 5, 18);
+    const expiresAt = new Date(2018, 5, 28);
+
+    await render(hbs`
+      <PikadayInput
+        @onSelection={{action (mut this.startsAt)}}
+        name="starts-at"
+      />
+
+      <PikadayInput
+        @onSelection={{action (mut this.expiresAt)}}
+        name="expires-at"
+      />
+    `);
+
+    await fillInDate('input[name="starts-at"]', startsAt);
+    await fillInDate('input[name="expires-at"]', expiresAt);
+
+    assert.deepEqual(this.startsAt, startsAt, 'starts-at');
+    assert.deepEqual(this.expiresAt, expiresAt, 'expires-at');
   });
 });
