@@ -35,6 +35,7 @@
     "@glimmer/component": "^1.0.0",
     "@glimmer/tracking": "^1.0.0",
     "babel-eslint": "^10.0.3",
+    "ember-auto-import": "^2.0.1",
     "ember-cli": "~3.16.0",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-inject-live-reload": "^2.0.2",
@@ -57,7 +58,8 @@
     "prettier": "^1.19.1",
     "qunit-dom": "^1.2.0",
     "release-it": "^12.2.1",
-    "release-it-lerna-changelog": "^1.0.3"
+    "release-it-lerna-changelog": "^1.0.3",
+    "webpack": "^5.40.0"
   },
   "engines": {
     "node": "10.* || >= 12"
