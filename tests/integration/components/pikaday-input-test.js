@@ -529,7 +529,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
       );
   });
 
-  test('firstDay defaults to Monday (1)', async function(assert) {
+  test('firstDay defaults to Monday', async function(assert) {
     await render(hbs`
       <PikadayInput/>
     `);
@@ -543,7 +543,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('firstDay option overrides the default first day value', async function(assert) {
     await render(hbs`
-      <PikadayInput @firstDay={{0}}/>
+      <PikadayInput @firstDay={{6}}/>
     `);
 
     await click('input');

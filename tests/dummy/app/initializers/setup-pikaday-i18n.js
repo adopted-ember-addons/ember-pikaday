@@ -1,5 +1,5 @@
 import EmberObject from '@ember/object';
-import moment from 'moment';
+import { Info } from 'luxon';
 
 export default {
   name: 'setup-pikaday-i18n',
@@ -7,9 +7,9 @@ export default {
     const i18n = EmberObject.extend({
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',
-      months: moment.localeData().months(),
-      weekdays: moment.localeData().weekdays(),
-      weekdaysShort: moment.localeData().weekdaysShort()
+      months: Info.months(),
+      weekdays: Info.weekdays(),
+      weekdaysShort: Info.weekdays('short')
     });
 
     const container = arguments[0];
