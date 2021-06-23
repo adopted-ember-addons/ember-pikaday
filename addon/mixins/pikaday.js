@@ -64,7 +64,10 @@ export default Mixin.create({
       onSelect: run.bind(this, this.onPikadaySelect),
       onDraw: run.bind(this, this.onPikadayRedraw),
       firstDay: typeof firstDay !== 'undefined' ? parseInt(firstDay, 10) : 0,
-      format: this.get('format') || 'DD.MM.YYYY',
+      format: this.get('format') || 'dd.LL.yyyy',
+      toString: (date, format) => DateTime.fromJSDate(date).toFormat(format),
+      parse: (dateString, format) =>
+        DateTime.fromFormat(dateString, format).toJSDate(),
       yearRange: this.determineYearRange(),
       minDate: this.get('minDate') || null,
       maxDate: this.get('maxDate') || null,

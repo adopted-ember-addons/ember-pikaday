@@ -174,7 +174,7 @@ module('Integration | Component | pikaday-input', function(hooks) {
 
   test('format of the input is changeable', async function(assert) {
     this.set('value', new Date(2010, 7, 10));
-    this.set('format', 'YYYY.DD.MM');
+    this.set('format', 'yyyy.dd.LL');
 
     await render(hbs`
       <PikadayInput @value={{this.value}} @format={{this.format}}/>
