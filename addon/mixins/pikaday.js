@@ -7,7 +7,7 @@ import { assign } from '@ember/polyfills';
 import { isPresent } from '@ember/utils';
 import { run, next } from '@ember/runloop';
 import { getProperties, computed } from '@ember/object';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 export default Mixin.create({
   _options: computed('options', 'i18n', {
@@ -123,14 +123,17 @@ export default Mixin.create({
   },
 
   setPikadayDate() {
-    const format = 'YYYY-MM-DD';
     const value = this.get('value');
 
     if (!value) {
       this.get('pikaday').setDate(value, true);
     } else {
       const date = this.get('useUTC')
-        ? moment(moment.utc(value).format(format), format).toDate()
+        ? DateTime.local(
+            value.getUTCFullYear(),
+            value.getUTCMonth() + 1,
+            value.getUTCDate()
+          ).toJSDate()
         : value;
 
       this.get('pikaday').setDate(date, true);
@@ -152,7 +155,8 @@ export default Mixin.create({
       next(() => {
         if (
           value &&
-          moment(value, this.get('format')).isBefore(minDate, 'day')
+          DateTime.fromJSDate(value).startOf('day') <
+            DateTime.fromJSDate(minDate).startOf('day')
         ) {
           pikaday.setDate(minDate);
         }
@@ -201,13 +205,11 @@ export default Mixin.create({
     let selectedDate = this.get('pikaday').getDate();
 
     if (this.get('useUTC')) {
-      selectedDate = moment
-        .utc([
-          selectedDate.getFullYear(),
-          selectedDate.getMonth(),
-          selectedDate.getDate()
-        ])
-        .toDate();
+      selectedDate = DateTime.utc(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth() + 1,
+        selectedDate.getDate()
+      ).toJSDate();
     }
 
     this.get('onSelection')(selectedDate);
