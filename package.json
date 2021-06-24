@@ -58,7 +58,7 @@
     "loader.js": "^4.7.0",
     "prettier": "^1.19.1",
     "qunit-dom": "^1.2.0",
-    "release-it": "^12.2.1",
+    "release-it": "^14.10.0",
     "release-it-lerna-changelog": "^1.0.3",
     "testdouble": "^3.13.1"
   },
