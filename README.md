@@ -4,7 +4,7 @@
 [![Ember Observer Score](https://emberobserver.com/badges/ember-pikaday.svg)](https://emberobserver.com/addons/ember-pikaday)
 [![NPM](https://badgen.net/npm/v/ember-pikaday)](https://www.npmjs.com/package/ember-pikaday)
 
-ember-pikaday is an addon that can be installed with Ember CLI. It gives you a datepicker input component that can be used in your Ember.js application. [ember-cli-moment-shim](https://github.com/jasonmit/ember-cli-moment-shim) is used in the background so it is added as NPM dependencies to your application.
+ember-pikaday is an addon that can be installed with Ember CLI. It gives you a datepicker input component that can be used in your Ember.js application.
 
 **The component provided by ember-pikaday is fully acceptance tested. It also provides test helpers to interact with the datepicker in your own acceptance tests. It works in Ember 1.13.1+ or 2.0+, including beta and canary.**
 
@@ -44,12 +44,12 @@ You can also pass in other closure actions to handle `onOpen`, `onClose` and `on
 </label>
 ```
 
-You can also change the default format from `DD.MM.YYYY` to any format string supported by Moment.js.
+You can also change the default format from `dd.LL.yyyy` to any format string supported by Luxon. (https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens)
 
 ```handlebars
 <label>
   Start date:
-  <PikadayInput @format={{"MM/DD/YYYY"}}/>
+  <PikadayInput @format={{"LL/dd/yyyy"}}/>
 </label>
 ```
 
@@ -120,8 +120,8 @@ If the datepicker is shown to the user and it gets disabled it will close the da
 The `firstDay` attribute is supported as a binding so you can set the first day of the calendar week.
 Defaults to Monday.
 
-- 0 = Sunday
-- 1 = Monday
+- 0 = Monday
+- 1 = Tuesday
 - etc...
 
 ```handlebars
@@ -180,33 +180,35 @@ If you don't want to show an input field, you can use the `pikaday-inputless` co
 
 ## Localization
 
-Localizing the datepicker is possible in two steps. To localize the output of the datepicker, this is the formatted string visible in the input field, you simply include all the locales by following the [ember-cli-moment-shim instructions](https://github.com/jasonmit/ember-cli-moment-shim#cherry-pick-locales-optimal) and include the following in your `ember-cli-build.js`
-
-```js
-app.import('node_modules/moment/locale/de.js');
-```
-
-To localize the datepicker itself, this is the popup you see after clicking the input, a little more work is necessary. The prefered way to do this is writting a custom initializer to inject a localized `i18n` object into the datepicker component. Naturally you can use your own localized strings instead of the ones provided by Moment.js.
+To localize the datepicker itself, this is the popup you see after clicking the input, a little more work is necessary. The prefered way to do this is writting a custom initializer to inject a localized `i18n` object into the datepicker component. Naturally you can use your own localized strings instead of the ones provided by Luxon.
 
 ```js
 // app/initializers/setup-pikaday-i18n.js
 
 import EmberObject from '@ember/object';
-import moment from 'moment';
+import { Info } from 'luxon';
 
 export default {
   name: 'setup-pikaday-i18n',
   initialize: function(application) {
-    let i18n = EmberObject.extend({
+    const i18n = EmberObject.extend({
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',
-      months: moment.localeData().months(),
-      weekdays: moment.localeData().weekdays(),
-      weekdaysShort: moment.localeData().weekdaysShort()
+      months: Info.months(),
+      weekdays: Info.weekdays(),
+      weekdaysShort: Info.weekdays('short')
     });
 
-    application.register('pikaday-i18n:main', i18n, { singleton: true });
+    const container = arguments[0];
+    const application = arguments[1] || container;
+
+    container.register('pikaday-i18n:main', i18n, { singleton: true });
     application.inject('component:pikaday-input', 'i18n', 'pikaday-i18n:main');
+    application.inject(
+      'component:pikaday-inputless',
+      'i18n',
+      'pikaday-i18n:main'
+    );
   }
 };
 ```
