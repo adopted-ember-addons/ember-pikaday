@@ -66,7 +66,6 @@ module('Integration | Component | pikaday-input', function (hooks) {
   });
 
   test('selecting multiple dates should send actions', async function (assert) {
-    debugger;
     const expectedDate1 = new Date(2013, 3, 28);
     const expectedDate2 = new Date(2014, 4, 1);
 

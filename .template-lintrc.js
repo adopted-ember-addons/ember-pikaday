@@ -7,5 +7,7 @@ module.exports = {
     'no-implicit-this': 'off',
     'no-curly-component-invocation': 'off',
     'no-action': 'off',
+    'require-button-type': 'off',
+    'require-input-label': 'off',
   },
 };
