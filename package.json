@@ -43,7 +43,8 @@
     "prepublishOnly": "rollup --config"
   },
   "dependencies": {
-    "@embroider/addon-shim": "^0.50.2"
+    "@embroider/addon-shim": "^0.50.2",
+    "ember-modifier": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -128,7 +129,9 @@
     "main": "addon-main.js",
     "app-js": {
       "./components/pikaday-input.js": "./dist/_app_/components/pikaday-input.js",
-      "./components/pikaday-inputless.js": "./dist/_app_/components/pikaday-inputless.js"
+      "./components/pikaday-input2.js": "./dist/_app_/components/pikaday-input2.js",
+      "./components/pikaday-inputless.js": "./dist/_app_/components/pikaday-inputless.js",
+      "./modifiers/pikaday.js": "./dist/_app_/modifiers/pikaday.js"
     }
   },
   "volta": {

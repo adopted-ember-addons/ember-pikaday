@@ -1,0 +1,26 @@
+<input
+  {{pikaday
+    value=this.value
+    onSelect=this.onSelect
+    setDefaultDate=true
+    defaultDate=@defaultDate
+    onOpen=@onOpen
+    onDraw=this.onDraw
+    onClose=this.onClose
+    format=this.format
+    minDate=@minDate
+    maxDate=@maxDate
+    theme=@theme
+    yearRange=this.yearRange
+    i18n=this.i18n
+    firstDay=this.firstDay
+  }}
+  {{on 'change' this.didChange}}
+  type='text'
+  readonly={{@readonly}}
+  placeholder={{@placeholder}}
+  required={{@required}}
+  disabled={{@disabled}}
+  autocomplete={{@autocomplete}}
+  ...attributes
+/>
