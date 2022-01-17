@@ -6,7 +6,7 @@ import { assign } from '@ember/polyfills';
 import { isPresent } from '@ember/utils';
 import { run, next } from '@ember/runloop';
 import { getProperties, computed } from '@ember/object';
-import moment from 'moment-timezone';
+import { momentOrMomentTimezone as moment } from '../find-moment';
 
 import makePikaday from '../../vendor/pikaday';
 const Pikaday = makePikaday(moment);
