@@ -5,7 +5,7 @@ import Mixin from '@ember/object/mixin';
 import { assign } from '@ember/polyfills';
 import { isPresent } from '@ember/utils';
 import { run, next } from '@ember/runloop';
-import { getProperties, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import { momentOrMomentTimezone as moment } from '../find-moment';
 
 import makePikaday from '../../vendor/pikaday';
@@ -128,11 +128,7 @@ export default Mixin.create({
   },
 
   setMinDate() {
-    const { pikaday, minDate, value } = getProperties(this, [
-      'pikaday',
-      'minDate',
-      'value',
-    ]);
+    const { pikaday, minDate, value } = this;
 
     if (minDate) {
       const _minDate = new Date(minDate.getTime());
@@ -150,11 +146,7 @@ export default Mixin.create({
   },
 
   setMaxDate() {
-    const { pikaday, maxDate, value } = getProperties(this, [
-      'pikaday',
-      'maxDate',
-      'value',
-    ]);
+    const { pikaday, maxDate, value } = this;
 
     if (maxDate) {
       const _maxDate = new Date(maxDate.getTime());

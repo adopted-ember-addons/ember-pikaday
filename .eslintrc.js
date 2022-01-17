@@ -26,7 +26,6 @@ module.exports = {
     'ember/no-mixins': 'off',
     'ember/no-classic-components': 'off',
     'ember/no-component-lifecycle-hooks': 'off',
-    'ember/no-get': 'off',
   },
   overrides: [
     // node files
