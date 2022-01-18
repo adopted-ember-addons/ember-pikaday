@@ -3,9 +3,7 @@ const { module: Qmodule, test } = require('qunit');
 
 Scenarios.fromDir(__dirname)
   .expand({
-    lts_3_16,
-    lts_3_20,
-    lts_3_24,
+    ember_3_25,
     lts_3_28,
     release,
     beta,
@@ -27,36 +25,14 @@ Scenarios.fromDir(__dirname)
     });
   });
 
-async function lts_3_16(project) {
+async function ember_3_25(project) {
   project.linkDevDependency('ember-cli', {
     baseDir: __dirname,
-    resolveName: 'ember-cli-3.16',
+    resolveName: 'ember-cli-3.25',
   });
   project.linkDevDependency('ember-source', {
     baseDir: __dirname,
-    resolveName: 'ember-source-3.16',
-  });
-}
-
-async function lts_3_20(project) {
-  project.linkDevDependency('ember-cli', {
-    baseDir: __dirname,
-    resolveName: 'ember-cli-3.20',
-  });
-  project.linkDevDependency('ember-source', {
-    baseDir: __dirname,
-    resolveName: 'ember-source-3.20',
-  });
-}
-
-async function lts_3_24(project) {
-  project.linkDevDependency('ember-cli', {
-    baseDir: __dirname,
-    resolveName: 'ember-cli-3.24',
-  });
-  project.linkDevDependency('ember-source', {
-    baseDir: __dirname,
-    resolveName: 'ember-source-3.24',
+    resolveName: 'ember-source-3.25',
   });
 }
 
