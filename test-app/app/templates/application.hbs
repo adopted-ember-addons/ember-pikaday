@@ -2,6 +2,15 @@
 
 {{outlet}}
 
+Pikaday Modifier:
+<input
+  {{pikaday
+    format='DD.MM.YYYY'
+    value=this.startDate
+    onSelect=this.setStartDate
+  }}
+/>
+
 Standalone datepicker:
 <PikadayInput
   @format='dddd MMMM Do YYYY, h:mm:ss a'

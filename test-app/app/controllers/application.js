@@ -19,4 +19,9 @@ export default class extends Controller {
   doSomethingWithSelectedValue(value) {
     console.log(value);
   }
+
+  @action
+  setStartDate(date) {
+    this.startDate = date;
+  }
 }
