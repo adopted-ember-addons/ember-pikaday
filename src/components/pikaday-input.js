@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { momentOrMomentTimezone as moment } from '../find-moment';
+import { moment } from '../find-moment';
 
 export default class extends Component {
   constructor(owner, args) {
