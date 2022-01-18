@@ -1,16 +1,15 @@
-import EmberObject from '@ember/object';
 import moment from 'moment-timezone';
 
 export default {
   name: 'setup-pikaday-i18n',
   initialize() {
-    const i18n = EmberObject.extend({
+    const i18n = {
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',
       months: moment.localeData().months(),
       weekdays: moment.localeData().weekdays(),
       weekdaysShort: moment.localeData().weekdaysShort(),
-    });
+    };
 
     const container = arguments[0];
     const application = arguments[1] || container;
