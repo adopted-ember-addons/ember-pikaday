@@ -12,14 +12,12 @@ export default class extends Component {
   }
 
   get value() {
-    if (this.args.useUTC && this.args.value) {
+    let { value, useUTC } = this.args;
+    if (useUTC && value) {
       let format = 'YYYY-MM-DD';
-      return moment(
-        moment.utc(this.args.value).format(format),
-        format
-      ).toDate();
+      value = moment(moment.utc(value).format(format), format).toDate();
     }
-    return this.args.value;
+    return value;
   }
 
   get yearRange() {

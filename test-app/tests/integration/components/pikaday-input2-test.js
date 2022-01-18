@@ -19,7 +19,7 @@ const getDisabledDayCB = (weekendDay) => (e) => {
   return attr ? attr.value == weekendDay : false;
 };
 
-module.skip('Integration | Component | pikaday-input2', function (hooks) {
+module('Integration | Component | pikaday-input2', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it is an input tag', async function (assert) {
@@ -666,6 +666,7 @@ module.skip('Integration | Component | pikaday-input2', function (hooks) {
 
     this.set('minDate', today);
     this.set('maxDate', tomorrow);
+    await settled();
 
     assert.equal(
       today.toISOString(),
