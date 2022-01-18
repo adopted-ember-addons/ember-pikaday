@@ -34,6 +34,7 @@ export default {
 
         // https://github.com/embroider-build/embroider/issues/1014#issuecomment-1014926434
         ['@babel/plugin-proposal-decorators', { legacy: true }],
+        '@babel/plugin-proposal-class-properties',
       ],
       babelHelpers: 'bundled',
     }),
