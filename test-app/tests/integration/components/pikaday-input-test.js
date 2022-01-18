@@ -58,7 +58,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     });
 
     await render(hbs`
-      <PikadayInput @onSelection={{action this.onSelection}}/>
+      <PikadayInput @onSelection={{this.onSelection}}/>
     `);
 
     await click('input');
@@ -78,8 +78,8 @@ module('Integration | Component | pikaday-input', function (hooks) {
     });
 
     await render(hbs`
-      <PikadayInput @onSelection={{action this.onSelection1}} class="first"/>
-      <PikadayInput @onSelection={{action this.onSelection2}} class="second"/>
+      <PikadayInput @onSelection={{this.onSelection1}} class="first"/>
+      <PikadayInput @onSelection={{this.onSelection2}} class="second"/>
     `);
 
     await click('input.first');
@@ -96,7 +96,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     });
 
     await render(hbs`
-      <PikadayInput @value={{this.value}} @onSelection={{action this.onSelection}}/>
+      <PikadayInput @value={{this.value}} @onSelection={{this.onSelection}}/>
     `);
 
     await click('input');
@@ -110,7 +110,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     this.set('onOpen', onOpen);
 
     await render(hbs`
-      <PikadayInput @onOpen={{action this.onOpen}}/>
+      <PikadayInput @onOpen={{this.onOpen}}/>
     `);
 
     await click('input');
@@ -123,7 +123,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     this.set('onClose', onClose);
 
     await render(hbs`
-      <PikadayInput @onClose={{action this.onClose}}/>
+      <PikadayInput @onClose={{this.onClose}}/>
     `);
 
     await click('input');
@@ -137,7 +137,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     this.set('onDraw', onDraw);
 
     await render(hbs`
-      <PikadayInput @onDraw={{action this.onDraw}}/>
+      <PikadayInput @onDraw={{this.onDraw}}/>
     `);
 
     await click('input');
@@ -382,7 +382,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     });
 
     await render(hbs`
-        <PikadayInput @onSelection={{action this.onSelection}} @useUTC={{true}}/>
+        <PikadayInput @onSelection={{this.onSelection}} @useUTC={{true}}/>
       `);
 
     await click('input');
@@ -543,7 +543,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     this.set('onOpen', onOpen);
 
     await render(hbs`
-      <PikadayInput @options={{hash onOpen=onOpen disableWeekends=true}}/>
+      <PikadayInput @options={{hash onOpen=this.onOpen disableWeekends=true}}/>
     `);
     await click('input');
 
@@ -564,7 +564,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     this.set('disableWeekends', true);
 
     await render(hbs`
-      <PikadayInput @options={{hash disableWeekends=disableWeekends}}/>
+      <PikadayInput @options={{hash disableWeekends=this.disableWeekends}}/>
     `);
     await click('input');
 
@@ -643,7 +643,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     this.set('currentDate', null);
 
     await render(hbs`
-      <PikadayInput @maxDate={{this.maxDate}} @minDate={{this.minDate}} @value={{this.currentDate}} @onSelection={{action (mut this.currentDate)}}/>
+      <PikadayInput @maxDate={{this.maxDate}} @minDate={{this.minDate}} @value={{this.currentDate}} @onSelection={{fn (mut this.currentDate)}}/>
     `);
 
     this.set('maxDate', tomorrow);
