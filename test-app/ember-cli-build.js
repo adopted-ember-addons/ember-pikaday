@@ -3,17 +3,26 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const { maybeEmbroider } = require('@embroider/test-setup');
 
+let alias = {
+  testdouble$: 'testdouble/dist/testdouble.js',
+};
+
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     autoImport: {
       watchDependencies: ['ember-pikaday'],
-      alias: {
-        testdouble$: 'testdouble/dist/testdouble.js',
-      },
+      alias,
     },
   });
 
   return maybeEmbroider(app, {
+    packagerOptions: {
+      webpackConfig: {
+        resolve: {
+          alias,
+        },
+      },
+    },
     skipBabel: [
       {
         package: 'qunit',
