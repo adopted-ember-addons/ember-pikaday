@@ -112,13 +112,17 @@
   },
   "peerDependencies": {
     "moment": "^2",
-    "moment-timezone": "^0.5.34"
+    "moment-timezone": "^0.5.34",
+    "@ember/test-helpers": "^2"
   },
   "peerDependenciesMeta": {
     "moment": {
       "optional": true
     },
     "moment-timezone": {
+      "optional": true
+    },
+    "@ember/test-helpers": {
       "optional": true
     }
   },
