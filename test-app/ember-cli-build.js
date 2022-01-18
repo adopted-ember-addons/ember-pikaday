@@ -33,6 +33,9 @@ module.exports = function (defaults) {
       {
         package: 'moment-timezone',
       },
+      {
+        package: 'testdouble',
+      },
     ],
   });
 };
