@@ -1,34 +1,67 @@
 # ember-pikaday
 
-[![Build Status](https://travis-ci.com/adopted-ember-addons/ember-pikaday.svg?branch=master)](https://travis-ci.com/adopted-ember-addons/ember-pikaday)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-pikaday.svg)](https://emberobserver.com/addons/ember-pikaday)
 [![NPM](https://badgen.net/npm/v/ember-pikaday)](https://www.npmjs.com/package/ember-pikaday)
 
-ember-pikaday provides the Pikaday datepicker as Ember components.
+ember-pikaday provides datepicker modifiers & components for Ember using the Pikaday library.
 
-**The component provided by ember-pikaday is fully acceptance tested. It also provides test helpers to interact with the datepicker in your own acceptance tests.**
-
-
+**This addon is fully integration tested, and it provides test helpers to interact with the datepicker in your own tests.**
 
 ## Installation
-* Ember.js v3.12 or above
-* Ember CLI v2.13 or above
-* Node.js v10 or above
+
+Prerequisites:
+
+- Ember.js v3.25 or above
+- Node.js v12 or above
+- ember-auto-import 2.0 or above
+
+Optional prerequisites:
+
+- If you use the backward-compatible `<PikadayInput>` or `<PikadayInputless>` components, your app must depend on either `moment` or `moment-timezone` and you should remember to configure your locale and timezone requirements. See [Using Moment.js in Ember Apps & Addons](https://github.com/adopted-ember-addons/ember-moment#using-momentjs-in-ember-apps--addons).
+- But if you only use the new `<input {{pikaday}} />` modifier, `moment` or `moment-timezone` are optional. Pikday itself uses them if they present, but doesn't require them.
+
+Anti-prerequisites:
+
+- Remove ember-cli-moment-shim from your app. Earlier versions of this addon required it, but now it will only give you a redundant copy with the one provided by ember-auto-import.
 
 ```bash
 cd your-project-directory
 ember install ember-pikaday
 ```
 
-
 ## Usage
+
+### {{pikaday}} modifier
+
+The `{{pikaday}}` modifier invokes `new Pikaday()` with your element as Pikaday's `field` option:
+
+```hbs
+<input
+  {{pikaday
+    format='DD.MM.YYYY'
+    value=this.startDate
+    onSelect=this.setStartDate
+  }}
+/>
+```
+
+The optional `value` argument can be used to synchronize external changes into Pikaday. Internally, we do this using Pikaday's `setDate`.
+
+All other named arguments are passed directly to Pikaday, so see [Pikaday's configuration docs](https://github.com/Pikaday/Pikaday#configuration).
+
+The only behaviors this modifier adds to the stock Pikaday are:
+
+- if you set `minDate` or `maxDate` and that causes `value` to be outside the legal range, we adjust `value` and fire `onSelect` to inform you of the change
+- if you set your `<input>` element's `disabled` attribute we will close Pikaday if it had been open.
+
+### <PikadayInput> Component
 
 While the input shows a formatted date to the user, the `value` attribute can be any valid JavaScript date including `Date` object. If the application sets the attribute without a user interaction the datepicker updates accordingly.
 
 ```handlebars
 <label>
   Start date:
-  <PikadayInput @onSelection={{action 'doSomethingWithSelectedValue'}}/>
+  <PikadayInput @onSelection={{action 'doSomethingWithSelectedValue'}} />
 </label>
 ```
 
@@ -37,8 +70,8 @@ You can also pass in other closure actions to handle `onOpen`, `onClose` and `on
 ```handlebars
 <label>
   Start date:
-  <PikadayInput 
-    @onOpen={{action 'doSomethingOnOpen'}} 
+  <PikadayInput
+    @onOpen={{action 'doSomethingOnOpen'}}
     @onClose={{action 'doSomethingOnClose'}}
     @onDraw={{action 'doSomethingOnDraw'}}
   />
@@ -50,7 +83,7 @@ You can also change the default format from `DD.MM.YYYY` to any format string su
 ```handlebars
 <label>
   Start date:
-  <PikadayInput @format={{"MM/DD/YYYY"}}/>
+  <PikadayInput @format={{'MM/DD/YYYY'}} />
 </label>
 ```
 
@@ -59,7 +92,7 @@ You can define a theme which will be a CSS class that can be used as a hook for 
 ```handlebars
 <label>
   Start date:
-  <PikadayInput @theme={{"dark-theme"}} />
+  <PikadayInput @theme={{'dark-theme'}} />
 </label>
 ```
 
@@ -69,14 +102,14 @@ single number or two comma separated years.
 ```handlebars
 <label>
   Start date:
-  <PikadayInput @yearRange={{"4"}}/>
+  <PikadayInput @yearRange={{'4'}} />
 </label>
 ```
 
 ```handlebars
 <label>
   Start date:
-  <PikadayInput @yearRange={{"2004,2008"}}/>
+  <PikadayInput @yearRange={{'2004,2008'}} />
 </label>
 ```
 
@@ -86,7 +119,7 @@ the maximum selectable year to the current year.
 ```handlebars
 <label>
   Start date:
-  <PikadayInput @yearRange={{"2004,currentYear"}}/>
+  <PikadayInput @yearRange={{'2004,currentYear'}} />
 </label>
 ```
 
@@ -95,7 +128,7 @@ The `readonly` attribute is supported as binding so you can make the input reado
 ```handlebars
 <label>
   Start date:
-  <PikadayInput @readonly={{"readonly"}}/>
+  <PikadayInput @readonly={{'readonly'}} />
 </label>
 ```
 
@@ -104,7 +137,7 @@ The `placeholder` attribute is supported as binding so you can improve the user 
 ```handlebars
 <label>
   Due date:
-  <PikadayInput @placeholder={{"Due date of invoice"}}/>
+  <PikadayInput @placeholder={{'Due date of invoice'}} />
 </label>
 ```
 
@@ -114,7 +147,7 @@ If the datepicker is shown to the user and it gets disabled it will close the da
 ```handlebars
 <label>
   Due date:
-  <PikadayInput @disabled={{isDisabled}}/>
+  <PikadayInput @disabled={{isDisabled}} />
 </label>
 ```
 
@@ -128,7 +161,7 @@ Defaults to Monday.
 ```handlebars
 <label>
   Due date:
-  <PikadayInput @firstDay={{0}}/>
+  <PikadayInput @firstDay={{0}} />
 </label>
 ```
 
@@ -137,7 +170,7 @@ The `minDate` attribute is supported as a binding so you can set the earliest da
 ```handlebars
 <label>
   Due Date:
-  <PikadayInput @minDate={{minDate}}/>
+  <PikadayInput @minDate={{minDate}} />
 </label>
 ```
 
@@ -146,7 +179,7 @@ The `maxDate` attribute is supported as a binding so you can set the latest date
 ```handlebars
 <label>
   Due Date:
-  <PikadayInput @maxDate={{maxDate}}/>
+  <PikadayInput @maxDate={{maxDate}} />
 </label>
 ```
 
@@ -157,7 +190,7 @@ The date returned by ember-pikaday is in your local time zone due to the JavaScr
 ```handlebars
 <label>
   Start date:
-  <PikadayInput @useUTC={{true}}/>
+  <PikadayInput @useUTC={{true}} />
 </label>
 ```
 
@@ -169,7 +202,13 @@ You can pass any custom pikaday option through the component like this
 
 ```handlebars
 <label>
-  <PikadayInput @options={{hash numberOfMonths=2 disableWeekends=true disableDayFn=(action 'someAction')}}/>
+  <PikadayInput
+    @options={{hash
+      numberOfMonths=2
+      disableWeekends=true
+      disableDayFn=(action 'someAction')
+    }}
+  />
 </label>
 ```
 
@@ -197,18 +236,18 @@ import moment from 'moment';
 
 export default {
   name: 'setup-pikaday-i18n',
-  initialize: function(application) {
+  initialize: function (application) {
     let i18n = EmberObject.extend({
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',
       months: moment.localeData().months(),
       weekdays: moment.localeData().weekdays(),
-      weekdaysShort: moment.localeData().weekdaysShort()
+      weekdaysShort: moment.localeData().weekdaysShort(),
     });
 
     application.register('pikaday-i18n:main', i18n, { singleton: true });
     application.inject('component:pikaday-input', 'i18n', 'pikaday-i18n:main');
-  }
+  },
 };
 ```
 
@@ -217,9 +256,9 @@ export default {
 ### Show `ember-pikaday` when clicking on a button:
 
 ```handlebars
-<button {{action "togglePika"}}>Show Pika</button>
+<button {{action 'togglePika'}}>Show Pika</button>
 {{#if showPika}}
-    <PikadayInputless @value={{"2017-07-07"}}/>
+  <PikadayInputless @value={{'2017-07-07'}} />
 {{/if}}
 ```
 
@@ -230,18 +269,21 @@ export default Ember.Controller.extend({
   actions: {
     togglePika() {
       this.toggleProperty('showPika');
-    }
-  }
+    },
+  },
 });
 ```
 
 ### Show `ember-pikaday` when hovering over a div:
 
 ```handlebars
-<div {{action "showPika" on="mouseEnter"}} {{action "hidePika" on="mouseLeave"}}>
+<div
+  {{action 'showPika' on='mouseEnter'}}
+  {{action 'hidePika' on='mouseLeave'}}
+>
   Hover me to pika
   {{#if showPika}}
-    <PikadayInputless @value={{"2017-07-07"}}/>
+    <PikadayInputless @value={{'2017-07-07'}} />
   {{/if}}
 </div>
 ```
@@ -257,8 +299,8 @@ export default Controller.extend({
     },
     hidePika() {
       this.set('showPika', false);
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -317,8 +359,8 @@ If you need to use a custom version, you can now disable auto assests importing 
 // ember-cli-build.js
 let app = new EmberApp(defaults, {
   emberPikaday: {
-    excludePikadayAssets: true
-  }
+    excludePikadayAssets: true,
+  },
 });
 ```
 
