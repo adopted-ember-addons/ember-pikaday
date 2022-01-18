@@ -54,7 +54,7 @@ The only behaviors this modifier adds to the stock Pikaday are:
 - if you set `minDate` or `maxDate` and that causes `value` to be outside the legal range, we adjust `value` and fire `onSelect` to inform you of the change
 - if you set your `<input>` element's `disabled` attribute we will close Pikaday if it had been open.
 
-### <PikadayInput> Component
+### &lt;PikadayInput&gt; Component
 
 While the input shows a formatted date to the user, the `value` attribute can be any valid JavaScript date including `Date` object. If the application sets the attribute without a user interaction the datepicker updates accordingly.
 
@@ -183,7 +183,7 @@ The `maxDate` attribute is supported as a binding so you can set the latest date
 </label>
 ```
 
-## Return dates in UTC time zone
+#### Return dates in UTC time zone
 
 The date returned by ember-pikaday is in your local time zone due to the JavaScript default behaviour of `new Date()`. This can lead to problems when your application converts the date to UTC. In additive time zones (e.g. +0010) the resulting converted date could be yesterdays date. You can force the component to return a date with the UTC time zone by passing `useUTC=true` to it.
 
@@ -196,7 +196,7 @@ The date returned by ember-pikaday is in your local time zone due to the JavaScr
 
 ember-pikaday will not automatically convert the date to UTC if your application is setting the datepicker value directly!
 
-## Using pikaday specific options
+#### Using pikaday specific options
 
 You can pass any custom pikaday option through the component like this
 
@@ -214,9 +214,9 @@ You can pass any custom pikaday option through the component like this
 
 Please refer to [pikaday configuration](https://github.com/dbushell/Pikaday#configuration)
 
-## Inputless pikaday
+### &lt;PikadayInputless&gt;
 
-If you don't want to show an input field, you can use the `pikaday-inputless` component instead of `pikaday-input`. It has the same API, but doesn't support `onOpen` and `onClose`. When `disabled=true` on a `pikaday-inputless`, the datepicker gets hidden.
+If you don't want to show an input field, you can use the `<PikadayInputless/>` component instead of `<PikadayInput/>`. It has the same API, but doesn't support `onOpen` and `onClose`. When `disabled=true` on a `pikaday-inputless`, the datepicker gets hidden.
 
 ## Localization
 
