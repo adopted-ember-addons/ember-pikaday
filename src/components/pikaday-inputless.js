@@ -1,17 +1,13 @@
-import Component from '@ember/component';
-import PikadayMixin from '../mixins/pikaday';
+import Component from '@glimmer/component';
+import { modifier } from 'ember-modifier';
+import { tracked } from '@glimmer/tracking';
 
-export default Component.extend(PikadayMixin, {
-  didInsertElement() {
-    this._super(...arguments);
-    this.set('field', this.element.querySelector('.ember-pikaday-input'));
-    this.set(
-      'pikadayContainer',
-      this.element.querySelector('.ember-pikaday-container')
-    );
-    this.setupPikaday();
-  },
-
-  onPikadayOpen() {},
-  onPikadayClose() {},
-});
+export default class extends Component {
+  @tracked container;
+  constructor(owner, args) {
+    super(owner, args);
+    this.setContainer = modifier((element) => {
+      this.container = element;
+    });
+  }
+}

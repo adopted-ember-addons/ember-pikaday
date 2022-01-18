@@ -23,7 +23,7 @@ export default class PikadayModifier extends Modifier {
 
     if (!opts.i18n) {
       // Pikaday doesn't like it if you pass an empty value for i18n, whereas
-      // it's hard in HBS to only conditionally include a named argument, so we
+      // it's hard in HBS to conditionally include a named argument, so we
       // drop it here.
       delete opts.i18n;
     }
@@ -36,7 +36,8 @@ export default class PikadayModifier extends Modifier {
     if (value) {
       this.#pikaday.setDate(value, true);
     }
-    this.#observer = new MutationObserver(this.sawMutation.bind(this));
+    this.syncDisabled();
+    this.#observer = new MutationObserver(this.syncDisabled.bind(this));
     this.#observer.observe(this.element, { attributes: true });
   }
 
@@ -64,7 +65,7 @@ export default class PikadayModifier extends Modifier {
     this.#observer.disconnect();
   }
 
-  sawMutation() {
+  syncDisabled() {
     if (this.element.hasAttribute('disabled')) {
       this.#pikaday.hide();
     }

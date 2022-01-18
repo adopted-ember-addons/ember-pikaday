@@ -440,6 +440,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     assert.dom('input').doesNotHaveAttribute('placeholder');
 
     this.set('placeholder', 'I am the placeholder');
+    await settled();
 
     assert.dom('input').hasAttribute('placeholder', 'I am the placeholder');
   });
@@ -452,6 +453,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     assert.dom('input').doesNotHaveAttribute('required');
 
     this.set('required', true);
+    await settled();
 
     assert.dom('input').hasAttribute('required');
   });
@@ -464,6 +466,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     assert.dom('input').doesNotHaveAttribute('disabled');
 
     this.set('disabled', true);
+    await settled();
 
     assert.dom('input').hasAttribute('disabled');
   });
@@ -476,6 +479,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     assert.dom('input').doesNotHaveAttribute('autocomplete');
 
     this.set('autocomplete', 'off');
+    await settled();
 
     assert.dom('input').hasAttribute('autocomplete', 'off');
   });
@@ -499,6 +503,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
       .doesNotHaveClass('is-hidden', 'not disabled and pika-single is shown');
 
     this.set('disabled', true);
+    await settled();
 
     assert.dom('input').isDisabled();
     assert
@@ -661,6 +666,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
     this.set('minDate', today);
     this.set('maxDate', tomorrow);
+    await settled();
 
     assert.equal(
       today.toISOString(),
