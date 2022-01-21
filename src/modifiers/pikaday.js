@@ -1,7 +1,7 @@
 import Modifier from 'ember-modifier';
 import makePikaday from '../../vendor/pikaday';
-import { maybeMoment } from '../find-moment';
-const Pikaday = makePikaday(maybeMoment);
+import { maybeFindMoment } from '../find-moment';
+const Pikaday = makePikaday(maybeFindMoment());
 
 export default class PikadayModifier extends Modifier {
   #pikaday;
