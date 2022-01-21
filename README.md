@@ -3,7 +3,7 @@
 [![Ember Observer Score](https://emberobserver.com/badges/ember-pikaday.svg)](https://emberobserver.com/addons/ember-pikaday)
 [![NPM](https://badgen.net/npm/v/ember-pikaday)](https://www.npmjs.com/package/ember-pikaday)
 
-ember-pikaday provides datepicker modifiers & components for Ember using the Pikaday library.
+ember-pikaday provides a datepicker modifier & components for Ember using the Pikaday library.
 
 **This addon is fully integration tested, and it provides test helpers to interact with the datepicker in your own tests.**
 
@@ -28,6 +28,20 @@ Anti-prerequisites:
 cd your-project-directory
 ember install ember-pikaday
 ```
+
+## Styles
+
+In order to give apps control over styling, the default CSS does not load unless you tell it to. The simplest way to do this is to make this file:
+
+```js
+// app/modifiers/pikaday.js
+
+/* Opt-in to using pikaday's default CSS */
+import 'ember-pikaday/pikaday.css';
+export { default } from 'ember-pikaday/modifiers/pikaday';
+```
+
+This means that the `{{pikaday}}` modifier within your app is the one from `ember-pikaday`, with the styles loaded too.
 
 ## Usage
 
