@@ -59,6 +59,9 @@ export default class extends Component {
 
   @action
   onClose() {
+    if (this.isDestroying) {
+      return;
+    }
     if (!this.#heardValue) {
       this.onSelect(null);
     }
