@@ -1,0 +1,31 @@
+<div ...attributes>
+  {{#if this.container}}
+    <PikadayInput
+      type='hidden'
+      class='ember-pikaday-input'
+      @bound={{false}}
+      @container={{this.container}}
+      @defaultDate={{@defaultDate}}
+      @onSelection={{@onSelection}}
+      @options={{@options}}
+      @maxDate={{@maxDate}}
+      @minDate={{@minDate}}
+      @onOpen={{@onOpen}}
+      @theme={{@theme}}
+      @readonly={{@readonly}}
+      @placeholder={{@placeholder}}
+      @required={{@required}}
+      @disabled={{@disabled}}
+      @autocomplete={{@autocomplete}}
+      @value={{@value}}
+      @format={{@format}}
+      @useUTC={{@useUTC}}
+      @yearRange={{@yearRange}}
+      @i18n={{@i18n}}
+      @firstDay={{@firstDay}}
+      @onClose={{@onClose}}
+      @onDraw={{@onDraw}}
+    />
+  {{/if}}
+  <div {{this.setContainer}} class='ember-pikaday-container'></div>
+</div>
