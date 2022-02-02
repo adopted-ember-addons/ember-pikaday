@@ -31,7 +31,7 @@ ember install ember-pikaday
 
 ## Styles
 
-In order to give apps control over styling, the default CSS does not load unless you tell it to. The simplest way to do this is to make this file:
+In order to give apps control over styling, the default CSS does not load unless you tell it to. The recommended way to load the CSS is to create this file:
 
 ```js
 // app/modifiers/pikaday.js
@@ -41,7 +41,7 @@ import 'ember-pikaday/pikaday.css';
 export { default } from 'ember-pikaday/modifiers/pikaday';
 ```
 
-This means that the `{{pikaday}}` modifier within your app is the one from `ember-pikaday`, with the styles loaded too.
+This guarantees that the CSS will load whenever your app uses the `{{pikaday}}` modifier (and the `{{pikday}}` modifier is used internally by all the other provided components, so this covers them too).
 
 ## Usage
 
