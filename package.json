@@ -140,11 +140,6 @@
     "yarn": "1.22.11"
   },
   "release-it": {
-    "plugins": {
-      "release-it-lerna-changelog": {
-        "infile": "CHANGELOG.md"
-      }
-    },
     "git": {
       "tagName": "v${version}"
     },
