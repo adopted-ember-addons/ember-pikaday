@@ -24,11 +24,6 @@ Anti-prerequisites:
 
 - Remove ember-cli-moment-shim from your app. Earlier versions of this addon required it, but now it will only give you a redundant copy with the one provided by ember-auto-import.
 
-```bash
-cd your-project-directory
-ember install ember-pikaday
-```
-
 ## Styles
 
 In order to give apps control over styling, the default CSS does not load unless you tell it to. The recommended way to load the CSS is to create this file:
@@ -362,20 +357,6 @@ await Interactor.selectDate(new Date(1989, 3, 28));
 assert.equal(Interactor.selectedYear(), 1989);
 assert.equal(Interactor.selectedMonth(), 3);
 assert.equal(Interactor.selectedDay(), 28);
-```
-
-## Excluding assets
-
-By default, ember-pikaday will load for you the needed pikaday assets.
-If you need to use a custom version, you can now disable auto assests importing like this:
-
-```js
-// ember-cli-build.js
-let app = new EmberApp(defaults, {
-  emberPikaday: {
-    excludePikadayAssets: true,
-  },
-});
 ```
 
 ## Other Resources
