@@ -100,6 +100,7 @@
     "qunit": "^2.17.2",
     "qunit-console-grouper": "^0.3.0",
     "qunit-dom": "^1.6.0",
+    "release-it-lerna-changelog": "^4.0.1",
     "rollup": "^2.63.0",
     "scenario-tester": "^2.0.1",
     "testdouble": "^3.16.4",
@@ -107,9 +108,9 @@
     "webpack": "^5.65.0"
   },
   "peerDependencies": {
+    "@ember/test-helpers": "^2",
     "moment": "^2",
-    "moment-timezone": "^0.5.34",
-    "@ember/test-helpers": "^2"
+    "moment-timezone": "^0.5.34"
   },
   "peerDependenciesMeta": {
     "moment": {
@@ -140,6 +141,11 @@
     "yarn": "1.22.11"
   },
   "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md"
+      }
+    },
     "git": {
       "tagName": "v${version}"
     },
