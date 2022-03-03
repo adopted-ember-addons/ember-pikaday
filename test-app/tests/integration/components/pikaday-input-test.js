@@ -744,6 +744,42 @@ module('Integration | Component | pikaday-input', function (hooks) {
       <PikadayInput @register={{this.registerFn}}/>
     `);
   });
+
+  test('passing moment fn', async function (assert) {
+    assert.expect(3);
+    class _moment {
+      format() {
+        return this;
+      }
+      toDate() {
+        return new Date();
+      }
+      utc() {
+        return this;
+      }
+    }
+    const moment = function () {
+      assert.ok(true, 'moment fn called');
+      return new _moment();
+    };
+
+    moment.utc = () => {
+      assert.ok(true, 'moment utc fn called');
+      return new _moment();
+    };
+
+    this.set('updateCurrentDate', (date) => {
+      this.set('currentDate', date);
+    });
+    this.set('moment', moment);
+
+    await render(hbs`
+      <PikadayInput @onSelection={{this.updateCurrentDate}} @value={{this.currentDate}} @moment={{this.moment}} @useUTC={{true}}/>
+    `);
+
+    await click('input');
+    await Interactor.selectDate(new Date());
+  });
 });
 
 /**

@@ -92,7 +92,7 @@ export default class PikadayInputComponent extends Component {
   @action
   onSelect(date) {
     if (this.args.useUTC && date) {
-      date = moment
+      date = this.moment
         .utc([date.getFullYear(), date.getMonth(), date.getDate()])
         .toDate();
     }
