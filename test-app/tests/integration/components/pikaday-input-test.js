@@ -596,9 +596,12 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
     this.set('currentDate', today);
     this.set('minDate', today);
+    this.set('updateCurrentDate', (date) => {
+      this.set('currentDate', date);
+    });
 
     await render(hbs`
-      <PikadayInput @minDate={{this.minDate}} @value={{this.currentDate}} @onSelection={{action (mut this.currentDate)}}/>
+      <PikadayInput @minDate={{this.minDate}} @value={{this.currentDate}} @onSelection={{this.updateCurrentDate}}/>
     `);
 
     this.set('minDate', tomorrow);
@@ -619,9 +622,12 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
     this.set('currentDate', tomorrow);
     this.set('maxDate', tomorrow);
+    this.set('updateCurrentDate', (date) => {
+      this.set('currentDate', date);
+    });
 
     await render(hbs`
-      <PikadayInput @maxDate={{this.maxDate}} @value={{this.currentDate}} @onSelection={{action (mut this.currentDate)}}/>
+      <PikadayInput @maxDate={{this.maxDate}} @value={{this.currentDate}} @onSelection={{this.updateCurrentDate}}/>
     `);
 
     this.set('maxDate', today);
@@ -727,6 +733,16 @@ module('Integration | Component | pikaday-input', function (hooks) {
     assert.equal(Interactor.selectedYear(), 2018);
     assert.equal(Interactor.selectedMonth(), 5);
     assert.equal(Interactor.selectedDay(), 28);
+  });
+
+  test('register should give access to pikaday instance for granular control', async function (assert) {
+    this.set('registerFn', (pikaday) => {
+      assert.ok(pikaday, 'pikaday registration failed');
+    });
+
+    await render(hbs`
+      <PikadayInput @register={{this.registerFn}}/>
+    `);
   });
 });
 

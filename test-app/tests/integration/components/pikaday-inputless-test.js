@@ -22,7 +22,7 @@ module('Integration | Component | pikaday-inputless', function (hooks) {
     this.set('onSelection', onSelection);
 
     await render(hbs`
-      <PikadayInputless @onSelection={{action this.onSelection}}/>
+      <PikadayInputless @onSelection={{this.onSelection}}/>
     `);
 
     await click('input');
@@ -53,5 +53,15 @@ module('Integration | Component | pikaday-inputless', function (hooks) {
     assert
       .dom('.pika-single')
       .hasClass('is-hidden', 'should be closed before clicking');
+  });
+
+  test('register should give access to pikaday instance for granular control', async function (assert) {
+    this.set('registerFn', (pikaday) => {
+      assert.ok(pikaday, 'pikaday registration failed');
+    });
+
+    await render(hbs`
+      <PikadayInputless @register={{this.registerFn}}/>
+    `);
   });
 });
