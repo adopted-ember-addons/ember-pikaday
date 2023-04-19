@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@embroider/addon-shim": "^0.50.2",
-    "ember-modifier": "^3.0.0"
+    "ember-modifier": "^3.2.7 || ^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",

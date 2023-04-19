@@ -1,24 +1,29 @@
 import Modifier from 'ember-modifier';
 import makePikaday from '../../vendor/pikaday';
 import { maybeFindMoment } from '../find-moment';
+import { registerDestructor } from '@ember/destroyable';
 const Pikaday = makePikaday(maybeFindMoment());
 
 export default class PikadayModifier extends Modifier {
   #pikaday;
   #observer;
 
-  get pikadayOptions() {
+  #element;
+
+  modify(element, positional, named) {
+    this.#element = element;
+
     let opts = {
       // Our element is Pikaday's field
-      field: this.element,
+      field: element,
 
       // All other named arguments go through to Pikaday
-      ...this.args.named,
+      ...named,
 
       // We also optionally accept a bag of arguments as the first positional
       // argument, because it's hard to do argument splatting in hbs. These are
       // taking precedence over the named arguments.
-      ...this.args.positional[0],
+      ...positional[0],
     };
 
     if (!opts.i18n) {
@@ -27,22 +32,22 @@ export default class PikadayModifier extends Modifier {
       // drop it here.
       delete opts.i18n;
     }
-    return opts;
-  }
 
-  didInstall() {
-    this.#pikaday = new Pikaday(this.pikadayOptions);
-    let { value } = this.args.named;
-    if (value) {
-      this.#pikaday.setDate(value, true);
+    let firstTime = false; // use this to know if should update config because there is one method not an install and update
+    if (!this.#pikaday) {
+      firstTime = true;
+      this.#pikaday = new Pikaday(opts);
+      this.#observer = new MutationObserver(this.syncDisabled.bind(this));
+      this.#observer.observe(element, { attributes: true });
+      registerDestructor(this, () => {
+        this.#pikaday.destroy();
+        this.#observer.disconnect();
+      });
     }
-    this.syncDisabled();
-    this.#observer = new MutationObserver(this.syncDisabled.bind(this));
-    this.#observer.observe(this.element, { attributes: true });
-  }
 
-  didUpdateArguments() {
-    let { value, minDate, maxDate } = this.args.named;
+    this.syncDisabled();
+
+    let { value, minDate, maxDate } = named;
     let valueAltered = false;
     this.#pikaday.setMinDate(copyDate(minDate));
     if (minDate && value && value < minDate) {
@@ -56,17 +61,17 @@ export default class PikadayModifier extends Modifier {
       valueAltered = true;
     }
 
-    this.#pikaday.setDate(value, !valueAltered);
-    this.#pikaday.config(this.pikadayOptions);
-  }
+    if (value) {
+      this.#pikaday.setDate(value, !valueAltered);
+    }
 
-  willDestroy() {
-    this.#pikaday.destroy();
-    this.#observer.disconnect();
+    if (!firstTime) {
+      this.#pikaday.config(opts);
+    }
   }
 
   syncDisabled() {
-    if (this.element.hasAttribute('disabled')) {
+    if (this.#element.hasAttribute('disabled')) {
       this.#pikaday.hide();
     }
   }
