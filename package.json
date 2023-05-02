@@ -47,7 +47,7 @@
     "ember-modifier": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
+    "@babel/core": "^7.20.12",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/plugin-proposal-decorators": "^7.16.7",
     "@ember/optional-features": "^2.0.0",
@@ -137,7 +137,7 @@
     }
   },
   "volta": {
-    "node": "14.17.5",
+    "node": "16.19.0",
     "yarn": "1.22.11"
   },
   "release-it": {
