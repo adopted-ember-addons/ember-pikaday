@@ -18,6 +18,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.12",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.6.0",
     "@embroider/test-setup": "npm:@embroider/test-setup@latest",
@@ -63,13 +64,13 @@
     "webpack": "^5.65.0"
   },
   "engines": {
-    "node": "12.* || 14.* || >= 16"
+    "node": "14.* || >= 16"
   },
   "ember": {
     "edition": "octane"
   },
   "volta": {
-    "node": "14.17.5",
+    "node": "16.19.0",
     "yarn": "1.22.11"
   }
 }
