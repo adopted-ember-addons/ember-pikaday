@@ -1,3 +1,4 @@
+import { registerDestructor } from '@ember/destroyable';
 import Modifier from 'ember-modifier';
 import makePikaday from '../../vendor/pikaday';
 import { maybeFindMoment } from '../find-moment';
@@ -7,18 +8,27 @@ export default class PikadayModifier extends Modifier {
   #pikaday;
   #observer;
 
-  get pikadayOptions() {
+  constructor(owner, args) {
+    super(owner, args);
+
+    registerDestructor(this, () => {
+      this.#pikaday.destroy();
+      this.#observer.disconnect();
+    });
+  }
+
+  getPikadayOptions(element, positional, named) {
     let opts = {
       // Our element is Pikaday's field
-      field: this.element,
+      field: element,
 
       // All other named arguments go through to Pikaday
-      ...this.args.named,
+      ...named,
 
       // We also optionally accept a bag of arguments as the first positional
       // argument, because it's hard to do argument splatting in hbs. These are
       // taking precedence over the named arguments.
-      ...this.args.positional[0],
+      ...positional[0],
     };
 
     if (!opts.i18n) {
@@ -30,43 +40,40 @@ export default class PikadayModifier extends Modifier {
     return opts;
   }
 
-  didInstall() {
-    this.#pikaday = new Pikaday(this.pikadayOptions);
-    let { value } = this.args.named;
-    if (value) {
-      this.#pikaday.setDate(value, true);
+  modify(element, positional, named) {
+    const pikadayOptions = this.getPikadayOptions(element, positional, named);
+
+    if (!this.#pikaday) {
+      this.#pikaday = new Pikaday(pikadayOptions);
+      let { value } = named;
+      if (value) {
+        this.#pikaday.setDate(value, true);
+      }
+      this.syncDisabled(element);
+      this.#observer = new MutationObserver(() => this.syncDisabled(element));
+      this.#observer.observe(element, { attributes: true });
+    } else {
+      let { value, minDate, maxDate } = named;
+      let valueAltered = false;
+      this.#pikaday.setMinDate(copyDate(minDate));
+      if (minDate && value && value < minDate) {
+        value = minDate;
+        valueAltered = true;
+      }
+
+      this.#pikaday.setMaxDate(copyDate(maxDate));
+      if (maxDate && value && value > maxDate) {
+        value = maxDate;
+        valueAltered = true;
+      }
+
+      this.#pikaday.setDate(value, !valueAltered);
+      this.#pikaday.config(pikadayOptions);
     }
-    this.syncDisabled();
-    this.#observer = new MutationObserver(this.syncDisabled.bind(this));
-    this.#observer.observe(this.element, { attributes: true });
   }
 
-  didUpdateArguments() {
-    let { value, minDate, maxDate } = this.args.named;
-    let valueAltered = false;
-    this.#pikaday.setMinDate(copyDate(minDate));
-    if (minDate && value && value < minDate) {
-      value = minDate;
-      valueAltered = true;
-    }
-
-    this.#pikaday.setMaxDate(copyDate(maxDate));
-    if (maxDate && value && value > maxDate) {
-      value = maxDate;
-      valueAltered = true;
-    }
-
-    this.#pikaday.setDate(value, !valueAltered);
-    this.#pikaday.config(this.pikadayOptions);
-  }
-
-  willDestroy() {
-    this.#pikaday.destroy();
-    this.#observer.disconnect();
-  }
-
-  syncDisabled() {
-    if (this.element.hasAttribute('disabled')) {
+  syncDisabled(element) {
+    if (element.hasAttribute('disabled')) {
       this.#pikaday.hide();
     }
   }
