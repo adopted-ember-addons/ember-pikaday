@@ -6,8 +6,11 @@ export default class PikadayInputlessComponent extends Component {
   @tracked container;
   constructor(owner, args) {
     super(owner, args);
-    this.setContainer = modifier((element) => {
-      this.container = element;
-    });
+    this.setContainer = modifier(
+      (element) => {
+        this.container = element;
+      },
+      { eager: false }
+    );
   }
 }
