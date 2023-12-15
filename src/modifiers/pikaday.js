@@ -45,13 +45,14 @@ export default class PikadayModifier extends Modifier {
 
     if (!this.#pikaday) {
       this.#pikaday = new Pikaday(pikadayOptions);
-      let { value } = named;
+      let { value, register } = named;
       if (value) {
         this.#pikaday.setDate(value, true);
       }
       this.syncDisabled(element);
       this.#observer = new MutationObserver(() => this.syncDisabled(element));
       this.#observer.observe(element, { attributes: true });
+      register?.(this.#pikaday);
     } else {
       let { value, minDate, maxDate } = named;
       let valueAltered = false;
