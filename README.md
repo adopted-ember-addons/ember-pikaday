@@ -235,29 +235,26 @@ Localizing the datepicker is possible in two steps. To localize the output of th
 app.import('node_modules/moment/locale/de.js');
 ```
 
-To localize the datepicker itself, this is the popup you see after clicking the input, a little more work is necessary. The prefered way to do this is writting a custom initializer to inject a localized `i18n` object into the datepicker component. Naturally you can use your own localized strings instead of the ones provided by Moment.js.
+To localize the datepicker itself, this is the popup you see after clicking the input, a little more work is necessary. The prefered way to do this is to implement a custom component that extends the `PikadayInput` component and customizes the `i18n` attribute. The following example uses the translations provided by Moment.js - naturally you can use your own localized strings instead.
 
 ```js
-// app/initializers/setup-pikaday-i18n.js
+// app/components/pikaday-input.js
 
-import EmberObject from '@ember/object';
-import moment from 'moment';
+import PikadayInput from "ember-pikaday/components/pikaday-input";
+import moment from "moment";
 
-export default {
-  name: 'setup-pikaday-i18n',
-  initialize: function (application) {
-    let i18n = EmberObject.extend({
+export default PikadayInput.extend({
+  init(...args) {
+    this._super(args);
+    this.i18n = {
       previousMonth: 'Vorheriger Monat',
       nextMonth: 'Nächster Monat',
-      months: moment.localeData().months(),
-      weekdays: moment.localeData().weekdays(),
-      weekdaysShort: moment.localeData().weekdaysShort(),
-    });
-
-    application.register('pikaday-i18n:main', i18n, { singleton: true });
-    application.inject('component:pikaday-input', 'i18n', 'pikaday-i18n:main');
+      months: moment.localeData()._months,
+      weekdays: moment.localeData()._weekdays,
+      weekdaysShort: moment.localeData()._weekdaysShort,
+    };
   },
-};
+});
 ```
 
 ## Examples
