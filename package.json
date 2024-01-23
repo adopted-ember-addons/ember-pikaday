@@ -125,7 +125,7 @@
     }
   },
   "engines": {
-    "node": ">= 16"
+    "node": "14.17.5 || >= 16.0.0"
   },
   "ember-addon": {
     "version": 2,
@@ -138,7 +138,7 @@
     }
   },
   "volta": {
-    "node": ">16",
+    "node": "14.17.5",
     "yarn": "1.22.11"
   },
   "release-it": {
