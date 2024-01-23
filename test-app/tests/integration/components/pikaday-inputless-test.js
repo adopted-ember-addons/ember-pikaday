@@ -17,7 +17,7 @@ module('Integration | Component | pikaday-inputless', function (hooks) {
   });
 
   test('selecting a date should send an action', async function (assert) {
-    const expectedDate = new Date(2013, 3, 28);
+    const expectedDate = new Date(2024, 1, 20);
     const onSelection = td.function();
     this.set('onSelection', onSelection);
 

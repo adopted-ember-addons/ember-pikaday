@@ -51,23 +51,22 @@ module('Integration | Component | pikaday-input', function (hooks) {
   });
 
   test('selecting a date should send an action', async function (assert) {
-    const expectedDate = new Date(2013, 3, 28);
+    const expectedDate = new Date(2024, 1, 21);
 
     this.set('onSelection', function (selectedDate) {
       assert.deepEqual(selectedDate, expectedDate);
     });
 
     await render(hbs`
-      <PikadayInput @onSelection={{this.onSelection}}/>
+      <PikadayInput @onSelection={{this.onSelection}} />
     `);
-
     await click('input');
     await Interactor.selectDate(expectedDate);
   });
 
   test('selecting multiple dates should send actions', async function (assert) {
-    const expectedDate1 = new Date(2013, 3, 28);
-    const expectedDate2 = new Date(2014, 4, 1);
+    const expectedDate1 = new Date(2024, 1, 15);
+    const expectedDate2 = new Date(2024, 1, 19);
 
     this.set('onSelection1', function (selectedDate) {
       assert.deepEqual(selectedDate, expectedDate1);
@@ -376,7 +375,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
   });
 
   test('if utc is set the date returned from pikaday should be in UTC format', async function (assert) {
-    const expectedDate = new Date(Date.UTC(2013, 3, 28));
+    const expectedDate = new Date(Date.UTC(2024, 1, 21));
     this.set('onSelection', function (selectedDate) {
       assert.deepEqual(selectedDate, expectedDate);
     });
@@ -387,7 +386,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
     await click('input');
 
-    await Interactor.selectDate(new Date(2013, 3, 28));
+    await Interactor.selectDate(new Date(2024, 1, 21));
   });
 
   [
