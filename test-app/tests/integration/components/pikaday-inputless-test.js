@@ -17,12 +17,13 @@ module('Integration | Component | pikaday-inputless', function (hooks) {
   });
 
   test('selecting a date should send an action', async function (assert) {
-    const expectedDate = new Date(2024, 1, 20);
+    const expectedDate = new Date(2013, 3, 28);
+    this.initialDate = new Date(2013, 3, 1);
     const onSelection = td.function();
     this.set('onSelection', onSelection);
 
     await render(hbs`
-      <PikadayInputless @onSelection={{this.onSelection}}/>
+      <PikadayInputless @value={{this.initialDate}} @onSelection={{this.onSelection}}/>
     `);
 
     await click('input');
