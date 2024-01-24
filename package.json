@@ -88,8 +88,7 @@
     "eslint-plugin-qunit": "^6.2.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
-    "release-it": "14.0.0",
-    "release-it-lerna-changelog": "^4.0.1",
+    "release-plan": "^0.6.0",
     "rollup": "^4.9.6",
     "scenario-tester": "^3.1.0"
   },
@@ -99,18 +98,22 @@
     "moment-timezone": "^0.5.34"
   },
   "peerDependenciesMeta": {
+    "@ember/test-helpers": {
+      "optional": true
+    },
     "moment": {
       "optional": true
     },
     "moment-timezone": {
       "optional": true
-    },
-    "@ember/test-helpers": {
-      "optional": true
     }
   },
   "engines": {
     "node": ">= 20"
+  },
+  "volta": {
+    "node": "14.17.5",
+    "yarn": "1.22.11"
   },
   "ember-addon": {
     "version": 2,
@@ -120,19 +123,6 @@
       "./components/pikaday-input.js": "./dist/_app_/components/pikaday-input.js",
       "./components/pikaday-inputless.js": "./dist/_app_/components/pikaday-inputless.js",
       "./modifiers/pikaday.js": "./dist/_app_/modifiers/pikaday.js"
-    }
-  },
-  "release-it": {
-    "plugins": {
-      "release-it-lerna-changelog": {
-        "infile": "CHANGELOG.md"
-      }
-    },
-    "git": {
-      "tagName": "v${version}"
-    },
-    "github": {
-      "release": true
     }
   }
 }
