@@ -1,4 +1,4 @@
-import babel from '@rollup/plugin-babel';
+import { babel } from '@rollup/plugin-babel';
 import { Addon } from '@embroider/addon-dev/rollup';
 
 const addon = new Addon({
