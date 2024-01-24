@@ -4,7 +4,7 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const { maybeEmbroider } = require('@embroider/test-setup');
 
 let alias = {
-  testdouble$: 'testdouble/dist/testdouble.js',
+  testdouble: 'testdouble/dist/testdouble.js',
 };
 
 module.exports = function (defaults) {
