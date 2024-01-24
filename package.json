@@ -103,7 +103,7 @@
     "release-it-lerna-changelog": "^4.0.1",
     "rollup": "^2.63.0",
     "scenario-tester": "^2.0.1",
-    "testdouble": "^3.16.4",
+    "testdouble": "^3.20.1",
     "testdouble-qunit": "^3.0.3",
     "webpack": "^5.65.0"
   },
