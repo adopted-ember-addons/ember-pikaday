@@ -63,13 +63,13 @@
     "webpack": "^5.65.0"
   },
   "engines": {
-    "node": "14.* || >= 16"
+    "node": "20.11.0"
   },
   "ember": {
     "edition": "octane"
   },
   "volta": {
-    "node": "14.17.5",
+    "node": "20.11.0",
     "yarn": "1.22.11"
   }
 }
