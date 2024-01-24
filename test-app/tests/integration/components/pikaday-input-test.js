@@ -3,7 +3,8 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click, fillIn, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { close as closePikaday, Interactor } from 'ember-pikaday/test-support';
-import td from 'testdouble';
+
+import sinon from 'sinon';
 
 const getFirstWeekendDayNumber = function () {
   const date = new Date();
@@ -106,7 +107,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
   });
 
   test('opening picker should send an action', async function (assert) {
-    const onOpen = td.function();
+    const onOpen = sinon.fake();
     this.set('onOpen', onOpen);
 
     await render(hbs`
@@ -115,11 +116,11 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
     await click('input');
 
-    assert.verify(onOpen());
+    assert.ok(onOpen.calledOnce());
   });
 
   test('closing picker should send an action', async function (assert) {
-    const onClose = td.function();
+    const onClose = sinon.fake();
     this.set('onClose', onClose);
 
     await render(hbs`
@@ -129,11 +130,11 @@ module('Integration | Component | pikaday-input', function (hooks) {
     await click('input');
     await closePikaday();
 
-    assert.verify(onClose());
+    assert.ok(onClose.calledOnce());
   });
 
   test('redrawing picker should send an action', async function (assert) {
-    const onDraw = td.function();
+    const onDraw = sinon.fake();
     this.set('onDraw', onDraw);
 
     await render(hbs`
@@ -142,7 +143,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
     await click('input');
 
-    assert.verify(onDraw());
+    assert.ok(onDraw.calledOnce());
   });
 
   test('setting the value attribute should select the correct date', async function (assert) {
@@ -539,7 +540,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
   });
 
   test('if an options hash is passed, default options are overridden', async function (assert) {
-    const onOpen = td.function();
+    const onOpen = sinon.fake();
     this.set('onOpen', onOpen);
 
     await render(hbs`
@@ -547,7 +548,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     `);
     await click('input');
 
-    assert.verify(onOpen());
+    assert.ok(onOpen.calledOnce());
 
     const weekendDay = getFirstWeekendDayNumber();
     const disabledWeekendCell = findAll('td', document.body).find(
