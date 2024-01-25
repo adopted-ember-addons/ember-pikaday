@@ -243,28 +243,28 @@ module('Integration | Component | pikaday-input', function (hooks) {
   });
 
   test('set new date value with a new min date', async function (assert) {
-    const tommorow = new Date(2010, 7, 10);
-    this.set('tommorow', tommorow);
+    const tomorrow = new Date(2010, 7, 10);
+    this.set('tomorrow', tomorrow);
 
     await render(hbs`
-      <PikadayInput @value={{this.tommorow}} @minDate={{this.tommorow}}/>
+      <PikadayInput @value={{this.tomorrow}} @minDate={{this.tomorrow}}/>
     `);
 
-    this.set('tommorow', new Date(2010, 7, 9));
+    this.set('tomorrow', new Date(2010, 7, 9));
     await settled();
 
     assert.dom('input').hasValue('09.08.2010');
   });
 
   test('set new date value with a new max date', async function (assert) {
-    const tommorow = new Date(2010, 7, 10);
-    this.set('tommorow', tommorow);
+    const tomorrow = new Date(2010, 7, 10);
+    this.set('tomorrow', tomorrow);
 
     await render(hbs`
-      <PikadayInput @value={{this.tommorow}} @maxDate={{this.tommorow}}/>
+      <PikadayInput @value={{this.tomorrow}} @maxDate={{this.tomorrow}}/>
     `);
 
-    this.set('tommorow', new Date(2010, 7, 11));
+    this.set('tomorrow', new Date(2010, 7, 11));
     await settled();
 
     assert.dom('input').hasValue('11.08.2010');
