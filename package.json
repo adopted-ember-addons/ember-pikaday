@@ -122,10 +122,6 @@
       "./modifiers/pikaday.js": "./dist/_app_/modifiers/pikaday.js"
     }
   },
-  "volta": {
-    "node": "20.11.0",
-    "yarn": "1.22.11"
-  },
   "release-it": {
     "plugins": {
       "release-it-lerna-changelog": {
