@@ -5,7 +5,7 @@ on:
       - main
       - master
   pull_request:
-    types: 
+    types:
       - labeled
 
 concurrency:
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   check-plan:
-    name: "Check Release Plan"
+    name: 'Check Release Plan'
     runs-on: ubuntu-latest
     outputs:
       command: ${{ steps.check-release.outputs.command }}
@@ -51,20 +51,20 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-      
+          node-version: 20.x
+
       - uses: pnpm/action-setup@v2
         with:
           version: 8
       - run: pnpm install --frozen-lockfile
-      
-      - name: "Generate Explanation and Prep Changelogs"
+
+      - name: 'Generate Explanation and Prep Changelogs'
         id: explanation
         run: |
           set -x
-          
+
           pnpm release-plan prepare
-          
+
           echo 'text<<EOF' >> $GITHUB_OUTPUT
           jq .description .release-plan.json -r >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
@@ -74,8 +74,8 @@ jobs:
       - uses: peter-evans/create-pull-request@v5
         with:
           commit-message: "Prepare Release using 'release-plan'"
-          author: "github-actions[bot] <github-actions-bot@users.noreply.github.com>"
-          labels: "internal"
+          author: 'github-actions[bot] <github-actions-bot@users.noreply.github.com>'
+          labels: 'internal'
           branch: release-preview
           title: Prepare Release
           body: |
