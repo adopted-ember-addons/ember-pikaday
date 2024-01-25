@@ -1,5 +1,32 @@
 # Changelog
 
+## v4.0.0 (2022-02-02)
+
+#### :rocket: Enhancement
+
+- New `{{pikaday}}` modifier gives you direct access to Pikaday's API in a Ember template.
+- Fully supports Ember 4.0
+- Ships as a V2-formatted addon for better static analysis, build-system simplicity, and smaller node_modules
+
+#### :boom: Breaking Change
+
+- The minimum supported Ember version is now 3.25.
+- The minimum supported Node version is now 12.
+- This is now a V2-formatted addon, so apps need ember-auto-import 2.0 or Embroider in order to use it. See "Installation" section of README.
+- You now need to opt _in_ to getting Pikaday's default CSS. See "Styles" section of the README.
+
+- [#532](https://github.com/adopted-ember-addons/ember-pikaday/pull/532) Update for Ember 4 and Embroider ([@ef4](https://github.com/ef4))
+
+#### :house: Internal
+
+- [#322](https://github.com/adopted-ember-addons/ember-pikaday/pull/322) Update `.npmignore` file ([@Turbo87](https://github.com/Turbo87))
+- [#321](https://github.com/adopted-ember-addons/ember-pikaday/pull/321) Cleanup dependencies ([@Turbo87](https://github.com/Turbo87))
+
+#### Committers: 2
+
+- Edward Faulkner ([@ef4](https://github.com/ef4))
+- Tobias Bieniek ([@Turbo87](https://github.com/Turbo87))
+
 ## v3.0.0 (2020-04-15)
 
 #### :boom: Breaking Change
@@ -8,61 +35,72 @@ This major version release drops support for Node.js 6 and 8 and for all
 Ember.js releases that happened before v3.12. Other than that there should be
 no other breaking changes included in this release.
 
-* [#307](https://github.com/adopted-ember-addons/ember-pikaday/pull/307) Update Ember CLI v3.14.0...v3.16.0 ([@jrjohnson](https://github.com/jrjohnson))
+- [#307](https://github.com/adopted-ember-addons/ember-pikaday/pull/307) Update Ember CLI v3.14.0...v3.16.0 ([@jrjohnson](https://github.com/jrjohnson))
 
 #### :rocket: Enhancement
-* [#296](https://github.com/adopted-ember-addons/ember-pikaday/pull/296) Remove jquery ([@the-bionic](https://github.com/the-bionic))
+
+- [#296](https://github.com/adopted-ember-addons/ember-pikaday/pull/296) Remove jquery ([@the-bionic](https://github.com/the-bionic))
 
 #### :bug: Bug Fix
-* [#309](https://github.com/adopted-ember-addons/ember-pikaday/pull/309) Fix build when included in an addon ([@jrjohnson](https://github.com/jrjohnson))
-* [#297](https://github.com/adopted-ember-addons/ember-pikaday/pull/297) Prefer moment's localeData methods ([@drouhard](https://github.com/drouhard))
+
+- [#309](https://github.com/adopted-ember-addons/ember-pikaday/pull/309) Fix build when included in an addon ([@jrjohnson](https://github.com/jrjohnson))
+- [#297](https://github.com/adopted-ember-addons/ember-pikaday/pull/297) Prefer moment's localeData methods ([@drouhard](https://github.com/drouhard))
 
 #### :memo: Documentation
-* [#298](https://github.com/adopted-ember-addons/ember-pikaday/pull/298) use angle bracket syntax ([@the-bionic](https://github.com/the-bionic))
+
+- [#298](https://github.com/adopted-ember-addons/ember-pikaday/pull/298) use angle bracket syntax ([@the-bionic](https://github.com/the-bionic))
 
 #### :house: Internal
-* [#319](https://github.com/adopted-ember-addons/ember-pikaday/pull/319) Delete unnecessary `codemods.log` file ([@Turbo87](https://github.com/Turbo87))
-* [#309](https://github.com/adopted-ember-addons/ember-pikaday/pull/309) Fix build when included in an addon ([@jrjohnson](https://github.com/jrjohnson))
-* [#257](https://github.com/adopted-ember-addons/ember-pikaday/pull/257) Testing setup cleanup ([@Turbo87](https://github.com/Turbo87))
-* [#234](https://github.com/adopted-ember-addons/ember-pikaday/pull/234) Replace `ember-cli-node-assets` with regular imports from `node_modules` ([@Turbo87](https://github.com/Turbo87))
-* [#235](https://github.com/adopted-ember-addons/ember-pikaday/pull/235) Add dependabot config file ([@Turbo87](https://github.com/Turbo87))
-* [#233](https://github.com/adopted-ember-addons/ember-pikaday/pull/233) Replace `ember-cli-template-lint` with just `ember-template-lint` ([@Turbo87](https://github.com/Turbo87))
+
+- [#319](https://github.com/adopted-ember-addons/ember-pikaday/pull/319) Delete unnecessary `codemods.log` file ([@Turbo87](https://github.com/Turbo87))
+- [#309](https://github.com/adopted-ember-addons/ember-pikaday/pull/309) Fix build when included in an addon ([@jrjohnson](https://github.com/jrjohnson))
+- [#257](https://github.com/adopted-ember-addons/ember-pikaday/pull/257) Testing setup cleanup ([@Turbo87](https://github.com/Turbo87))
+- [#234](https://github.com/adopted-ember-addons/ember-pikaday/pull/234) Replace `ember-cli-node-assets` with regular imports from `node_modules` ([@Turbo87](https://github.com/Turbo87))
+- [#235](https://github.com/adopted-ember-addons/ember-pikaday/pull/235) Add dependabot config file ([@Turbo87](https://github.com/Turbo87))
+- [#233](https://github.com/adopted-ember-addons/ember-pikaday/pull/233) Replace `ember-cli-template-lint` with just `ember-template-lint` ([@Turbo87](https://github.com/Turbo87))
 
 #### Committers: 4
+
 - Inem Patrick ([@the-bionic](https://github.com/the-bionic))
 - Jonathan Johnson ([@jrjohnson](https://github.com/jrjohnson))
 - Matt Drouhard ([@drouhard](https://github.com/drouhard))
 - Tobias Bieniek ([@Turbo87](https://github.com/Turbo87))
 
-
 ## v2.4.1 (2019-09-10)
 
 #### :bug: Bug Fix
-* [#230](https://github.com/adopted-ember-addons/ember-pikaday/pull/230) Fixes testing of multiple pikaday inputs ([@john-griffin](https://github.com/john-griffin))
+
+- [#230](https://github.com/adopted-ember-addons/ember-pikaday/pull/230) Fixes testing of multiple pikaday inputs ([@john-griffin](https://github.com/john-griffin))
 
 #### :house: Internal
-* [#230](https://github.com/adopted-ember-addons/ember-pikaday/pull/230) Fixes testing of multiple pikaday inputs ([@john-griffin](https://github.com/john-griffin))
-* [#228](https://github.com/adopted-ember-addons/ember-pikaday/pull/228) disable jquery integration for dummy app ([@efx](https://github.com/efx))
+
+- [#230](https://github.com/adopted-ember-addons/ember-pikaday/pull/230) Fixes testing of multiple pikaday inputs ([@john-griffin](https://github.com/john-griffin))
+- [#228](https://github.com/adopted-ember-addons/ember-pikaday/pull/228) disable jquery integration for dummy app ([@efx](https://github.com/efx))
 
 #### Committers: 2
+
 - Eli Flanagan ([@efx](https://github.com/efx))
 - John Griffin ([@john-griffin](https://github.com/john-griffin))
 
 ## v2.4.0 (2019-07-05)
 
 #### :rocket: Enhancement
-* [#220](https://github.com/adopted-ember-addons/ember-pikaday/pull/220) Remove jQuery from interactor and components ([@FabHof](https://github.com/FabHof))
+
+- [#220](https://github.com/adopted-ember-addons/ember-pikaday/pull/220) Remove jQuery from interactor and components ([@FabHof](https://github.com/FabHof))
 
 #### :memo: Documentation
-* [#218](https://github.com/adopted-ember-addons/ember-pikaday/pull/218) Add README localization example ([@Yelinz](https://github.com/Yelinz))
+
+- [#218](https://github.com/adopted-ember-addons/ember-pikaday/pull/218) Add README localization example ([@Yelinz](https://github.com/Yelinz))
 
 #### :house: Internal
-* [#226](https://github.com/adopted-ember-addons/ember-pikaday/pull/226) run rwjblue's release it script ([@efx](https://github.com/efx))
-* [#225](https://github.com/adopted-ember-addons/ember-pikaday/pull/225) introduce lerna-changelog ([@efx](https://github.com/efx))
-* [#224](https://github.com/adopted-ember-addons/ember-pikaday/pull/224) remove bower configuration ([@efx](https://github.com/efx))
-* [#223](https://github.com/adopted-ember-addons/ember-pikaday/pull/223) update to new repository URL ([@efx](https://github.com/efx))
+
+- [#226](https://github.com/adopted-ember-addons/ember-pikaday/pull/226) run rwjblue's release it script ([@efx](https://github.com/efx))
+- [#225](https://github.com/adopted-ember-addons/ember-pikaday/pull/225) introduce lerna-changelog ([@efx](https://github.com/efx))
+- [#224](https://github.com/adopted-ember-addons/ember-pikaday/pull/224) remove bower configuration ([@efx](https://github.com/efx))
+- [#223](https://github.com/adopted-ember-addons/ember-pikaday/pull/223) update to new repository URL ([@efx](https://github.com/efx))
 
 #### Committers: 3
+
 - Eli Flanagan ([@efx](https://github.com/efx))
 - Fabian Hoffmann ([@FabHof](https://github.com/FabHof))
 - Yelin Zhang ([@Yelinz](https://github.com/Yelinz))
