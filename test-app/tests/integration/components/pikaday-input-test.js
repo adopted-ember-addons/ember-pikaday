@@ -3,7 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click, fillIn, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { close as closePikaday, Interactor } from 'ember-pikaday/test-support';
-import td from 'testdouble';
+import sinon from 'sinon';
 
 const getFirstWeekendDayNumber = function () {
   const date = new Date();
@@ -52,13 +52,14 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
   test('selecting a date should send an action', async function (assert) {
     const expectedDate = new Date(2013, 3, 28);
+    this.initialDate = new Date(2013, 3, 1);
 
     this.set('onSelection', function (selectedDate) {
       assert.deepEqual(selectedDate, expectedDate);
     });
 
     await render(hbs`
-      <PikadayInput @onSelection={{this.onSelection}}/>
+      <PikadayInput @value={{this.initialDate}} @onSelection={{this.onSelection}}/>
     `);
 
     await click('input');
@@ -68,6 +69,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
   test('selecting multiple dates should send actions', async function (assert) {
     const expectedDate1 = new Date(2013, 3, 28);
     const expectedDate2 = new Date(2014, 4, 1);
+    this.initialDate = new Date(2013, 3, 1);
 
     this.set('onSelection1', function (selectedDate) {
       assert.deepEqual(selectedDate, expectedDate1);
@@ -78,8 +80,8 @@ module('Integration | Component | pikaday-input', function (hooks) {
     });
 
     await render(hbs`
-      <PikadayInput @onSelection={{this.onSelection1}} class="first"/>
-      <PikadayInput @onSelection={{this.onSelection2}} class="second"/>
+      <PikadayInput @value={{this.initialDate}} @onSelection={{this.onSelection1}} class="first"/>
+      <PikadayInput @value={{this.initialDate}} @onSelection={{this.onSelection2}} class="second"/>
     `);
 
     await click('input.first');
@@ -106,7 +108,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
   });
 
   test('opening picker should send an action', async function (assert) {
-    const onOpen = td.function();
+    const onOpen = sinon.fake();
     this.set('onOpen', onOpen);
 
     await render(hbs`
@@ -115,11 +117,11 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
     await click('input');
 
-    assert.verify(onOpen());
+    assert.ok(onOpen.calledOnce);
   });
 
   test('closing picker should send an action', async function (assert) {
-    const onClose = td.function();
+    const onClose = sinon.fake();
     this.set('onClose', onClose);
 
     await render(hbs`
@@ -129,11 +131,11 @@ module('Integration | Component | pikaday-input', function (hooks) {
     await click('input');
     await closePikaday();
 
-    assert.verify(onClose());
+    assert.ok(onClose.calledOnce);
   });
 
   test('redrawing picker should send an action', async function (assert) {
-    const onDraw = td.function();
+    const onDraw = sinon.fake();
     this.set('onDraw', onDraw);
 
     await render(hbs`
@@ -142,7 +144,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
     await click('input');
 
-    assert.verify(onDraw());
+    assert.ok(onDraw.calledOnce);
   });
 
   test('setting the value attribute should select the correct date', async function (assert) {
@@ -377,12 +379,14 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
   test('if utc is set the date returned from pikaday should be in UTC format', async function (assert) {
     const expectedDate = new Date(Date.UTC(2013, 3, 28));
+    this.initialDate = new Date(2013, 3, 1);
+
     this.set('onSelection', function (selectedDate) {
       assert.deepEqual(selectedDate, expectedDate);
     });
 
     await render(hbs`
-        <PikadayInput @onSelection={{this.onSelection}} @useUTC={{true}}/>
+        <PikadayInput @value={{this.initialDate}} @onSelection={{this.onSelection}} @useUTC={{true}}/>
       `);
 
     await click('input');
@@ -539,7 +543,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
   });
 
   test('if an options hash is passed, default options are overridden', async function (assert) {
-    const onOpen = td.function();
+    const onOpen = sinon.fake();
     this.set('onOpen', onOpen);
 
     await render(hbs`
@@ -547,7 +551,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     `);
     await click('input');
 
-    assert.verify(onOpen());
+    assert.ok(onOpen.calledOnce);
 
     const weekendDay = getFirstWeekendDayNumber();
     const disabledWeekendCell = findAll('td', document.body).find(

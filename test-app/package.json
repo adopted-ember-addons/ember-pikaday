@@ -58,18 +58,17 @@
     "qunit-console-grouper": "^0.3.0",
     "qunit-dom": "^1.6.0",
     "scenario-tester": "^2.0.1",
-    "testdouble": "^3.16.4",
-    "testdouble-qunit": "^3.0.3",
+    "sinon": "^17.0.1",
     "webpack": "^5.65.0"
   },
   "engines": {
-    "node": "12.* || 14.* || >= 16"
+    "node": "20.11.0"
   },
   "ember": {
     "edition": "octane"
   },
   "volta": {
-    "node": "14.17.5",
+    "node": "20.11.0",
     "yarn": "1.22.11"
   }
 }
