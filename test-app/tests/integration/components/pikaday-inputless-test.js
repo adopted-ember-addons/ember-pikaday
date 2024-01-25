@@ -3,7 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import { Interactor } from 'ember-pikaday/test-support';
 import hbs from 'htmlbars-inline-precompile';
-import td from 'testdouble';
+import sinon from 'sinon';
 
 module('Integration | Component | pikaday-inputless', function (hooks) {
   setupRenderingTest(hooks);
@@ -19,7 +19,7 @@ module('Integration | Component | pikaday-inputless', function (hooks) {
   test('selecting a date should send an action', async function (assert) {
     const expectedDate = new Date(2013, 3, 28);
     this.initialDate = new Date(2013, 3, 1);
-    const onSelection = td.function();
+    const onSelection = sinon.fake();
     this.set('onSelection', onSelection);
 
     await render(hbs`
@@ -29,7 +29,7 @@ module('Integration | Component | pikaday-inputless', function (hooks) {
     await click('input');
     await Interactor.selectDate(expectedDate);
 
-    assert.verify(onSelection(expectedDate));
+    assert.ok(onSelection.calledWith(expectedDate));
   });
 
   test('setting the value attribute should select the correct date', async function (assert) {
