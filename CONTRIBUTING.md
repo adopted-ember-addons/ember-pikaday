@@ -4,23 +4,23 @@
 
 * `git clone <repository-url>`
 * `cd ember-pikaday`
-* `yarn install`
+* `pnpm install`
 
 ## Linting
 
-* `yarn lint:hbs`
-* `yarn lint:js`
-* `yarn lint:js --fix`
+* `pnpm lint:hbs`
+* `pnpm lint:js`
+* `pnpm lint:js --fix`
 
 ## Running tests
 
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `ember try:each` – Runs the test suite against multiple Ember versions
+* `pnpm test` – Runs the test suite(s)
+* `pnpm test:ember --server` – Runs the test suite in "watch mode"
+* `pnpm test:ember-compatibility` – Runs the test suite against multiple Ember versions
 
 ## Running the test-app application
 
-* `ember serve`
+* `pnpm start`
 * Visit the test-app application at [http://localhost:4200](http://localhost:4200).
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
