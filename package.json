@@ -24,27 +24,27 @@
   ],
   "scripts": {
     "clean": "rm -rf dist node_modules test-app/node_modules",
+    "link-test-app": "addon-dev link-test-app",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
+    "lint:devdeps": "addon-dev sync-dev-deps --lint",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
-    "lint:devdeps": "addon-dev sync-dev-deps --lint",
+    "prepare": "npm-run-all prepublishOnly link-test-app",
+    "prepublishOnly": "rollup --config",
     "scenario:list": "scenario-tester list --files test-app/scenarios.js",
     "scenario:output": "scenario-tester output --files test-app/scenarios.js --outdir scenario --scenario ",
     "scenario:run": "cd test-app && qunit scenarios.js --filter ",
     "start": "npm-run-all --parallel start:*",
-    "start:test-app": "cd test-app && ember serve",
     "start:build": "rollup --config --watch",
+    "start:test-app": "cd test-app && ember serve",
     "sync-dev-deps": "addon-dev sync-dev-deps",
     "test": "npm-run-all lint:* test:*",
     "test:ember": "cd test-app && ember test",
-    "test:ember-compatibility": "cd test-app && qunit scenarios.js",
-    "prepare": "npm-run-all prepublishOnly link-test-app",
-    "link-test-app": "addon-dev link-test-app",
-    "prepublishOnly": "rollup --config"
+    "test:ember-compatibility": "cd test-app && qunit scenarios.js"
   },
   "dependencies": {
     "@embroider/addon-shim": "^0.50.2",
-    "ember-modifier": "^3.0.0"
+    "ember-modifier": "^3.2.7 || ^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -79,7 +79,6 @@
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
     "ember-source": "~3.28.8",
-    "ember-source-3.25": "npm:ember-source@~3.25.0",
     "ember-source-beta": "npm:ember-source@beta",
     "ember-source-canary": "npm:ember-source@alpha",
     "ember-source-channel-url": "^3.0.0",
@@ -100,11 +99,11 @@
     "qunit": "^2.17.2",
     "qunit-console-grouper": "^0.3.0",
     "qunit-dom": "^1.6.0",
+    "release-it": "14.0.0",
     "release-it-lerna-changelog": "^4.0.1",
     "rollup": "^2.63.0",
     "scenario-tester": "^2.0.1",
-    "testdouble": "^3.16.4",
-    "testdouble-qunit": "^3.0.3",
+    "sinon": "^17.0.1",
     "webpack": "^5.65.0"
   },
   "peerDependencies": {
@@ -124,7 +123,7 @@
     }
   },
   "engines": {
-    "node": ">= 12"
+    "node": "20.11.0"
   },
   "ember-addon": {
     "version": 2,
@@ -137,7 +136,7 @@
     }
   },
   "volta": {
-    "node": "14.17.5",
+    "node": "20.11.0",
     "yarn": "1.22.11"
   },
   "release-it": {

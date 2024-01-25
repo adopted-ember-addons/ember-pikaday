@@ -3,9 +3,13 @@ import { action } from '@ember/object';
 import { findMoment } from '../find-moment';
 const moment = findMoment();
 
-export default class extends Component {
+export default class PikadayInputComponent extends Component {
   constructor(owner, args) {
     super(owner, args);
+  }
+
+  get moment() {
+    return this.args.moment || moment;
   }
 
   get format() {
@@ -14,6 +18,7 @@ export default class extends Component {
 
   get value() {
     let { value, useUTC } = this.args;
+    let moment = this.moment;
     if (useUTC && value) {
       let format = 'YYYY-MM-DD';
       value = moment(moment.utc(value).format(format), format).toDate();
@@ -87,7 +92,7 @@ export default class extends Component {
   @action
   onSelect(date) {
     if (this.args.useUTC && date) {
-      date = moment
+      date = this.moment
         .utc([date.getFullYear(), date.getMonth(), date.getDate()])
         .toDate();
     }
