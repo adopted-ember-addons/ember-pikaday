@@ -12,7 +12,6 @@ ember-pikaday provides a datepicker modifier & components for Ember using the Pi
 Prerequisites:
 
 - Ember.js v3.28 or above
-- Node.js v20 or above
 - ember-auto-import 2.0 or above
 
 Optional prerequisites:
