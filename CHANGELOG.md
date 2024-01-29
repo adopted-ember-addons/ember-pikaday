@@ -1,4 +1,33 @@
 # Changelog
+## Release (2024-01-29)
+
+ember-pikaday 4.1.0 (minor)
+
+#### :rocket: Enhancement
+* `ember-pikaday`
+  * [#535](https://github.com/adopted-ember-addons/ember-pikaday/pull/535) feat: add new `register` attr to access pikaday instance, moment instance replaceable ([@betocantu93](https://github.com/betocantu93))
+
+#### :bug: Bug Fix
+* `ember-pikaday`
+  * [#569](https://github.com/adopted-ember-addons/ember-pikaday/pull/569) Bug: updated tests ([@MelSumner](https://github.com/MelSumner))
+  * [#540](https://github.com/adopted-ember-addons/ember-pikaday/pull/540) fix(modifier): ensure compatibility with ember-modifier v4 ([@anehx](https://github.com/anehx))
+
+#### :memo: Documentation
+* `ember-pikaday`
+  * [#534](https://github.com/adopted-ember-addons/ember-pikaday/pull/534) fix(docs): simpler localization of datepicker ([@czosel](https://github.com/czosel))
+
+#### :house: Internal
+* `ember-pikaday`
+  * [#580](https://github.com/adopted-ember-addons/ember-pikaday/pull/580) Resolve failing test scenarios ([@MelSumner](https://github.com/MelSumner))
+  * [#578](https://github.com/adopted-ember-addons/ember-pikaday/pull/578) setup release-plan ([@mansona](https://github.com/mansona))
+  * [#576](https://github.com/adopted-ember-addons/ember-pikaday/pull/576) use pnpm ([@mansona](https://github.com/mansona))
+
+#### Committers: 5
+- Alberto Cantú Gómez ([@betocantu93](https://github.com/betocantu93))
+- Chris Manson ([@mansona](https://github.com/mansona))
+- Christian Zosel ([@czosel](https://github.com/czosel))
+- Jonas Metzener ([@anehx](https://github.com/anehx))
+- Melanie Sumner ([@MelSumner](https://github.com/MelSumner))
 
 ## v4.0.0 (2022-02-02)
 
