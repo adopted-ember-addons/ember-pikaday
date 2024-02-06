@@ -40,7 +40,7 @@
     "test:ember-compatibility": "cd test-app && pnpm qunit scenarios.js"
   },
   "dependencies": {
-    "@embroider/addon-shim": "^0.50.2",
+    "@embroider/addon-shim": "^1.8.7",
     "ember-modifier": "^3.2.7 || ^4.0.0"
   },
   "devDependencies": {
