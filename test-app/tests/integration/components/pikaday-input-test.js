@@ -253,7 +253,12 @@ module('Integration | Component | pikaday-input', function (hooks) {
     this.set('tomorrow', new Date(2010, 7, 9));
     await settled();
 
-    assert.dom('input').hasValue('09.08.2010');
+    assert
+      .dom('input')
+      .hasValue(
+        '10.08.2010',
+        'we do not manipulate the value even if it violates minDate'
+      );
   });
 
   test('set new date value with a new max date', async function (assert) {
@@ -267,7 +272,12 @@ module('Integration | Component | pikaday-input', function (hooks) {
     this.set('tomorrow', new Date(2010, 7, 11));
     await settled();
 
-    assert.dom('input').hasValue('11.08.2010');
+    assert
+      .dom('input')
+      .hasValue(
+        '10.08.2010',
+        'we do not manipulate the value, even if it violates the maxDate'
+      );
   });
 
   test('theme option adds theme as CSS class to DOM element', async function (assert) {
@@ -590,58 +600,6 @@ module('Integration | Component | pikaday-input', function (hooks) {
     );
 
     assert.dom(disabledWeekendCell).doesNotHaveClass('is-disabled');
-  });
-
-  test("if minDate is greater than value we set pikaday's current date to minDate", async function (assert) {
-    assert.expect(1);
-
-    const today = new Date();
-    const tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
-
-    this.set('currentDate', today);
-    this.set('minDate', today);
-    this.set('updateCurrentDate', (date) => {
-      this.set('currentDate', date);
-    });
-
-    await render(hbs`
-      <PikadayInput @minDate={{this.minDate}} @value={{this.currentDate}} @onSelection={{this.updateCurrentDate}}/>
-    `);
-
-    this.set('minDate', tomorrow);
-    await settled();
-
-    assert.equal(
-      this.currentDate.getDate(),
-      tomorrow.getDate(),
-      'value should change'
-    );
-  });
-
-  test("if maxDate is lower than value we set pikaday's current date to maxDate", async function (assert) {
-    assert.expect(1);
-
-    const today = new Date();
-    const tomorrow = new Date(Date.now() + 60 * 60 * 24 * 1000);
-
-    this.set('currentDate', tomorrow);
-    this.set('maxDate', tomorrow);
-    this.set('updateCurrentDate', (date) => {
-      this.set('currentDate', date);
-    });
-
-    await render(hbs`
-      <PikadayInput @maxDate={{this.maxDate}} @value={{this.currentDate}} @onSelection={{this.updateCurrentDate}}/>
-    `);
-
-    this.set('maxDate', today);
-    await settled();
-
-    assert.equal(
-      this.currentDate.getDate(),
-      today.getDate(),
-      'value should change'
-    );
   });
 
   test("if value is null we don't enforce minDate or maxDate", async function (assert) {

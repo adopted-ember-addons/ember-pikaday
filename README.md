@@ -59,7 +59,6 @@ All other named arguments are passed directly to Pikaday, so see [Pikaday's conf
 
 The only behaviors this modifier adds to the stock Pikaday are:
 
-- if you set `minDate` or `maxDate` and that causes `value` to be outside the legal range, we adjust `value` and fire `onSelect` to inform you of the change
 - if you set your `<input>` element's `disabled` attribute we will close Pikaday if it had been open.
 
 ### &lt;PikadayInput&gt; Component
