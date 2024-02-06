@@ -1,4 +1,15 @@
 # Changelog
+
+## Release (2024-02-06)
+
+ember-pikaday 5.0.0 (major)
+
+#### :boom: Breaking Change
+* `ember-pikaday`
+  * [#593](https://github.com/adopted-ember-addons/ember-pikaday/pull/593) fix: Prevent ember-pikaday from automatically updating values to within a min/max date bounds ([@Duder-onomy](https://github.com/Duder-onomy))
+
+#### Committers: 1
+- Greg Larrenaga ([@Duder-onomy](https://github.com/Duder-onomy))
 ## Release (2024-01-29)
 
 ember-pikaday 4.1.0 (minor)
