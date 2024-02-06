@@ -54,21 +54,9 @@ export default class PikadayModifier extends Modifier {
       this.#observer.observe(element, { attributes: true });
       register?.(this.#pikaday);
     } else {
-      let { value, minDate, maxDate } = named;
-      let valueAltered = false;
-      this.#pikaday.setMinDate(copyDate(minDate));
-      if (minDate && value && value < minDate) {
-        value = minDate;
-        valueAltered = true;
-      }
+      let { value } = named;
 
-      this.#pikaday.setMaxDate(copyDate(maxDate));
-      if (maxDate && value && value > maxDate) {
-        value = maxDate;
-        valueAltered = true;
-      }
-
-      this.#pikaday.setDate(value, !valueAltered);
+      this.#pikaday.setDate(value, true);
       this.#pikaday.config(pikadayOptions);
     }
   }
@@ -77,14 +65,5 @@ export default class PikadayModifier extends Modifier {
     if (element.hasAttribute('disabled')) {
       this.#pikaday.hide();
     }
-  }
-}
-
-// apparently Pikaday mutates Dates that you pass it for minDate and maxDate. <sigh>
-function copyDate(date) {
-  if (date) {
-    return new Date(date.getTime());
-  } else {
-    return date;
   }
 }
