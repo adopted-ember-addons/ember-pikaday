@@ -187,8 +187,8 @@ importers:
         specifier: ~3.28.6
         version: 3.28.6
       ember-cli-babel:
-        specifier: ^7.26.11
-        version: 7.26.11
+        specifier: ^8.2.0
+        version: 8.2.0(@babel/core@7.26.0)
       ember-cli-htmlbars:
         specifier: ^5.7.2
         version: 5.7.2
