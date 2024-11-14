@@ -4,6 +4,12 @@ const { module: Qmodule, test } = require('qunit');
 Scenarios.fromDir(__dirname)
   .expand({
     lts_3_28,
+    lts_4_4,
+    lts_4_8,
+    lts_4_12,
+    lts_5_4,
+    lts_5_8,
+    lts_5_12,
     release,
     beta,
     canary,
@@ -30,6 +36,72 @@ async function lts_3_28(project) {
   });
   project.linkDevDependency('ember-source', {
     baseDir: __dirname,
+  });
+}
+
+async function lts_4_4(project) {
+  project.linkDevDependency('ember-cli', {
+    baseDir: __dirname,
+    resolveName: 'ember-cli-lts-4.4',
+  });
+  project.linkDevDependency('ember-source', {
+    baseDir: __dirname,
+    resolveName: 'ember-source-lts-4.4',
+  });
+}
+
+async function lts_4_8(project) {
+  project.linkDevDependency('ember-cli', {
+    baseDir: __dirname,
+    resolveName: 'ember-cli-lts-4.8',
+  });
+  project.linkDevDependency('ember-source', {
+    baseDir: __dirname,
+    resolveName: 'ember-source-lts-4.8',
+  });
+}
+
+async function lts_4_12(project) {
+  project.linkDevDependency('ember-cli', {
+    baseDir: __dirname,
+    resolveName: 'ember-cli-lts-4.12',
+  });
+  project.linkDevDependency('ember-source', {
+    baseDir: __dirname,
+    resolveName: 'ember-source-lts-4.12',
+  });
+}
+
+async function lts_5_4(project) {
+  project.linkDevDependency('ember-cli', {
+    baseDir: __dirname,
+    resolveName: 'ember-cli-lts-5.4',
+  });
+  project.linkDevDependency('ember-source', {
+    baseDir: __dirname,
+    resolveName: 'ember-source-lts-5.4',
+  });
+}
+
+async function lts_5_8(project) {
+  project.linkDevDependency('ember-cli', {
+    baseDir: __dirname,
+    resolveName: 'ember-cli-lts-5.8',
+  });
+  project.linkDevDependency('ember-source', {
+    baseDir: __dirname,
+    resolveName: 'ember-source-lts-5.8',
+  });
+}
+
+async function lts_5_12(project) {
+  project.linkDevDependency('ember-cli', {
+    baseDir: __dirname,
+    resolveName: 'ember-cli-lts-5.12',
+  });
+  project.linkDevDependency('ember-source', {
+    baseDir: __dirname,
+    resolveName: 'ember-source-lts-5.12',
   });
 }
 
