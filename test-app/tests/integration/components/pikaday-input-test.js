@@ -257,7 +257,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
       .dom('input')
       .hasValue(
         '10.08.2010',
-        'we do not manipulate the value even if it violates minDate'
+        'we do not manipulate the value even if it violates minDate',
       );
   });
 
@@ -276,13 +276,13 @@ module('Integration | Component | pikaday-input', function (hooks) {
       .dom('input')
       .hasValue(
         '10.08.2010',
-        'we do not manipulate the value, even if it violates the maxDate'
+        'we do not manipulate the value, even if it violates the maxDate',
       );
   });
 
   test('theme option adds theme as CSS class to DOM element', async function (assert) {
     await render(hbs`
-      <PikadayInput @theme={{'dark-theme'}}/>
+      <PikadayInput @theme="dark-theme"/>
     `);
 
     assert.dom('.pika-single', document.body).hasClass('dark-theme');
@@ -305,7 +305,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     const currentYear = new Date().getFullYear();
 
     await render(hbs`
-      <PikadayInput @yearRange={{'4'}}/>
+      <PikadayInput @yearRange="4"/>
     `);
 
     await click('input');
@@ -316,7 +316,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
   test('yearRange of the input can be set with comma separated years', async function (assert) {
     await render(hbs`
-      <PikadayInput @yearRange={{'1900,2006'}}/>
+      <PikadayInput @yearRange="1900,2006"/>
     `);
 
     await click('input');
@@ -327,7 +327,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
   test('yearRange of the input with comma separated years supports currentYear as max', async function (assert) {
     await render(hbs`
-      <PikadayInput @yearRange={{'1900,currentYear'}}/>
+      <PikadayInput @yearRange="1900,currentYear"/>
     `);
 
     await click('input');
@@ -378,10 +378,10 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
     const monthOptions = await findAll(
       '.pika-select-month option',
-      document.body
+      document.body,
     );
     const selectedMonthOption = monthOptions.find((e) =>
-      e.hasAttribute('selected')
+      e.hasAttribute('selected'),
     );
 
     assert.dom(selectedMonthOption).hasText('März');
@@ -524,7 +524,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
       .dom('.pika-single', document.body)
       .hasClass(
         'is-hidden',
-        'disabled and pika-single should be hidden automatically'
+        'disabled and pika-single should be hidden automatically',
       );
   });
 
@@ -565,7 +565,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
 
     const weekendDay = getFirstWeekendDayNumber();
     const disabledWeekendCell = findAll('td', document.body).find(
-      getDisabledDayCB(weekendDay)
+      getDisabledDayCB(weekendDay),
     );
 
     assert.dom(disabledWeekendCell).hasClass('is-disabled');
@@ -583,7 +583,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     await click('input');
 
     disabledWeekendCell = findAll('td', document.body).find(
-      getDisabledDayCB(weekendDay)
+      getDisabledDayCB(weekendDay),
     );
 
     assert.dom(disabledWeekendCell).hasClass('is-disabled');
@@ -596,7 +596,7 @@ module('Integration | Component | pikaday-input', function (hooks) {
     await click('input');
 
     disabledWeekendCell = findAll('td', document.body).find(
-      getDisabledDayCB(weekendDay)
+      getDisabledDayCB(weekendDay),
     );
 
     assert.dom(disabledWeekendCell).doesNotHaveClass('is-disabled');
@@ -639,12 +639,12 @@ module('Integration | Component | pikaday-input', function (hooks) {
     assert.equal(
       today.toISOString(),
       todayCopy.toISOString(),
-      'value should not change'
+      'value should not change',
     );
     assert.equal(
       tomorrow.toISOString(),
       tomorrowCopy.toISOString(),
-      'value should not change'
+      'value should not change',
     );
   });
 

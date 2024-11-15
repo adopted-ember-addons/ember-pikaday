@@ -22,9 +22,9 @@ export async function selectDate(date) {
 
   await triggerEvent(
     findVisibleElement(
-      'td[data-day="' + day + '"]:not(.is-outside-current-month) button'
+      'td[data-day="' + day + '"]:not(.is-outside-current-month) button',
     ),
-    selectEvent
+    selectEvent,
   );
 }
 
