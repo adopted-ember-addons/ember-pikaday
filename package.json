@@ -67,7 +67,7 @@
     "ember-cli-lts-5.4": "npm:ember-cli@~5.4",
     "ember-cli-lts-5.8": "npm:ember-cli@~5.8",
     "ember-qunit-8": "npm:ember-qunit@^8.0.0",
-    "ember-source": "~3.28.8",
+    "ember-source": "~6.0.0",
     "ember-source-beta": "npm:ember-source@beta",
     "ember-source-canary": "npm:ember-source@alpha",
     "ember-source-latest": "npm:ember-source@latest",
