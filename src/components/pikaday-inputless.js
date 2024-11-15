@@ -10,7 +10,7 @@ export default class PikadayInputlessComponent extends Component {
       (element) => {
         this.container = element;
       },
-      { eager: false }
+      { eager: false },
     );
   }
 }

@@ -20,6 +20,6 @@ export function findMoment() {
     return moment;
   }
   throw new Error(
-    `You're trying to use a feature of ember-pikaday that depends on moment or moment-timezone, but neither was found`
+    `You're trying to use a feature of ember-pikaday that depends on moment or moment-timezone, but neither was found`,
   );
 }
