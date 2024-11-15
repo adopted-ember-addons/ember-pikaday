@@ -57,7 +57,7 @@
     "@glimmer/tracking": "^1.0.4",
     "@rollup/plugin-babel": "^5.3.0",
     "babel-eslint": "^10.1.0",
-    "ember-cli": "~3.28.6",
+    "ember-cli": "~6.0.0",
     "ember-cli-beta": "npm:ember-cli@beta",
     "ember-cli-latest": "npm:ember-cli@latest",
     "ember-cli-lts-4.12": "npm:ember-cli@~4.12",
