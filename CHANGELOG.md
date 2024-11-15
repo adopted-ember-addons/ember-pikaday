@@ -1,5 +1,22 @@
 # Changelog
 
+## Release (2024-11-15)
+
+ember-pikaday 5.0.1 (patch)
+
+#### :bug: Bug Fix
+* `ember-pikaday`
+  * [#625](https://github.com/adopted-ember-addons/ember-pikaday/pull/625) Widen @ember/test-helper peerDependency to include v4 ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### :house: Internal
+* `ember-pikaday`
+  * [#624](https://github.com/adopted-ember-addons/ember-pikaday/pull/624) Bump release-plan and update setup ([@SergeAstapov](https://github.com/SergeAstapov))
+  * [#623](https://github.com/adopted-ember-addons/ember-pikaday/pull/623) Bump pnpm to v9 ([@SergeAstapov](https://github.com/SergeAstapov))
+  * [#612](https://github.com/adopted-ember-addons/ember-pikaday/pull/612) Resolve release/beta/canary failing test scenarios ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### Committers: 1
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+
 ## Release (2024-02-06)
 
 ember-pikaday 5.0.0 (major)
