@@ -41,7 +41,7 @@
     "qunit-dom": "^1.6.0",
     "scenario-tester": "^2.0.1",
     "sinon": "^17.0.1",
-    "webpack": "^5.65.0"
+    "webpack": "^5.94.0"
   },
   "engines": {
     "node": "^20.11.0"
