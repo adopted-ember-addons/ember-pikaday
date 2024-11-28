@@ -1,24 +1,41 @@
 import { registerDestructor } from '@ember/destroyable';
-import Modifier from 'ember-modifier';
+import type Owner from '@ember/owner';
+import Modifier, { type ArgsFor } from 'ember-modifier';
 import makePikaday from '../../vendor/pikaday';
 import { maybeFindMoment } from '../find-moment';
 const Pikaday = makePikaday(maybeFindMoment());
 
-export default class PikadayModifier extends Modifier {
-  #pikaday;
-  #observer;
+interface Positional {}
+interface Named {}
+interface Options {}
 
-  constructor(owner, args) {
+interface PikadaySignature {
+  Element: HTMLElement;
+  Args: {
+    Positional: Positional;
+    Named: Named;
+  };
+}
+
+export default class PikadayModifier extends Modifier<PikadaySignature> {
+  #pikaday: typeof Pikaday | null = null;
+  #observer: MutationObserver | null = null;
+
+  constructor(owner: Owner, args: ArgsFor<PikadaySignature>) {
     super(owner, args);
 
     registerDestructor(this, () => {
-      this.#pikaday.destroy();
-      this.#observer.disconnect();
+      this.#pikaday?.destroy();
+      this.#observer?.disconnect();
     });
   }
 
-  getPikadayOptions(element, positional, named) {
-    let opts = {
+  getPikadayOptions(
+    element: HTMLElement,
+    positional: Positional,
+    named: Named,
+  ): Options {
+    const opts = {
       // Our element is Pikaday's field
       field: element,
 
@@ -40,12 +57,12 @@ export default class PikadayModifier extends Modifier {
     return opts;
   }
 
-  modify(element, positional, named) {
+  modify(element: HTMLElement, positional: Positional, named: Named) {
     const pikadayOptions = this.getPikadayOptions(element, positional, named);
 
     if (!this.#pikaday) {
       this.#pikaday = new Pikaday(pikadayOptions);
-      let { value, register } = named;
+      const { value, register } = named;
       if (value) {
         this.#pikaday.setDate(value, true);
       }
@@ -54,16 +71,16 @@ export default class PikadayModifier extends Modifier {
       this.#observer.observe(element, { attributes: true });
       register?.(this.#pikaday);
     } else {
-      let { value } = named;
+      const { value } = named;
 
       this.#pikaday.setDate(value, true);
       this.#pikaday.config(pikadayOptions);
     }
   }
 
-  syncDisabled(element) {
+  syncDisabled(element: HTMLElement) {
     if (element.hasAttribute('disabled')) {
-      this.#pikaday.hide();
+      this.#pikaday?.hide();
     }
   }
 }

@@ -24,6 +24,7 @@ export default {
       'components/**/*.js',
       'modifiers/**/*.js',
       'test-support/index.js',
+      'template-registry.js',
     ]),
 
     // These are the modules that should get reexported into the traditional
