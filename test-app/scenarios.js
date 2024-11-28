@@ -39,6 +39,14 @@ async function lts_3_28(project) {
     baseDir: __dirname,
     resolveName: 'ember-source-lts-3.28',
   });
+  project.linkDevDependency('@ember/test-helpers', {
+    baseDir: __dirname,
+    resolveName: 'ember-test-helpers-2',
+  });
+  project.linkDevDependency('ember-qunit', {
+    baseDir: __dirname,
+    resolveName: 'ember-qunit-5',
+  });
 }
 
 async function lts_4_4(project) {
@@ -49,6 +57,14 @@ async function lts_4_4(project) {
   project.linkDevDependency('ember-source', {
     baseDir: __dirname,
     resolveName: 'ember-source-lts-4.4',
+  });
+  project.linkDevDependency('@ember/test-helpers', {
+    baseDir: __dirname,
+    resolveName: 'ember-test-helpers-2',
+  });
+  project.linkDevDependency('ember-qunit', {
+    baseDir: __dirname,
+    resolveName: 'ember-qunit-5',
   });
 }
 
@@ -61,6 +77,14 @@ async function lts_4_8(project) {
     baseDir: __dirname,
     resolveName: 'ember-source-lts-4.8',
   });
+  project.linkDevDependency('@ember/test-helpers', {
+    baseDir: __dirname,
+    resolveName: 'ember-test-helpers-2',
+  });
+  project.linkDevDependency('ember-qunit', {
+    baseDir: __dirname,
+    resolveName: 'ember-qunit-5',
+  });
 }
 
 async function lts_4_12(project) {
@@ -71,6 +95,14 @@ async function lts_4_12(project) {
   project.linkDevDependency('ember-source', {
     baseDir: __dirname,
     resolveName: 'ember-source-lts-4.12',
+  });
+  project.linkDevDependency('@ember/test-helpers', {
+    baseDir: __dirname,
+    resolveName: 'ember-test-helpers-2',
+  });
+  project.linkDevDependency('ember-qunit', {
+    baseDir: __dirname,
+    resolveName: 'ember-qunit-5',
   });
 }
 
@@ -83,14 +115,6 @@ async function lts_5_4(project) {
     baseDir: __dirname,
     resolveName: 'ember-source-lts-5.4',
   });
-  project.linkDevDependency('@ember/test-helpers', {
-    baseDir: __dirname,
-    resolveName: 'ember-test-helpers-4',
-  });
-  project.linkDevDependency('ember-qunit', {
-    baseDir: __dirname,
-    resolveName: 'ember-qunit-8',
-  });
 }
 
 async function lts_5_8(project) {
@@ -101,14 +125,6 @@ async function lts_5_8(project) {
   project.linkDevDependency('ember-source', {
     baseDir: __dirname,
     resolveName: 'ember-source-lts-5.8',
-  });
-  project.linkDevDependency('@ember/test-helpers', {
-    baseDir: __dirname,
-    resolveName: 'ember-test-helpers-4',
-  });
-  project.linkDevDependency('ember-qunit', {
-    baseDir: __dirname,
-    resolveName: 'ember-qunit-8',
   });
 }
 
@@ -121,14 +137,6 @@ async function lts_5_12(project) {
     baseDir: __dirname,
     resolveName: 'ember-source-lts-5.12',
   });
-  project.linkDevDependency('@ember/test-helpers', {
-    baseDir: __dirname,
-    resolveName: 'ember-test-helpers-4',
-  });
-  project.linkDevDependency('ember-qunit', {
-    baseDir: __dirname,
-    resolveName: 'ember-qunit-8',
-  });
 }
 
 async function release(project) {
@@ -139,14 +147,6 @@ async function release(project) {
   project.linkDevDependency('ember-source', {
     baseDir: __dirname,
     resolveName: 'ember-source-latest',
-  });
-  project.linkDevDependency('@ember/test-helpers', {
-    baseDir: __dirname,
-    resolveName: 'ember-test-helpers-4',
-  });
-  project.linkDevDependency('ember-qunit', {
-    baseDir: __dirname,
-    resolveName: 'ember-qunit-8',
   });
 }
 
@@ -159,14 +159,6 @@ async function beta(project) {
     baseDir: __dirname,
     resolveName: 'ember-source-beta',
   });
-  project.linkDevDependency('@ember/test-helpers', {
-    baseDir: __dirname,
-    resolveName: 'ember-test-helpers-4',
-  });
-  project.linkDevDependency('ember-qunit', {
-    baseDir: __dirname,
-    resolveName: 'ember-qunit-8',
-  });
 }
 
 async function canary(project) {
@@ -177,14 +169,6 @@ async function canary(project) {
   project.linkDevDependency('ember-cli', {
     baseDir: __dirname,
     resolveName: 'ember-cli-lts-5.12',
-  });
-  project.linkDevDependency('@ember/test-helpers', {
-    baseDir: __dirname,
-    resolveName: 'ember-test-helpers-4',
-  });
-  project.linkDevDependency('ember-qunit', {
-    baseDir: __dirname,
-    resolveName: 'ember-qunit-8',
   });
 }
 
@@ -197,13 +181,5 @@ async function embroider(project) {
   });
   project.linkDevDependency('@embroider/webpack', {
     baseDir: __dirname,
-  });
-  project.linkDevDependency('@ember/test-helpers', {
-    baseDir: __dirname,
-    resolveName: 'ember-test-helpers-4',
-  });
-  project.linkDevDependency('ember-qunit', {
-    baseDir: __dirname,
-    resolveName: 'ember-qunit-8',
   });
 }
