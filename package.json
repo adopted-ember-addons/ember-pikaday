@@ -87,7 +87,7 @@
     "ember-source-lts-5.8": "npm:ember-source@~5.8",
     "ember-template-lint": "^6.0.0",
     "ember-test-helpers-4": "npm:@ember/test-helpers@^4.0.4",
-    "eslint": "^9.14.0",
+    "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-ember": "^12.3.1",
     "eslint-plugin-import": "^2.30.0",
