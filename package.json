@@ -11,33 +11,48 @@
   "license": "MIT",
   "author": "David Strauß",
   "exports": {
-    ".": "./dist/index.js",
-    "./*": "./dist/*",
-    "./test-support": "./dist/test-support/index.js",
-    "./addon-main.js": "./addon-main.js",
+    ".": {
+      "types": "./declarations/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./declarations/*.d.ts",
+      "default": "./dist/*.js"
+    },
+    "./test-support": {
+      "types": "./declarations/test-support/index.d.ts",
+      "default": "./dist/test-support/index.js"
+    },
+    "./addon-main.js": "./addon-main.cjs",
     "./pikaday.css": "./vendor/pikaday.css"
   },
   "files": [
-    "addon-main.js",
+    "addon-main.cjs",
+    "declarations",
     "dist",
     "vendor/pikaday.css"
   ],
   "scripts": {
+    "build": "concurrently 'pnpm:build:*'",
+    "build:js": "rollup --config",
+    "build:types": "glint --declaration",
     "clean": "rm -rf dist node_modules test-app/node_modules",
     "lint": "concurrently 'pnpm:lint:*(!fix)' --names 'lint:'",
-    "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\" --prefixColors auto",
-    "lint:hbs": "ember-template-lint .",
-    "lint:hbs:fix": "ember-template-lint . --fix",
+    "lint:fix": "concurrently 'pnpm:lint:*:fix' --names 'fix:'",
+    "lint:hbs": "ember-template-lint . --no-error-on-unmatched-pattern",
+    "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
-    "prepare": "rollup --config",
-    "prepublishOnly": "rollup --config",
+    "lint:types": "glint",
+    "prepack": "concurrently 'pnpm:build:*'",
+    "prepare": "concurrently 'pnpm:build:*'",
     "scenario:list": "scenario-tester list --files test-app/scenarios.js",
     "scenario:output": "scenario-tester output --files test-app/scenarios.js --outdir scenario --scenario ",
     "scenario:run": "cd test-app && qunit scenarios.js --filter ",
     "start": "concurrently 'pnpm:start:*' --restart-after 5000 --prefix-colors cyan,white,yellow",
-    "start:build": "rollup --config --watch",
+    "start:js": "rollup --config --watch --no-watch.clearScreen",
     "start:test-app": "cd test-app && ember serve",
+    "start:types": "glint --declaration --watch",
     "test": "concurrently 'pnpm:lint:*(!fix)' 'pnpm:test:*'",
     "test:ember": "cd test-app && ember test",
     "test:ember-compatibility": "cd test-app && pnpm qunit scenarios.js"
@@ -60,7 +75,12 @@
     "@embroider/test-setup": "npm:@embroider/test-setup@latest",
     "@embroider/webpack": "npm:@embroider/webpack@latest",
     "@eslint/js": "^9.15.0",
+    "@glint/core": "^1.4.0",
+    "@glint/environment-ember-loose": "^1.4.0",
+    "@glint/environment-ember-template-imports": "^1.4.0",
+    "@glint/template": "^1.4.0",
     "@rollup/plugin-babel": "^6.0.4",
+    "@tsconfig/ember": "^3.0.6",
     "babel-plugin-ember-template-compilation": "^2.3.0",
     "concurrently": "^9.1.0",
     "ember-cli-beta": "npm:ember-cli@beta",
@@ -97,6 +117,7 @@
     "prettier-plugin-ember-template-tag": "^2.0.4",
     "release-plan": "^0.11.0",
     "rollup": "^4.27.4",
+    "typescript": "^5.7.2",
     "typescript-eslint": "^8.16.0"
   },
   "peerDependencies": {
@@ -119,6 +140,12 @@
   "volta": {
     "node": "20.18.0",
     "pnpm": "9.14.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "ember": {
+    "edition": "octane"
   },
   "ember-addon": {
     "version": 2,
