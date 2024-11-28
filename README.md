@@ -12,7 +12,7 @@ ember-pikaday provides a datepicker modifier & components for Ember using the Pi
 Prerequisites:
 
 - Ember.js v3.28 or above
-- ember-auto-import 2.0 or above
+- Embroider or ember-auto-import v2
 
 Optional prerequisites:
 
@@ -352,6 +352,43 @@ await Interactor.selectDate(new Date(1989, 3, 28));
 assert.equal(Interactor.selectedYear(), 1989);
 assert.equal(Interactor.selectedMonth(), 3);
 assert.equal(Interactor.selectedDay(), 28);
+```
+
+## Usage in Template Tag Format
+
+For usage in `gts` or `gjs` files, modifier and components are exported from the index:
+
+```gts
+import { pikaday, PikadayInput, PikadayInputless } from 'ember-pikaday';
+
+function doSomethingWithSelectedValue(selectedDate) {
+  alert(selectedDate);
+}
+
+<template>
+  <input
+    Start date:
+    {{pikaday
+      format='DD.MM.YYYY'
+      value=this.startDate
+      onSelect=this.setStartDate
+    }}
+  />
+  <label>
+    End date:
+    <PikadayInput
+      @format="DD.MM.YYYY"
+      @onSelection={{doSomethingWithSelectedValue}}
+    />
+  </label>
+  <label>
+    Due date:
+    <PikadayInputless
+      @format="DD.MM.YYYY"
+      @onSelection={{doSomethingWithSelectedValue}}
+    />
+  </label>
+</template>
 ```
 
 ## Other Resources
