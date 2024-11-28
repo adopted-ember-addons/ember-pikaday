@@ -33,9 +33,11 @@ Scenarios.fromDir(__dirname)
 async function lts_3_28(project) {
   project.linkDevDependency('ember-cli', {
     baseDir: __dirname,
+    resolveName: 'ember-cli-lts-3.28',
   });
   project.linkDevDependency('ember-source', {
     baseDir: __dirname,
+    resolveName: 'ember-source-lts-3.28',
   });
 }
 
