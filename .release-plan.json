@@ -1,17 +1,25 @@
 {
   "solution": {
     "ember-pikaday": {
-      "impact": "major",
-      "oldVersion": "4.1.0",
-      "newVersion": "5.0.0",
+      "impact": "minor",
+      "oldVersion": "5.0.0",
+      "newVersion": "5.1.0",
       "constraints": [
         {
-          "impact": "major",
-          "reason": "Appears in changelog section :boom: Breaking Change"
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :house: Internal"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2024-02-06)\n\nember-pikaday 5.0.0 (major)\n\n#### :boom: Breaking Change\n* `ember-pikaday`\n  * [#593](https://github.com/adopted-ember-addons/ember-pikaday/pull/593) fix: Prevent ember-pikaday from automatically updating values to within a min/max date bounds ([@Duder-onomy](https://github.com/Duder-onomy))\n\n#### Committers: 1\n- Greg Larrenaga ([@Duder-onomy](https://github.com/Duder-onomy))\n"
+  "description": "## Release (2024-11-30)\n\nember-pikaday 5.1.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-pikaday`\n  * [#634](https://github.com/adopted-ember-addons/ember-pikaday/pull/634) Template Tag support ([@SergeAstapov](https://github.com/SergeAstapov))\n\n#### :bug: Bug Fix\n* `ember-pikaday`\n  * [#625](https://github.com/adopted-ember-addons/ember-pikaday/pull/625) Widen @ember/test-helper peerDependency to include v4 ([@SergeAstapov](https://github.com/SergeAstapov))\n\n#### :house: Internal\n* `ember-pikaday`\n  * [#635](https://github.com/adopted-ember-addons/ember-pikaday/pull/635) Bump dev dependencies ([@SergeAstapov](https://github.com/SergeAstapov))\n  * [#633](https://github.com/adopted-ember-addons/ember-pikaday/pull/633) Update 3.28 scenario to explicitly use 3.28 version ([@SergeAstapov](https://github.com/SergeAstapov))\n  * [#630](https://github.com/adopted-ember-addons/ember-pikaday/pull/630) Remove unused lint deps in test-app ([@SergeAstapov](https://github.com/SergeAstapov))\n  * [#626](https://github.com/adopted-ember-addons/ember-pikaday/pull/626) Sync with addon blueprint ([@SergeAstapov](https://github.com/SergeAstapov))\n  * [#624](https://github.com/adopted-ember-addons/ember-pikaday/pull/624) Bump release-plan and update setup ([@SergeAstapov](https://github.com/SergeAstapov))\n  * [#623](https://github.com/adopted-ember-addons/ember-pikaday/pull/623) Bump pnpm to v9 ([@SergeAstapov](https://github.com/SergeAstapov))\n  * [#612](https://github.com/adopted-ember-addons/ember-pikaday/pull/612) Resolve release/beta/canary failing test scenarios ([@SergeAstapov](https://github.com/SergeAstapov))\n\n#### Committers: 1\n- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))\n"
 }

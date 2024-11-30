@@ -1,5 +1,30 @@
 # Changelog
 
+## Release (2024-11-30)
+
+ember-pikaday 5.1.0 (minor)
+
+#### :rocket: Enhancement
+* `ember-pikaday`
+  * [#634](https://github.com/adopted-ember-addons/ember-pikaday/pull/634) Template Tag support ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### :bug: Bug Fix
+* `ember-pikaday`
+  * [#625](https://github.com/adopted-ember-addons/ember-pikaday/pull/625) Widen @ember/test-helper peerDependency to include v4 ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### :house: Internal
+* `ember-pikaday`
+  * [#635](https://github.com/adopted-ember-addons/ember-pikaday/pull/635) Bump dev dependencies ([@SergeAstapov](https://github.com/SergeAstapov))
+  * [#633](https://github.com/adopted-ember-addons/ember-pikaday/pull/633) Update 3.28 scenario to explicitly use 3.28 version ([@SergeAstapov](https://github.com/SergeAstapov))
+  * [#630](https://github.com/adopted-ember-addons/ember-pikaday/pull/630) Remove unused lint deps in test-app ([@SergeAstapov](https://github.com/SergeAstapov))
+  * [#626](https://github.com/adopted-ember-addons/ember-pikaday/pull/626) Sync with addon blueprint ([@SergeAstapov](https://github.com/SergeAstapov))
+  * [#624](https://github.com/adopted-ember-addons/ember-pikaday/pull/624) Bump release-plan and update setup ([@SergeAstapov](https://github.com/SergeAstapov))
+  * [#623](https://github.com/adopted-ember-addons/ember-pikaday/pull/623) Bump pnpm to v9 ([@SergeAstapov](https://github.com/SergeAstapov))
+  * [#612](https://github.com/adopted-ember-addons/ember-pikaday/pull/612) Resolve release/beta/canary failing test scenarios ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### Committers: 1
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+
 ## Release (2024-02-06)
 
 ember-pikaday 5.0.0 (major)
