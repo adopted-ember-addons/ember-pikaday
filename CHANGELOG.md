@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-02-05)
+
+ember-pikaday 5.1.1 (patch)
+
+#### :bug: Bug Fix
+* `ember-pikaday`
+  * [#639](https://github.com/adopted-ember-addons/ember-pikaday/pull/639) Include addon-main.cjs in package.json#files ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### Committers: 1
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+
 ## Release (2024-11-30)
 
 ember-pikaday 5.1.0 (minor)
