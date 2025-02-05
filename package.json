@@ -18,7 +18,7 @@
     "./pikaday.css": "./vendor/pikaday.css"
   },
   "files": [
-    "addon-main.js",
+    "addon-main.cjs",
     "dist",
     "vendor/pikaday.css"
   ],
