@@ -1,6 +1,6 @@
 {
   "name": "ember-pikaday",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "A tested datepicker component for Ember CLI projects including test helpers for your own acceptance tests.",
   "keywords": [
     "datepicker",
