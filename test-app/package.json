@@ -33,7 +33,7 @@
     "ember-qunit": "^8.1.1",
     "ember-resolver": "^8.0.3",
     "ember-source": "~6.0.1",
-    "jquery": "^3.6.0",
+    "jquery": "^4.0.0",
     "loader.js": "^4.7.0",
     "moment-timezone": "^0.5.46",
     "qunit": "^2.22.0",
