@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@embroider/addon-shim':
-        specifier: ^1.9.0
-        version: 1.9.0
+        specifier: ^1.10.2
+        version: 1.10.2
       decorator-transforms:
         specifier: ^2.3.0
         version: 2.3.0(@babel/core@7.26.0)
@@ -975,6 +975,10 @@ packages:
       rollup:
         optional: true
 
+  '@embroider/addon-shim@1.10.2':
+    resolution: {integrity: sha512-EfI9cJ5/3QSUJtwm7x1MXrx3TEa2p7RNgSHefy7fvGm8/DP1xUFL25nST1NaHbHcqR1UhMlrTtv5iUIDoVzeQQ==}
+    engines: {node: 12.* || 14.* || >= 16}
+
   '@embroider/addon-shim@1.9.0':
     resolution: {integrity: sha512-fMzayl/licUL8VRAy4qXROKcYvHwUbV8aTh4m97L5/MRuVpxbcAy92DGGTqx5OBKCSQN3gMg+sUKeE6AviefpQ==}
     engines: {node: 12.* || 14.* || >= 16}
@@ -1018,6 +1022,10 @@ packages:
 
   '@embroider/shared-internals@2.8.1':
     resolution: {integrity: sha512-zi0CENFD1e0DH7c9M/rNKJnFnt2c3+736J3lguBddZdmaIV6Cb8l3HQSkskSW5O4ady+SavemLKO3hCjQQJBIw==}
+    engines: {node: 12.* || 14.* || >= 16}
+
+  '@embroider/shared-internals@3.0.2':
+    resolution: {integrity: sha512-/SusdG+zgosc3t+9sPFVKSFOYyiSgLfXOT6lYNWoG1YtnhWDxlK4S8leZ0jhcVjemdaHln5rTyxCnq8oFLxqpQ==}
     engines: {node: 12.* || 14.* || >= 16}
 
   '@embroider/test-setup@4.0.0':
@@ -2266,6 +2274,10 @@ packages:
     resolution: {integrity: sha512-4YNPkuVsxAW5lnSTa6cn4Wk49RX6GAB6vX+M6LqEtN0YePqoFczv1/x0EyLK/o+4E1j9jEuYj5Su7IEPab5JHQ==}
     engines: {node: '>= 12.*'}
 
+  babel-import-util@3.0.1:
+    resolution: {integrity: sha512-2copPaWQFUrzooJVIVZA/Oppx/S/KOoZ4Uhr+XWEQDMZ8Rvq/0SNQpbdIyMBJ8IELWt10dewuJw+tX4XjOo7Rg==}
+    engines: {node: '>= 12.*'}
+
   babel-loader@8.3.0:
     resolution: {integrity: sha512-H8SvsMF+m9t15HNLMipppzkC+Y2Yq+v3SonZyU70RBL/h1gxPkH08Ot8pEE9Z4Kd+czyWJClmFS8qzIP9OZ04Q==}
     engines: {node: '>= 8.9'}
@@ -3298,6 +3310,15 @@ packages:
 
   debug@4.3.7:
     resolution: {integrity: sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
+  debug@4.4.3:
+    resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
     engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
@@ -4487,24 +4508,26 @@ packages:
 
   glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@5.0.15:
     resolution: {integrity: sha512-c9IPMazfRITpmAAKi22dK1VKxGDX9ehhqfABDriL/lzO92xcUKEJPQHrVA/2YHSNFB4iFlykVmWvwo48nr3OxA==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   glob@9.3.5:
     resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
     engines: {node: '>=16 || 14 >=14.17'}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   global-modules@1.0.0:
     resolution: {integrity: sha512-sKzpEkf11GpOFuw0Zzjzmt4B4UZwjOcG757PPvrfhxcLFbq0wpsgpOqxpxtxFiCG4DtG93M6XRVbF2oGdev7bg==}
@@ -5377,6 +5400,7 @@ packages:
 
   lodash.get@4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    deprecated: This package is deprecated. Use the optional chaining (?.) operator instead.
 
   lodash.isarguments@3.1.0:
     resolution: {integrity: sha512-chi4NHZlZqZD18a0imDHnZPrDeBbTtVN7GXMwuGdRH9qotxAjYs3aVLKc7zNOG9eddR5Ksd8rvFEBc9SsggPpg==}
@@ -5395,12 +5419,14 @@ packages:
 
   lodash.omit@4.5.0:
     resolution: {integrity: sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==}
+    deprecated: This package is deprecated. Use destructuring assignment syntax instead.
 
   lodash.restparam@3.6.1:
     resolution: {integrity: sha512-L4/arjjuq4noiUJpt3yS6KIKDtJwNe2fIYgMqyYYKoeIfV1iEqvPwhCx23o+R9dzouGihDAPN1dTIRWa7zk8tw==}
 
   lodash.template@4.5.0:
     resolution: {integrity: sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==}
+    deprecated: This package is deprecated. Use https://socket.dev/npm/package/eta instead.
 
   lodash.templatesettings@4.2.0:
     resolution: {integrity: sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==}
@@ -5410,6 +5436,9 @@ packages:
 
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+
+  lodash@4.17.23:
+    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
 
   log-symbols@2.2.0:
     resolution: {integrity: sha512-VeIAFslyIerEJLXHziedo2basKbMKtTw3vfn5IzG0XTjhAVEJyNHnL2p7vc+wBDSdQuUpNw3M2u6xb9QsAY5Eg==}
@@ -6439,6 +6468,7 @@ packages:
   raw-body@1.1.7:
     resolution: {integrity: sha512-WmJJU2e9Y6M5UzTOkHaM7xJGAPQD8PNzx3bAd2+uhZAim6wDk6dAZxPVYLF67XhbR4hmKGh33Lpmh4XWrCH5Mg==}
     engines: {node: '>= 0.8.0'}
+    deprecated: No longer maintained. Please upgrade to a stable version.
 
   raw-body@2.5.1:
     resolution: {integrity: sha512-qqJBtEyVgS0ZmPGdCFPWJ3FreoqvG4MVQln/kCgF7Olq95IbOp0/BWyMwbdtn4VTvkM8Y7khCQ2Xgk/tcrCXig==}
@@ -6608,6 +6638,10 @@ packages:
   resolve-url@0.2.1:
     resolution: {integrity: sha512-ZuF55hVUQaaczgOIwqWzkEcEidmlD/xl44x1UZnhOXcYuFN2S6+rcxpG+C1N3So0wvNI3DmJICUFfu2SxhBmvg==}
     deprecated: https://github.com/lydell/resolve-url#deprecated
+
+  resolve.exports@2.0.3:
+    resolution: {integrity: sha512-OcXjMsGdhL4XnbShKpAcSqPMzQoYkYyhbEaeSko47MjRP9NfEQMhZkXL1DoFlt9LWQn4YttrdnV6X2OiyzBi+A==}
+    engines: {node: '>=10'}
 
   resolve@1.22.8:
     resolution: {integrity: sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==}
@@ -6795,6 +6829,11 @@ packages:
 
   semver@7.6.3:
     resolution: {integrity: sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.7.4:
+    resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -7215,6 +7254,7 @@ packages:
   tar@6.2.0:
     resolution: {integrity: sha512-/Wo7DcT0u5HUV486xg675HtjNd3BXZ6xDbzsCUZPt5iw8bTQ63bP0Raut3mvro9u+CUyq7YQd8Cx55fsZXxqLQ==}
     engines: {node: '>=10'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   temp@0.9.4:
     resolution: {integrity: sha512-yYrrsWnrXMcdsnu/7YMYAofM1ktpL5By7vZhf15CrXijWWrEYZks5AXBudalfSWJLlnen/QUJUB5aoB0kqZUGA==}
@@ -7726,6 +7766,7 @@ packages:
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
     engines: {node: '>=18'}
+    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-mimetype@4.0.0:
     resolution: {integrity: sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==}
@@ -7982,7 +8023,7 @@ snapshots:
       '@babel/core': 7.26.0(supports-color@8.1.1)
       '@babel/helper-compilation-targets': 7.25.9
       '@babel/helper-plugin-utils': 7.25.9
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@8.1.1)
       lodash.debounce: 4.0.8
       resolve: 1.22.8
     transitivePeerDependencies:
@@ -8843,6 +8884,15 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  '@embroider/addon-shim@1.10.2':
+    dependencies:
+      '@embroider/shared-internals': 3.0.2
+      broccoli-funnel: 3.0.8
+      common-ancestor-path: 1.0.1
+      semver: 7.7.4
+    transitivePeerDependencies:
+      - supports-color
+
   '@embroider/addon-shim@1.9.0':
     dependencies:
       '@embroider/shared-internals': 2.8.1(supports-color@8.1.1)
@@ -8992,7 +9042,7 @@ snapshots:
       js-string-escape: 1.0.1
       lodash: 4.17.21
       resolve-package-path: 4.0.3
-      semver: 7.6.3
+      semver: 7.7.4
       typescript-memoize: 1.1.1
 
   '@embroider/shared-internals@2.8.1(supports-color@8.1.1)':
@@ -9008,6 +9058,24 @@ snapshots:
       pkg-entry-points: 1.1.1
       resolve-package-path: 4.0.3
       semver: 7.6.3
+      typescript-memoize: 1.1.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@embroider/shared-internals@3.0.2':
+    dependencies:
+      babel-import-util: 3.0.1
+      debug: 4.4.3(supports-color@8.1.1)
+      ember-rfc176-data: 0.3.18
+      fs-extra: 9.1.0
+      is-subdir: 1.2.0
+      js-string-escape: 1.0.1
+      lodash: 4.17.23
+      minimatch: 3.1.2
+      pkg-entry-points: 1.1.1
+      resolve-package-path: 4.0.3
+      resolve.exports: 2.0.3
+      semver: 7.7.4
       typescript-memoize: 1.1.1
     transitivePeerDependencies:
       - supports-color
@@ -9192,7 +9260,7 @@ snapshots:
 
   '@glimmer/component@2.0.0':
     dependencies:
-      '@embroider/addon-shim': 1.9.0
+      '@embroider/addon-shim': 1.10.2
       '@glimmer/env': 0.1.7
     transitivePeerDependencies:
       - supports-color
@@ -9721,7 +9789,7 @@ snapshots:
   '@npmcli/fs@1.1.1':
     dependencies:
       '@gar/promisify': 1.1.3
-      semver: 7.6.3
+      semver: 7.7.4
 
   '@npmcli/git@5.0.4':
     dependencies:
@@ -9731,7 +9799,7 @@ snapshots:
       proc-log: 3.0.0
       promise-inflight: 1.0.1(bluebird@3.7.2)
       promise-retry: 2.0.1
-      semver: 7.6.3
+      semver: 7.7.4
       which: 4.0.0
     transitivePeerDependencies:
       - bluebird
@@ -10123,7 +10191,7 @@ snapshots:
       '@typescript-eslint/types': 8.16.0
       '@typescript-eslint/typescript-estree': 8.16.0(typescript@5.6.3)
       '@typescript-eslint/visitor-keys': 8.16.0
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.3.7
       eslint: 9.15.0
     optionalDependencies:
       typescript: 5.6.3
@@ -10139,7 +10207,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/typescript-estree': 8.16.0(typescript@5.6.3)
       '@typescript-eslint/utils': 8.16.0(eslint@9.15.0)(typescript@5.6.3)
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@8.1.1)
       eslint: 9.15.0
       ts-api-utils: 1.4.0(typescript@5.6.3)
     optionalDependencies:
@@ -10153,11 +10221,11 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.16.0
       '@typescript-eslint/visitor-keys': 8.16.0
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@8.1.1)
       fast-glob: 3.3.2
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.6.3
+      semver: 7.7.4
       ts-api-utils: 1.4.0(typescript@5.6.3)
     optionalDependencies:
       typescript: 5.6.3
@@ -10371,13 +10439,13 @@ snapshots:
 
   agent-base@6.0.2:
     dependencies:
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
   agent-base@7.1.1(supports-color@8.1.1):
     dependencies:
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -10610,7 +10678,7 @@ snapshots:
 
   async-disk-cache@2.1.0:
     dependencies:
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.3.7
       heimdalljs: 0.2.6
       istextorbinary: 2.6.0
       mkdirp: 0.5.6
@@ -10685,7 +10753,7 @@ snapshots:
       babel-types: 6.26.0
       detect-indent: 4.0.0
       jsesc: 1.3.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       source-map: 0.5.7
       trim-right: 1.0.1
 
@@ -10703,6 +10771,8 @@ snapshots:
   babel-import-util@2.0.1: {}
 
   babel-import-util@3.0.0: {}
+
+  babel-import-util@3.0.1: {}
 
   babel-loader@8.3.0(@babel/core@7.26.0)(webpack@4.47.0):
     dependencies:
@@ -10838,7 +10908,7 @@ snapshots:
       babel-runtime: 6.26.0
       core-js: 2.6.12
       home-or-tmp: 2.0.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       mkdirp: 0.5.6
       source-map-support: 0.4.18
     transitivePeerDependencies:
@@ -10864,7 +10934,7 @@ snapshots:
       babel-traverse: 6.26.0
       babel-types: 6.26.0
       babylon: 6.18.0
-      lodash: 4.17.21
+      lodash: 4.17.23
     transitivePeerDependencies:
       - supports-color
 
@@ -10878,7 +10948,7 @@ snapshots:
       debug: 2.6.9
       globals: 9.18.0
       invariant: 2.2.4
-      lodash: 4.17.21
+      lodash: 4.17.23
     transitivePeerDependencies:
       - supports-color
 
@@ -10886,7 +10956,7 @@ snapshots:
     dependencies:
       babel-runtime: 6.26.0
       esutils: 2.0.3
-      lodash: 4.17.21
+      lodash: 4.17.23
       to-fast-properties: 1.0.3
 
   babylon@6.18.0: {}
@@ -11492,7 +11562,7 @@ snapshots:
 
   builtins@5.0.1:
     dependencies:
-      semver: 7.6.3
+      semver: 7.7.4
 
   bytes@1.0.0: {}
 
@@ -12079,7 +12149,11 @@ snapshots:
     optionalDependencies:
       supports-color: 8.1.1
 
-  debug@4.3.7(supports-color@8.1.1):
+  debug@4.3.7:
+    dependencies:
+      ms: 2.1.3
+
+  debug@4.4.3(supports-color@8.1.1):
     dependencies:
       ms: 2.1.3
     optionalDependencies:
@@ -12253,7 +12327,7 @@ snapshots:
       mkdirp: 0.5.6
       resolve-package-path: 3.1.0
       rimraf: 2.7.1
-      semver: 7.6.3
+      semver: 7.7.4
       symlink-or-copy: 1.3.1
       typescript-memoize: 1.1.1
       walk-sync: 0.3.4
@@ -12505,7 +12579,7 @@ snapshots:
       '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.26.0)
       '@babel/plugin-transform-typescript': 7.4.5(@babel/core@7.26.0)
       ansi-to-html: 0.6.15
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.3.7
       ember-cli-babel-plugin-helpers: 1.1.1
       execa: 1.0.0
       fs-extra: 7.0.1
@@ -12522,7 +12596,7 @@ snapshots:
     dependencies:
       '@babel/plugin-transform-typescript': 7.5.5(@babel/core@7.26.0)
       ansi-to-html: 0.6.15
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.3.7
       ember-cli-babel-plugin-helpers: 1.1.1
       execa: 2.1.0
       fs-extra: 8.1.0
@@ -13922,7 +13996,7 @@ snapshots:
 
   ember-modifier@4.2.0(@babel/core@7.26.0)(ember-source@6.2.0-alpha.4(@glimmer/component@2.0.0)(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@4.47.0)):
     dependencies:
-      '@embroider/addon-shim': 1.9.0
+      '@embroider/addon-shim': 1.10.2
       decorator-transforms: 2.3.0(@babel/core@7.26.0)
       ember-cli-normalize-entity-name: 1.0.0
       ember-cli-string-utils: 1.1.0
@@ -14349,7 +14423,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.26.0(supports-color@8.1.1)
       '@ember/edition-utils': 1.2.0
-      '@embroider/addon-shim': 1.9.0
+      '@embroider/addon-shim': 1.10.2
       '@glimmer/compiler': 0.92.4
       '@glimmer/component': 2.0.0
       '@glimmer/destroyable': 0.92.3
@@ -14400,7 +14474,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.26.0(supports-color@8.1.1)
       '@ember/edition-utils': 1.2.0
-      '@embroider/addon-shim': 1.9.0
+      '@embroider/addon-shim': 1.10.2
       '@glimmer/compiler': 0.92.4
       '@glimmer/component': 2.0.0
       '@glimmer/destroyable': 0.92.3
@@ -14530,7 +14604,7 @@ snapshots:
       base64id: 2.0.0
       cookie: 0.4.2
       cors: 2.8.5
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.3.7
       engine.io-parser: 5.2.1
       ws: 8.11.0
     transitivePeerDependencies:
@@ -14709,7 +14783,7 @@ snapshots:
   eslint-compat-utils@0.5.1(eslint@9.15.0):
     dependencies:
       eslint: 9.15.0
-      semver: 7.6.3
+      semver: 7.7.4
 
   eslint-config-prettier@9.1.0(eslint@9.15.0):
     dependencies:
@@ -15904,14 +15978,14 @@ snapshots:
     dependencies:
       '@tootallnate/once': 1.1.2
       agent-base: 6.0.2
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
   http-proxy-agent@7.0.2(supports-color@8.1.1):
     dependencies:
       agent-base: 7.1.1(supports-color@8.1.1)
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.3.4(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -15928,14 +16002,14 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
   https-proxy-agent@7.0.5(supports-color@8.1.1):
     dependencies:
       agent-base: 7.1.1(supports-color@8.1.1)
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.3.4(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -16620,6 +16694,8 @@ snapshots:
 
   lodash@4.17.21: {}
 
+  lodash@4.17.23: {}
+
   log-symbols@2.2.0:
     dependencies:
       chalk: 2.4.2
@@ -17093,7 +17169,7 @@ snapshots:
     dependencies:
       growly: 1.3.0
       is-wsl: 2.2.0
-      semver: 7.6.3
+      semver: 7.7.4
       shellwords: 0.1.1
       uuid: 8.3.2
       which: 2.0.2
@@ -17110,7 +17186,7 @@ snapshots:
     dependencies:
       hosted-git-info: 7.0.1
       is-core-module: 2.15.1
-      semver: 7.6.3
+      semver: 7.7.4
       validate-npm-package-license: 3.0.4
 
   normalize-path@2.1.1:
@@ -17121,7 +17197,7 @@ snapshots:
 
   npm-install-checks@6.3.0:
     dependencies:
-      semver: 7.6.3
+      semver: 7.7.4
 
   npm-normalize-package-bin@2.0.0: {}
 
@@ -17138,7 +17214,7 @@ snapshots:
     dependencies:
       hosted-git-info: 7.0.1
       proc-log: 4.2.0
-      semver: 7.6.3
+      semver: 7.7.4
       validate-npm-package-name: 5.0.1
 
   npm-package-arg@12.0.0:
@@ -17158,7 +17234,7 @@ snapshots:
     dependencies:
       hosted-git-info: 5.2.1
       proc-log: 2.0.1
-      semver: 7.6.3
+      semver: 7.5.4
       validate-npm-package-name: 4.0.0
 
   npm-pick-manifest@9.0.0:
@@ -17166,7 +17242,7 @@ snapshots:
       npm-install-checks: 6.3.0
       npm-normalize-package-bin: 3.0.1
       npm-package-arg: 11.0.3
-      semver: 7.6.3
+      semver: 7.7.4
 
   npm-run-path@2.0.2:
     dependencies:
@@ -17373,7 +17449,7 @@ snapshots:
       ky: 1.7.2
       registry-auth-token: 5.0.2
       registry-url: 6.0.1
-      semver: 7.6.3
+      semver: 7.7.4
 
   pako@1.0.11: {}
 
@@ -17935,6 +18011,8 @@ snapshots:
 
   resolve-url@0.2.1: {}
 
+  resolve.exports@2.0.3: {}
+
   resolve@1.22.8:
     dependencies:
       is-core-module: 2.15.1
@@ -18154,6 +18232,8 @@ snapshots:
 
   semver@7.6.3: {}
 
+  semver@7.7.4: {}
+
   send@0.18.0:
     dependencies:
       debug: 2.6.9
@@ -18362,7 +18442,7 @@ snapshots:
   socket.io-parser@4.2.4:
     dependencies:
       '@socket.io/component-emitter': 3.1.0
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.3.7
     transitivePeerDependencies:
       - supports-color
 
@@ -18371,7 +18451,7 @@ snapshots:
       accepts: 1.3.8
       base64id: 2.0.0
       cors: 2.8.5
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.3.7
       engine.io: 6.5.4
       socket.io-adapter: 2.5.2
       socket.io-parser: 4.2.4
@@ -18383,7 +18463,7 @@ snapshots:
   socks-proxy-agent@6.2.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.4.3(supports-color@8.1.1)
       socks: 2.7.1
     transitivePeerDependencies:
       - supports-color
@@ -18475,7 +18555,7 @@ snapshots:
 
   stagehand@1.0.1:
     dependencies:
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.3.7
     transitivePeerDependencies:
       - supports-color
 
@@ -18662,7 +18742,7 @@ snapshots:
 
   sync-disk-cache@2.1.0:
     dependencies:
-      debug: 4.3.7(supports-color@8.1.1)
+      debug: 4.3.7
       heimdalljs: 0.2.6
       mkdirp: 0.5.6
       rimraf: 3.0.2
@@ -19218,7 +19298,7 @@ snapshots:
   validate-peer-dependencies@1.2.0:
     dependencies:
       resolve-package-path: 3.1.0
-      semver: 7.6.3
+      semver: 7.7.4
 
   vary@1.1.2: {}
 
